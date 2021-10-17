@@ -1,0 +1,34 @@
+image: gradle:4.6-jdk8-alpine 
+
+variables: 
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
+
+before_script:
+  - chmod +x ./A1/gradlew
+  - export GRADLE_USER_HOME=`pwd`/payroll_management/.gradle
+
+
+stages:
+  - build
+  - test
+
+Build:
+  stage: build 
+  tags:
+    - ugrad
+
+  script: 
+    - ./payroll_management/gradlew build 
+
+Test: 
+  stage: test 
+  tags:
+    - ugrad
+  script:
+    - cd payroll_management
+    - ./gradlew test
+  artifacts:
+    when: always
+    reports:
+      junit: ./**/TEST-*.xml
+
