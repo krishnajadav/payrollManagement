@@ -29,17 +29,8 @@ build:
   script:
     - ./gradlew build 
 
-deploy_stage:
-  stage: deploy
-  tags: 
-    - dalfcs_docker_kvm
-    - dalfcs_gitlab_docker_ci
-  image: ruby:latest
-  script:
-    - dpl --provider=heroku --app=$HEROKU_APP_STAGING --api-key=$HEROKU_API_KEY
 
-
-deploy_production:
+deploy:
   stage: deploy
   tags:
     - dalfcs_docker_kvm
