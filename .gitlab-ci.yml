@@ -20,12 +20,6 @@ test:
     - dalfcs_gitlab_docker_ci
   script:
     - ./gradlew test 
-  artifacts:
-    when: always
-    expire_in: 1 week
-    reports:
-        junit: ./**/TEST-*.xml
-  when: always
 
 build:
   stage: build
