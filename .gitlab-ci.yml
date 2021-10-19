@@ -8,30 +8,32 @@ before_script:
   - apt-get install -y ruby-dev
   - gem install dpl
 
-
 stages:
-  - build
   - test
+  - build
   - deploy
 
-Build:
-  stage: build 
-  tags:
-    - ugrad
-  script: 
-    - ./gradlew build 
-
-Test: 
-  stage: test 
-  tags:
-    - ugrad
+test:
+  stage: test
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
   script:
-    - ./gradlew test
+    - ./gradlew test 
   artifacts:
     when: always
+    expire_in: 1 week
     reports:
-      junit: ./**/TEST-*.xml
+        junit: ./**/TEST-*.xml
+  when: always
 
+build:
+  stage: build
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
+    - ./gradlew build 
 
 deploy_stage:
   stage: deploy
@@ -41,7 +43,6 @@ deploy_stage:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_STAGE --api-key=$HEROKU_API_KEY
-  
 
 deploy_prod:
   stage: deploy
@@ -51,6 +52,8 @@ deploy_prod:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_API_KEY
+
+
 
 
 
