@@ -1,4 +1,4 @@
-image: maven:3-jdk-11-slim
+image: gradle:4.6-jdk8-alpine 
 
 variables: 
   GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
