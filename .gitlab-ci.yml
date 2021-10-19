@@ -4,15 +4,9 @@ variables:
   GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
 
 before_script:
-  - chmod +x ./gradlew
-  - export GRADLE_USER_HOME=`pwd`/.gradle
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
-
-
-
-
 
 
 stages:
