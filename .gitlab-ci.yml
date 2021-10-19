@@ -11,12 +11,12 @@ before_script:
 stages:
   - build
   - test
+  - deploy
 
 Build:
   stage: build 
   tags:
     - ugrad
-
   script: 
     - ./gradlew build 
 
@@ -30,4 +30,25 @@ Test:
     when: always
     reports:
       junit: ./**/TEST-*.xml
+
+
+deploy_stage:
+  stage: deploy
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_STAGE --api-key=$HEROKU_API_KEY
+
+deploy_prod:
+  stage: deploy
+  tags:
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_API_KEY
+
+
 
