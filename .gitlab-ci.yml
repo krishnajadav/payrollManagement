@@ -40,6 +40,10 @@ deploy_stage:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_STAGE --api-key=$HEROKU_API_KEY
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev-Krishna"
+      when: manual
+  
 
 deploy_prod:
   stage: deploy
@@ -49,6 +53,9 @@ deploy_prod:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_API_KEY
+  rules:
+    - if: $CI_COMMIT_BRANCH == "dev-Krishna"
+      when: manual
 
 
 
