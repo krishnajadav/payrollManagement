@@ -1,4 +1,4 @@
-mage: maven:3-jdk-11-slim
+image: maven:3-jdk-11-slim
 
 variables: 
   GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
