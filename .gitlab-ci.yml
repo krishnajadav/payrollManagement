@@ -7,6 +7,7 @@ before_script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
+  - chmod +x ./gradlew
 
 stages:
   - test
