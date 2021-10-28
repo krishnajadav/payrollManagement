@@ -1,39 +1,34 @@
-image: gradle:4.6-jdk8-alpine 
+image: maven:3-jdk-11-slim
 
 variables: 
   GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
 
 before_script:
-  - chmod +x ./gradlew
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
-  - export GRADLE_USER_HOME=`pwd`/.gradle
-
 
 stages:
-  - build
   - test
+  - build
   - deploy
 
-Build:
-  stage: build 
-  tags:
-    - ugrad
+test:
+  stage: test
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
+    - ./gradlew test 
 
-  script: 
+build:
+  stage: build
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
     - ./gradlew build 
 
-Test: 
-  stage: test 
-  tags:
-    - ugrad
-  script:
-    - ./gradlew test
-  artifacts:
-    when: always
-    reports:
-      junit: ./**/TEST-*.xml
 
 deploy:
   stage: deploy
@@ -42,6 +37,4 @@ deploy:
     - dalfcs_gitlab_docker_ci
   image: ruby:latest
   script:
-    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY   
-
-
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY    
