@@ -3,10 +3,8 @@ package com.asdc.payroll_management.Database;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.*;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
+
 
 public class MySQLDBTest {
 
@@ -41,9 +39,17 @@ public class MySQLDBTest {
 	@Test
 	public void TestExecuteQuery()
 	{
-		MySQLDB obj=new MySQLDB();	
-		ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
-		assertNotNull(Emp);
+		try
+		{
+			
+			MySQLDB obj=new MySQLDB();	
+			ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
+			assertNotNull(Emp);
+		
+		}
+		catch (Exception e) {
+			fail();
+		}
 		
 	}
 	
