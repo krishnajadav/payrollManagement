@@ -30,7 +30,7 @@ class EmployeeControllerTest {
 		emp.setDepartment_ID(1);
 		emp.setEmployee_Address("Test");
 		emp.setEmployee_emailID("Test");
-		emp.setEmployee_ID("Test2");
+		emp.setEmployee_ID("Test4");
 		emp.setEmployee_Name("Test");
 		emp.setEmployee_Password("Test");
 		emp.setEmployee_phoneNumb("Test");

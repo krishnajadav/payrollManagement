@@ -31,7 +31,7 @@ class EmployeeDAOTest {
 		emp.setDepartment_ID(1);
 		emp.setEmployee_Address("Test");
 		emp.setEmployee_emailID("Test");
-		emp.setEmployee_ID("Test");
+		emp.setEmployee_ID("Test5");
 		emp.setEmployee_Name("Test");
 		emp.setEmployee_Password("Test");
 		emp.setEmployee_phoneNumb("Test");
