@@ -19,7 +19,7 @@ class EmployeeConcreteFactoryTest {
 		{		
 			EmployeeConcreteFactory emp=new EmployeeConcreteFactory();			
 			List<Employee> empList=emp.getAllEmployees();		
-			assertEquals(0, 0); 
+			assertEquals(0,0); 
 		
 		}
 		catch (Exception e) {

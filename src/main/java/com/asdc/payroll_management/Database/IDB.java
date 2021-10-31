@@ -1,9 +1,6 @@
 package com.asdc.payroll_management.Database;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.util.List;
-import java.util.Map;
+import java.sql.*;
 
 public interface IDB {
 
