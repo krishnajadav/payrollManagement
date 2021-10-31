@@ -14,7 +14,7 @@ public class ManagerController {
 	    private ManagerConcreteFactory MngCF=new ManagerConcreteFactory();
 
 	    @RequestMapping("/GetAllManagers")
-	    public List<Manager> getALLEmployees() throws SQLException {
+	    public List<Manager> getALLManagers() throws SQLException {
 	        return MngCF.getAllManagers();
 	    } 
 	    
