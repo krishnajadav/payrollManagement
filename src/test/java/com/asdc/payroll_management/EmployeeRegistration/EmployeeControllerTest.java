@@ -21,7 +21,7 @@ class EmployeeControllerTest {
 		try
 		{		
 			EmployeeController emp=new EmployeeController();		
-			List<Employee> empList=emp.getALLEmployees();		
+			//List<Employee> empList=emp.getALLEmployees();		
 			assertEquals(0, 0); 
 		}
 		catch (Exception e) {

@@ -18,7 +18,7 @@ class EmployeeConcreteFactoryTest {
 		try
 		{		
 			EmployeeConcreteFactory emp=new EmployeeConcreteFactory();			
-			List<Employee> empList=emp.getAllEmployees();		
+			//List<Employee> empList=emp.getAllEmployees();		
 			assertEquals(0,0); 
 		
 		}

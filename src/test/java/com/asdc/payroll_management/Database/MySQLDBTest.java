@@ -43,7 +43,7 @@ public class MySQLDBTest {
 		{
 			
 			MySQLDB obj=new MySQLDB();	
-			ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
+		    //ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
 			assertEquals(0, 0); 
 		
 		}

@@ -19,7 +19,8 @@ class EmployeeDAOTest {
 		{
 			
 			EmployeeDAO emp=new EmployeeDAO();		
-			List<Employee> empList=emp.getAllEmployees();
+			//List<Employee> empList=emp.getAllEmployees();
+			emp.getAllEmployees();
 			assertEquals(0, 0); 
 		
 		}
