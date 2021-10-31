@@ -13,7 +13,7 @@ public class EmployeeController {
 
 	    private EmployeeConcreteFactory EmpCF=new EmployeeConcreteFactory();
 
-	    @RequestMapping("/Employees")
+	    @RequestMapping("/GetAllEmployees")
 	    public List<Employee> getALLEmployees() throws SQLException {
 	        return EmpCF.getAllEmployees();
 	    } 
