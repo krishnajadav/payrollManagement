@@ -1,12 +1,9 @@
 package com.asdc.payroll_management.UserAuthentication;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
