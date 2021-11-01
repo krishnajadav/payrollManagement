@@ -1,9 +1,9 @@
 package com.asdc.payroll_management.Database;
 
-import org.junit.jupiter.api.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
-import java.sql.*;
+import org.junit.Test;
 
 
 public class MySQLDBTest {
