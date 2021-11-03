@@ -18,9 +18,9 @@ import java.util.concurrent.TimeUnit;
 
 public class EmployeeleaveConcrete implements IEmployeeLeaves{
 
-    private LeaveEmployee curEmp;
-    private List<LeaveType> leaveTypes;
-    private DatabaseDML dbConn;
+    public LeaveEmployee curEmp;
+    public List<LeaveType> leaveTypes;
+    public DatabaseDML dbConn;
 
     public EmployeeleaveConcrete(LeaveEmployee emp){
         curEmp=emp;
