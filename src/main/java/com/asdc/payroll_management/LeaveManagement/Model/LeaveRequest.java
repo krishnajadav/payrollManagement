@@ -1,4 +1,4 @@
-package LeaveManagement.Model;
+package com.asdc.payroll_management.LeaveManagement.Model;
 
 import java.util.*;
 
@@ -7,14 +7,16 @@ public class LeaveRequest {
     private int LeaveDuration;
     private int leaveTypeID;
     private Date LeaveStartdate;
+    private Date leaveEndDate;
     private boolean isAccepted;
 
-    public LeaveRequest(String ID, int Duration, int type, Date startDate, Boolean isAccepted){
+    public LeaveRequest(String ID, int Duration, int type, Date startDate, Boolean isAccepted, Date Leave_End_Date){
         this.EmployeeID=ID;
         this.LeaveDuration=Duration;
         this.leaveTypeID=type;
         this.LeaveStartdate=startDate;
         this.isAccepted=isAccepted;
+        this.leaveEndDate =Leave_End_Date;
     }
 
     public void setEmployeeID(String employeeID) {
@@ -31,6 +33,10 @@ public class LeaveRequest {
 
     public void setLeaveStartdate(Date leaveStartdate) {
         LeaveStartdate = leaveStartdate;
+    }
+
+    public void setLeaveEndDate(Date Leave_End_Date) {
+        Leave_End_Date = Leave_End_Date;
     }
 
     public void setAccepted(boolean accepted) {
@@ -51,6 +57,10 @@ public class LeaveRequest {
 
     public Date getLeaveStartdate() {
         return LeaveStartdate;
+    }
+
+    public Date getLeaveEndDate() {
+        return leaveEndDate;
     }
 
     public boolean isAccepted() {

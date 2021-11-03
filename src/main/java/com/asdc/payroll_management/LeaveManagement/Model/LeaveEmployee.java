@@ -1,13 +1,13 @@
-package LeaveManagement.Model;
+package com.asdc.payroll_management.LeaveManagement.Model;
 
 
-public class EmployeeLeaves {
+public class LeaveEmployee {
 
     private String EmployeeID;
     private String EmployeeName;
     private String ManagerID;
 
-    public EmployeeLeaves(String EMPID, String EMPNAME, String ManagerID){
+    public LeaveEmployee(String EMPID, String EMPNAME, String ManagerID){
         this.EmployeeID=EMPID;
         this.EmployeeName=EMPNAME;
         this.ManagerID=ManagerID;

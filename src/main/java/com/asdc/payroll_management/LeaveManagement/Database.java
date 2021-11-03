@@ -1,9 +1,7 @@
-package LeaveManagement;
+package com.asdc.payroll_management.LeaveManagement;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 import java.sql.*;
 
 public class Database {
@@ -13,6 +11,7 @@ public class Database {
     private String pwd;
     private String username;
     private String dbname;
+    private Connection con;
 
     public  Database(String host, String port, String pwd, String username, String DatabaseName){
     this.host=host;
@@ -43,5 +42,6 @@ public class Database {
             con.close();
         }
     }
+
 
 }
