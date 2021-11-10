@@ -43,15 +43,23 @@ public class EmployeeDAO implements IEmployeeDAO {
     public String saveEmployee(Employee emp)
     {	
 		try {
+			
 			mySQLDB.LoadDatabase();
 			String callST="{call SP_saveEmployee('"+emp.getEmployee_ID()+"','"+
 					emp.getEmployee_Name()+"','"+emp.getEmployee_emailID()+"','"+
 					emp.getEmployee_Password()+"','"+emp.getEmployee_Address()+"','"+
 					emp.getEmployee_phoneNumb()+"','"+emp.getManagerID()+"',"+emp.getDepartment_ID()+","+
 					emp.getJd_ID()+")}";
-			mySQLDB.ExecuteQuery(callST);
-			
-			return "Success";
+			 ResultSet rs=mySQLDB.ExecuteQuery(callST);
+			 rs.next();	
+			   if(rs.getString("CheckStatus").equals("UserExist"))
+			   {
+				   return "This user already Exist";  
+			   }
+			   else
+			   {
+				   return "Success";  
+			   }			 
 		}
 		catch (Exception e) {
 			// TODO: handle exception

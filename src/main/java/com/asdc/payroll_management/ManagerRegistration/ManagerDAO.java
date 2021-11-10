@@ -42,9 +42,16 @@ public class ManagerDAO implements IManagerDAO {
 			String callST="{call SP_saveManager('"+
 					mng.getManager_Name()+"','"+mng.getManager_EmailID()+"','"+
 					mng.getManager_Password()+"')}";
-			mySQLDB.ExecuteQuery(callST);
-			
-			return "Success";
+			 ResultSet rs=mySQLDB.ExecuteQuery(callST);
+			 rs.next();	
+			   if(rs.getString("CheckStatus").equals("UserExist"))
+			   {
+				   return "This user already Exist";  
+			   }
+			   else
+			   {
+				   return "Success";  
+			   }
 		}
 		catch (Exception e) {
 			// TODO: handle exception

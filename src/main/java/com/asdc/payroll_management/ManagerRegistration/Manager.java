@@ -42,5 +42,15 @@ public class Manager {
 		Manager_ID = manager_ID;
 	} 	
 	
-	
+	public boolean validate()
+	{
+	   if(Manager_Name=="" || Manager_EmailID==""||Manager_Password=="")
+	   {
+		 return false;   
+	   }
+	   else
+	   {
+		return true;   
+	   }
+	}
 }

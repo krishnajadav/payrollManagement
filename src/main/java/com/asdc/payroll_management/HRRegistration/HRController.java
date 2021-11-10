@@ -4,6 +4,7 @@ import java.sql.*;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +20,16 @@ public class HRController {
 	    } 
 	    
 	    @RequestMapping(value = "/HR/Save",method = RequestMethod.POST)
-	    public String saveHR(@ModelAttribute("HR") HR hr) {	    	
-	    	return MngCF.saveHR(hr); 
+	    public String saveHR(@RequestBody HR hr) {	    	  	
+	    	if(hr.validate())
+	    	{
+	    		return MngCF.saveHR(hr); 
+	    	}
+	    	else
+	    	{
+	    		return "Empty";
+	    	}
+	    	
 	    }
 	       
 }

@@ -42,5 +42,16 @@ public class HR {
 		this.hR_ID = hR_ID;
 	}
 	
+	public boolean validate()
+	{
+	   if(hR_Name=="" || hR_EmailID==""||hR_Password=="")
+	   {
+		 return false;   
+	   }
+	   else
+	   {
+		return true;   
+	   }
+	}
 	
 }

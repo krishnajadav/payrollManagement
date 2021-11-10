@@ -85,4 +85,18 @@ public class Employee {
 	public void setDepartment_ID(int department_ID) {
 		this.department_ID = department_ID;
 	}
+	
+	public boolean validate()
+	{
+	   if(employee_ID=="" || employee_Name==""||employee_emailID==""||employee_Password=="")
+	   {
+		 return false;   
+	   }
+	   else
+	   {
+		return true;   
+	   }
+	}
+	
+	
 }

@@ -42,9 +42,16 @@ public class HRDAO implements IHRDAO {
 			String callST="{call SP_saveHR('"+
 					hr.gethR_Name()+"','"+hr.gethR_EmailID()+"','"+
 					hr.gethR_Password()+"')}";
-			mySQLDB.ExecuteQuery(callST);
-			
-			return "Success";
+			 ResultSet rs=mySQLDB.ExecuteQuery(callST);
+			 rs.next();	
+			   if(rs.getString("CheckStatus").equals("UserExist"))
+			   {
+				   return "This user already Exist";  
+			   }
+			   else
+			   {
+				   return "Success";  
+			   }			
 		}
 		catch (Exception e) {
 			// TODO: handle exception

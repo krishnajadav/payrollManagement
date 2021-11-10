@@ -34,7 +34,17 @@ public class UserAuthentication {
 		this.userType = userType;
 	}
 	
-	
+	public boolean validate()
+	{
+	   if(userEmail=="" || userPassword=="")
+	   {
+		 return false;   
+	   }
+	   else
+	   {
+		return true;   
+	   }
+	}
 	
 	
 }

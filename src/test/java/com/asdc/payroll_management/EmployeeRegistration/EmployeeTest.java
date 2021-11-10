@@ -16,5 +16,13 @@ class EmployeeTest {
 		assertEquals("Krishna",emp.getEmployee_Name());
 		
 	}
+	
+	@Test
+	public void Testvalidate() {
+		
+		Employee emp=new Employee("test","test","test","test","test","test", 0,"test", 0);		
+		assertEquals(true,emp.validate());
+		
+	}
 
 }

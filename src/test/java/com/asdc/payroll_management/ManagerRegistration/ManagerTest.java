@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import com.asdc.payroll_management.HRRegistration.HR;
+
 class ManagerTest {
 
 	@Test
@@ -15,4 +17,11 @@ class ManagerTest {
 		
 	}
 
+	@Test
+	public void Testvalidate() {
+		
+		Manager mng=new Manager("test", "test", "test", 0)	;
+		assertEquals(true,mng.validate());
+		
+	}
 }
