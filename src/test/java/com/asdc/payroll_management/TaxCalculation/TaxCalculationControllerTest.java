@@ -1,4 +1,4 @@
-package com.asdc.payroll_management.UserAuthentication;
+package com.asdc.payroll_management.TaxCalculation;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.*;
@@ -31,20 +31,17 @@ import javax.servlet.http.Part;
 import org.junit.jupiter.api.Test;
 import org.springframework.mock.web.MockHttpServletRequest;
 
-class UserAuthenticationControllerTest {
+class TaxCalculationControllerTest {
 	
 	@Test
-	public void TestcheckUserAuthentication() throws SQLException {
+	public void TestgenerateTaxCalculation() throws SQLException {
 			
 		try
 		{		
-			UserAuthenticationController UAC=new UserAuthenticationController();
-			MockHttpServletRequest request = new MockHttpServletRequest();			
-			UserAuthentication ua=new UserAuthentication();
-			ua.setUserEmail("test@test.com");
-			ua.setUserPassword("abc@123");
-			ua.setUserType("HR");			
-			String result=UAC.checkUserAuthentication(ua,request);		
+			TaxCalculationController TC=new TaxCalculationController();
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			request.getSession().setAttribute("userInfo","FF007#Employee");
+			String result=TC.generateTaxCalculation(request);						
 			assertEquals(0, 0);  
 		}
 		catch (Exception e) {

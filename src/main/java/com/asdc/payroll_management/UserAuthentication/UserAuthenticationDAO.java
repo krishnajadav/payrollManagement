@@ -24,13 +24,14 @@ public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 			}
 			else
 			{
-				return "User Authenticate Successfully";
+				rs.next();
+				return rs.getString("userID")+"#"+ua.getUserType();
 			}			
 			
 		}
 		catch (Exception e) {
 			// TODO: handle exception
-			return "Error";
+			return "Empty";
 		}
     }
 	
