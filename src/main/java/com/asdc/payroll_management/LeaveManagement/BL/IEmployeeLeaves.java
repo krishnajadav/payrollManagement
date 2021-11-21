@@ -16,7 +16,7 @@ public interface IEmployeeLeaves {
 
     public List<LeaveType> getAllLeaveTypes() throws SQLException;
 
-    public boolean addEmployeeLeave(String ID, int Duration, int type, Date startDate, Boolean isAccepted, Date Leave_End_Date) throws ParseException, SQLException;
+    public boolean addEmployeeLeave(LeaveRequest newLeaveRequest) throws ParseException, SQLException;
 
     public Date getEndDate(Date startdate, int days);
 

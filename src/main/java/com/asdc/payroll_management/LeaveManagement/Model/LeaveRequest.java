@@ -5,19 +5,21 @@ import java.util.*;
 public class LeaveRequest {
     private String EmployeeID;
     private int LeaveDuration;
-    private int leaveTypeID;
+    private int LeaveTypeID;
     private Date LeaveStartdate;
-    private Date leaveEndDate;
+    private Date LeaveEndDate;
     private boolean isAccepted;
 
     public LeaveRequest(String ID, int Duration, int type, Date startDate, Boolean isAccepted, Date Leave_End_Date){
         this.EmployeeID=ID;
         this.LeaveDuration=Duration;
-        this.leaveTypeID=type;
+        this.LeaveTypeID =type;
         this.LeaveStartdate=startDate;
         this.isAccepted=isAccepted;
-        this.leaveEndDate =Leave_End_Date;
+        this.LeaveEndDate =Leave_End_Date;
     }
+
+
 
     public void setEmployeeID(String employeeID) {
         EmployeeID = employeeID;
@@ -28,7 +30,7 @@ public class LeaveRequest {
     }
 
     public void setLeaveTypeID(int leaveTypeID) {
-        this.leaveTypeID = leaveTypeID;
+        this.LeaveTypeID = leaveTypeID;
     }
 
     public void setLeaveStartdate(Date leaveStartdate) {
@@ -52,7 +54,7 @@ public class LeaveRequest {
     }
 
     public int getLeaveTypeID() {
-        return leaveTypeID;
+        return LeaveTypeID;
     }
 
     public Date getLeaveStartdate() {
@@ -60,7 +62,7 @@ public class LeaveRequest {
     }
 
     public Date getLeaveEndDate() {
-        return leaveEndDate;
+        return LeaveEndDate;
     }
 
     public boolean isAccepted() {

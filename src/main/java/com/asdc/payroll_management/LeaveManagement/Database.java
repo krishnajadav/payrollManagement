@@ -1,8 +1,11 @@
 package com.asdc.payroll_management.LeaveManagement;
 
+import org.springframework.context.annotation.Bean;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.*;
+
 
 public class Database {
 

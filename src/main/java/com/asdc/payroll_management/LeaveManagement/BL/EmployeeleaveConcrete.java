@@ -22,14 +22,20 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
     public List<LeaveType> leaveTypes;
     public DatabaseDML dbConn;
 
+    public EmployeeleaveConcrete(DatabaseDML dbConn){
+        this.dbConn=dbConn;
+    }
+    public EmployeeleaveConcrete(LeaveEmployee emp,DatabaseDML dbConn){
+
+        this.dbConn=dbConn;
+        curEmp=emp;
+    }
     public EmployeeleaveConcrete(LeaveEmployee emp){
+
         curEmp=emp;
     }
 
     public DatabaseDML getConnection(){
-        if (dbConn==null){
-            dbConn=new DatabaseDML("db-5308.cs.dal.ca","3306","aiJ9Eidoo1kieyej","CSCI5308_17_DEVINT_USER","CSCI5308_17_DEVINT");
-        }
         return dbConn;
     }
 
@@ -41,11 +47,11 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
     @Override
     public List<LeaveType> getAllLeaveTypes() throws SQLException {
         List<LeaveType> lt = new ArrayList<>();
-        String query = "select * from `Leaves` where Leaves";
+        String query = "select * from `Leaves` ;";
         this.getConnection();
         ResultSet allLeavesTypes = dbConn.ViewqueryResultset(query);
         while (allLeavesTypes.next()) {
-            int id = allLeavesTypes.getInt("allLeavesTypes");
+            int id = allLeavesTypes.getInt("Leaves_ID");
             String Leaves_Name = allLeavesTypes.getString("Leaves_Name");
             int Leaves_DuartionLimit = allLeavesTypes.getInt("Leaves_DuartionLimit");
 
@@ -77,31 +83,39 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
 
 
     @Override
-    public boolean addEmployeeLeave(String ID, int Duration, int type, Date startDate, Boolean isAccepted, Date Leave_End_Date) throws ParseException, SQLException {
+    public  boolean addEmployeeLeave(LeaveRequest newLeaverequest) throws ParseException, SQLException {
         this.getConnection();
-        LeaveRequest newLeaverequest = this.createLeaveRequest(Duration,  type,  startDate,  isAccepted,  Leave_End_Date);
+
         leaveTypes = this.getAllLeaveTypes();
         LeaveType requestedType = null;
         for(LeaveType tmp : leaveTypes){
-            if(tmp.getId()==type){
+            if(tmp.getId()==newLeaverequest.getLeaveTypeID()){
                 requestedType=tmp;
                 break;
             }
         }
+        dbConn.closeDBconnection();
 
 
-        if(this.checkEndDateandDurartion(Leave_End_Date,Duration)==false){
+        if(this.checkEndDateandDurartion(newLeaverequest.getLeaveEndDate(),newLeaverequest.getLeaveDuration())==false){
             return false;
-        }else if(Duration <=0){
-            newLeaverequest.setLeaveDuration(this.getDurartion(startDate,Leave_End_Date));
-        }else if(Leave_End_Date == null){
-            newLeaverequest.setLeaveEndDate(this.getEndDate(startDate,Duration));
-        }
-
-        if(this.checkDateRange(newLeaverequest,requestedType)==false){
+        }else if(this.checkStartDateAndEndDate(newLeaverequest.getLeaveStartdate(),newLeaverequest.getLeaveEndDate())){
             return false;
+        }else if(!(this.checkDateRange(newLeaverequest,requestedType))){
+            return false;
+        } else if(newLeaverequest.getLeaveDuration() <=0){
+            newLeaverequest.setLeaveDuration(this.getDurartion(newLeaverequest.getLeaveStartdate(),newLeaverequest.getLeaveEndDate()));
+        }else if(newLeaverequest.getLeaveEndDate() == null){
+            newLeaverequest.setLeaveEndDate(this.getEndDate(newLeaverequest.getLeaveStartdate(),newLeaverequest.getLeaveDuration()));
         }
-        return dbConn.InsertLRResultset(newLeaverequest);
+//
+//        if(this.checkDateRange(newLeaverequest,requestedType)==false){
+//            return false;
+//        }
+        this.getConnection();
+        boolean insertStatus = dbConn.InsertLRResultset(newLeaverequest);
+        dbConn.closeDBconnection();
+        return insertStatus;
     }
 
     @Override
@@ -141,6 +155,15 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
             return false;
         }else{
             return true;
+        }
+
+    }
+
+    public boolean checkStartDateAndEndDate(Date startdate, Date endDate) {
+        if(startdate.compareTo(endDate)>0){
+            return true;
+        }else{
+            return false;
         }
 
     }
