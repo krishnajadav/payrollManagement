@@ -8,9 +8,9 @@ public class LeaveRequest {
     private int LeaveTypeID;
     private Date LeaveStartdate;
     private Date LeaveEndDate;
-    private boolean isAccepted;
+    private String isAccepted;
 
-    public LeaveRequest(String ID, int Duration, int type, Date startDate, Boolean isAccepted, Date Leave_End_Date){
+    public LeaveRequest(String ID, int Duration, int type, Date startDate, String isAccepted, Date Leave_End_Date){
         this.EmployeeID=ID;
         this.LeaveDuration=Duration;
         this.LeaveTypeID =type;
@@ -41,7 +41,7 @@ public class LeaveRequest {
         Leave_End_Date = Leave_End_Date;
     }
 
-    public void setAccepted(boolean accepted) {
+    public void setAccepted(String accepted) {
         isAccepted = accepted;
     }
 
@@ -65,7 +65,7 @@ public class LeaveRequest {
         return LeaveEndDate;
     }
 
-    public boolean isAccepted() {
+    public String isAccepted() {
         return isAccepted;
     }
 

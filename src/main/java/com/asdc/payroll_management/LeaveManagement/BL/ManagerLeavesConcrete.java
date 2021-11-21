@@ -26,7 +26,7 @@ public class ManagerLeavesConcrete extends EmployeeleaveConcrete{
             String EmployeeID = allLeaves.getString("LR_EmployeeID");
             int LR_Duration = allLeaves.getInt("LR_Duration");
             int LR_Type = allLeaves.getInt("LR_Type");
-            Boolean isAccepted = allLeaves.getBoolean("isAccepted");
+            String isAccepted = allLeaves.getString("isAccepted");
             Date Leave_Request_Date = allLeaves.getDate("Leave_Request_Date");
             Date Leave_End_Date = allLeaves.getDate("Leave_End_Date");
             LeaveRequest obj = this.createLeaveRequest(LR_Duration,LR_Type,Leave_Request_Date,isAccepted,Leave_End_Date);
@@ -36,7 +36,7 @@ public class ManagerLeavesConcrete extends EmployeeleaveConcrete{
         return leaveRequests;
     }
 
-    public boolean updateLeaveRequest(LeaveEmployee emp, LeaveRequest lr,Boolean UpdatedAccepted ){
+    public boolean updateLeaveRequest(LeaveEmployee emp, LeaveRequest lr, String UpdatedAccepted ){
         if(emp.getManagerID()!=curEmp.getEmployeeID()){
         return false;
         }

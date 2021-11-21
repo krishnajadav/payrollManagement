@@ -1,5 +1,32 @@
 function initialize() {
 
+    var request = $.ajax({
+        url: "http://localhost:8080/viewMyLeaves/F01234",
+        type: "GET",
+        contentType: 'application/json; charset=utf-8',
+        success: function(result) {
+            console.log(result);
+            var table = document.getElementById("fviewLeaves");
+            for (var i = 0; i < result.length; i++) {
+                var row = table.insertRow(i);
+                var cell0 = row.insertCell(0);
+                var cell1 = row.insertCell(1);
+                var cell2 = row.insertCell(2);
+                var cell3 = row.insertCell(3);
+                var cell4 = row.insertCell(4);
+                var cell5 = row.insertCell(5);
+
+                cell0.innerHTML = result[i]["employeeID"];
+                cell1.innerHTML = result[i]["leaveDuration"];
+                cell2.innerHTML = result[i]["leaveTypeID"];
+                cell3.innerHTML = result[i]["leaveStartdate"];
+                cell4.innerHTML = result[i]["leaveEndDate"];
+                cell5.innerHTML = result[i]["accepted"];
+
+
+            }
+        }
+    });
 }
 
 function postData() {

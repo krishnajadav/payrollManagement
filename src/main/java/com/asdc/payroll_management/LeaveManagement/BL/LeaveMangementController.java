@@ -64,7 +64,7 @@ public class LeaveMangementController {
 
         LeaveRequest newLeaveRequest = new LeaveRequest(employeeLeaveData.getString("EmployeeID"),
                 leaveDuration,leaveTypeID,
-                employeeLeaveData.getDate("LeaveStartdate"),employeeLeaveData.getBoolean("isAccepted"),
+                employeeLeaveData.getDate("LeaveStartdate"),employeeLeaveData.getString("isAccepted"),
                 employeeLeaveData.getDate("LeaveEndDate"));
 
         IEmployeeLeaves leaveManager = new EmployeeleaveConcrete(new DatabaseDML(new Database("db-5308.cs.dal.ca","3306","aiJ9Eidoo1kieyej","CSCI5308_17_DEVINT_USER","CSCI5308_17_DEVINT")));
@@ -78,16 +78,20 @@ public class LeaveMangementController {
     }
 
 
-//    @GetMapping(value = "/viewMyLeaves")
-//    public String  viewMyLeaves(@RequestParam(name = "empcode") String empcode, Model model) throws SQLException {
-//
-//        IEmployeeLeaves leaveManager = new EmployeeleaveConcrete(new LeaveEmployee(empcode,null,null),
-//                                                                new DatabaseDML(new Database("db-5308.cs.dal.ca","3306","aiJ9Eidoo1kieyej","CSCI5308_17_DEVINT_USER","CSCI5308_17_DEVINT")));
-//        leaveRequestList = leaveManager.getAllLeaves();
-//        model.addAttribute("LeaveRequestlist",leaveRequestList);
-//
-//        return "All Leave Request for ID: "+empcode;
-//    }
+    @GetMapping(value = "/viewMyLeaves/{empcode}")
+    public List<LeaveRequest>  viewMyLeaves(@PathVariable String empcode, Model model) throws SQLException {
+
+        IEmployeeLeaves leaveManager = new EmployeeleaveConcrete(new LeaveEmployee(empcode,null,null),
+                                                                new DatabaseDML(new Database("db-5308.cs.dal.ca","3306","aiJ9Eidoo1kieyej","CSCI5308_17_DEVINT_USER","CSCI5308_17_DEVINT")));
+        leaveRequestList = leaveManager.getAllLeaves();
+//        for(LeaveRequest lr : leaveRequestList){
+//            System.out.println(lr.getEmployeeID());
+//        }
+
+        model.addAttribute("LeaveRequestlist",leaveRequestList);
+
+        return leaveRequestList;
+    }
 
 
     }
