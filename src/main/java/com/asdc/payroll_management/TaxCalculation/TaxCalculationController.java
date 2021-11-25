@@ -22,9 +22,7 @@ public class TaxCalculationController {
 	    	Double salary=Double.parseDouble(TCCF.generateTaxCalculation(TC));
 	    	TC.setSalary(salary);
 	    	TC.setSalaryWithoutTax(salary);
-	    	
-	    	
-	    	
+	    		    	
             return TC.getSalaryWithoutTax()+"#"+TC.getSalary();
             
 	    }
