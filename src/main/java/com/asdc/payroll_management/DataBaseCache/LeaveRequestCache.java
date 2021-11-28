@@ -1,8 +1,4 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
-
-import com.asdc.payroll_management.DataBaseCache.Model.HR;
-import com.asdc.payroll_management.DataBaseCache.Model.LeaveRequest;
-import org.springframework.context.annotation.Bean;
+package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -54,7 +50,7 @@ public class LeaveRequestCache {
         return modelLeaveRequest.get(id);
     }
 
-    public boolean insert(LeaveRequest e ) throws SQLException, ClassNotFoundException {
+    public boolean insert(LeaveRequest e ){
         String query=DBQueriesConstant.insertLeaveRequestQuery+" values('"+e.getLR_EmployeeID()+"','"
                 +e.getLR_Duration()+"','"+e.getLR_Type()+"','"+e.getLeave_Request_Date()+"','"+e.getLeave_End_Date()+"')";
         Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);

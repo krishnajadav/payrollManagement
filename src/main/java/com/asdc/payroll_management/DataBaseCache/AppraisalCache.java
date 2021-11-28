@@ -1,6 +1,4 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
-
-import com.asdc.payroll_management.DataBaseCache.Model.Appraisal;
+package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

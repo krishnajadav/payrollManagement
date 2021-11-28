@@ -1,4 +1,4 @@
-package com.asdc.payroll_management.DataBaseCache.Model;
+package com.asdc.payroll_management.DataBaseCache;
 
 public class Manager {
     private String Manager_ID;

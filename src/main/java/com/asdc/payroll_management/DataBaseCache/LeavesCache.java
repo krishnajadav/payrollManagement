@@ -1,12 +1,6 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
-
-import com.asdc.payroll_management.DataBaseCache.Model.HR;
-import com.asdc.payroll_management.DataBaseCache.Model.Leaves;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 
 

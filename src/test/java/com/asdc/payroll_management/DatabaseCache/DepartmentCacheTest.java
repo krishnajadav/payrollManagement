@@ -1,8 +1,8 @@
 package com.asdc.payroll_management.DatabaseCache;
 
-import com.asdc.payroll_management.DataBaseCache.BL.DBQueriesConstant;
-import com.asdc.payroll_management.DataBaseCache.BL.DatabaseConnection;
-import com.asdc.payroll_management.DataBaseCache.BL.DepartmentCache;
+import com.asdc.payroll_management.DataBaseCache.DBQueriesConstant;
+import com.asdc.payroll_management.DataBaseCache.DatabaseConnection;
+import com.asdc.payroll_management.DataBaseCache.DepartmentCache;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +20,7 @@ public class DepartmentCacheTest {
     public void testEmployeeFactoryExist() {
 
         try {
-            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.BL.DepartmentCache");
+            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.DepartmentCache");
             assertNotNull(C);
         } catch (Exception e) {
             // System.out.println(e.getMessage());

@@ -1,8 +1,8 @@
 package com.asdc.payroll_management.DatabaseCache;
 
-import com.asdc.payroll_management.DataBaseCache.BL.DBQueriesConstant;
-import com.asdc.payroll_management.DataBaseCache.BL.DatabaseConnection;
-import com.asdc.payroll_management.DataBaseCache.BL.LeavesCache;
+import com.asdc.payroll_management.DataBaseCache.DBQueriesConstant;
+import com.asdc.payroll_management.DataBaseCache.DatabaseConnection;
+import com.asdc.payroll_management.DataBaseCache.LeavesCache;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +20,7 @@ public class LeavesCacheTest {
     public void testLeavesFactoryExist() {
 
         try {
-            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.BL.LeavesCache");
+            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.LeavesCache");
             assertNotNull(C);
         } catch (Exception e) {
             // System.out.println(e.getMessage());

@@ -1,22 +1,23 @@
 package com.asdc.payroll_management.LeaveManagement.BL;
 
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveEmployee;
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveRequest;
+import com.alibaba.fastjson.JSONObject;
+import com.asdc.payroll_management.DataBaseCache.LeaveRequest;
 import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 
 import java.util.Date;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.text.ParseException;
+import java.util.HashMap;
 import java.util.List;
 
 public interface IEmployeeLeaves {
 
-    List<LeaveRequest> getAllLeaves() throws SQLException;
+    List<LeaveRequest> getAllLeaves();
 
-    public List<LeaveType> getAllLeaveTypes() throws SQLException;
+    public String getLeaveType(String leaveName);
 
-    public boolean addEmployeeLeave(LeaveRequest newLeaveRequest) throws ParseException, SQLException;
+    public boolean addEmployeeLeave(LeaveRequest newLeaveRequest);
+
+    public HashMap<Boolean,LeaveRequest> validateLeaveRequest(JSONObject leaveRequest);
 
     public Date getEndDate(Date startdate, int days);
 

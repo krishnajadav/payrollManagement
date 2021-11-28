@@ -14,7 +14,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-public class EmployeeleaveConcrete implements IEmployeeLeaves{
+public class EmployeeleaveConcrete //implements IEmployeeLeaves
+ {
 
     public LeaveEmployee curEmp;
     public List<LeaveType> leaveTypes;
@@ -42,7 +43,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
         return new LeaveRequest( curEmp.getEmployeeID(),  Duration,  type,  startDate,  isAccepted,  Leave_End_Date);
     }
 
-    @Override
+//    @Override
     public List<LeaveType> getAllLeaveTypes() throws SQLException {
         List<LeaveType> lt = new ArrayList<>();
         String query = "select * from `Leaves` ;";
@@ -80,7 +81,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
 
 
 
-    @Override
+//    @Override
     public  boolean addEmployeeLeave(LeaveRequest newLeaverequest) throws ParseException, SQLException {
         this.getConnection();
 
@@ -116,7 +117,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
         return insertStatus;
     }
 
-    @Override
+//    @Override
     public Date getEndDate(Date startdate, int days) {
 
         Calendar cal = Calendar.getInstance();
@@ -126,7 +127,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
         return (Date) cal.getTime();
     }
 
-    @Override
+//    @Override
     public int getDurartion(Date startdate, Date endDate) throws ParseException {
 
         long DiffInMilies = Math.abs(endDate.getTime() - startdate.getTime());
@@ -135,7 +136,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
         return (int)diffInDays;
     }
 
-    @Override
+//    @Override
     public boolean checkDateRange(LeaveRequest a, LeaveType b) {
 
         int acceptedRange=b.getLeaveDuration();

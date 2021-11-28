@@ -1,11 +1,6 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
+package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.*;
-import java.util.Locale;
 
 public class DatabaseConnection {
 

@@ -1,4 +1,4 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
+package com.asdc.payroll_management.DataBaseCache;
 
 public class DBQueriesConstant {
     public static String allEmployeesQuery = "Select * from Employee;";

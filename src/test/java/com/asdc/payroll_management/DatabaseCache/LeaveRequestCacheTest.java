@@ -1,7 +1,9 @@
 package com.asdc.payroll_management.DatabaseCache;
 
-import com.asdc.payroll_management.DataBaseCache.BL.*;
-import com.asdc.payroll_management.DataBaseCache.Model.LeaveRequest;
+import com.asdc.payroll_management.DataBaseCache.DBQueriesConstant;
+import com.asdc.payroll_management.DataBaseCache.DatabaseConnection;
+import com.asdc.payroll_management.DataBaseCache.LeaveRequest;
+import com.asdc.payroll_management.DataBaseCache.LeaveRequestCache;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 
@@ -16,7 +18,7 @@ public class LeaveRequestCacheTest {
     public void testEmployeeFactoryExist() {
 
         try {
-            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.BL.LeaveRequestCache");
+            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.LeaveRequestCache");
             assertNotNull(C);
         } catch (Exception e) {
             // System.out.println(e.getMessage());

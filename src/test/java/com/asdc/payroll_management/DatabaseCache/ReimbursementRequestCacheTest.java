@@ -1,8 +1,9 @@
 package com.asdc.payroll_management.DatabaseCache;
 
-import com.asdc.payroll_management.DataBaseCache.BL.*;
-import com.asdc.payroll_management.DataBaseCache.Model.Employee;
-import com.asdc.payroll_management.DataBaseCache.Model.ReimbursementRequest;
+import com.asdc.payroll_management.DataBaseCache.DBQueriesConstant;
+import com.asdc.payroll_management.DataBaseCache.DatabaseConnection;
+import com.asdc.payroll_management.DataBaseCache.ReimbursementRequest;
+import com.asdc.payroll_management.DataBaseCache.ReimbursementRequestCache;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,7 +20,7 @@ public class ReimbursementRequestCacheTest {
     @Test
     public void testCacheExist() {
         try {
-            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.BL.ReimbursementRequestCache");
+            Class C = Class.forName("com.asdc.payroll_management.DataBaseCache.ReimbursementRequestCache");
             assertNotNull(C);
         } catch (Exception e) {
             // System.out.println(e.getMessage());

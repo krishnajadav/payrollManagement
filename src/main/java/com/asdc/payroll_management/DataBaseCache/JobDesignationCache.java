@@ -1,11 +1,7 @@
-package com.asdc.payroll_management.DataBaseCache.BL;
-
-import com.asdc.payroll_management.DataBaseCache.Model.HR;
-import com.asdc.payroll_management.DataBaseCache.Model.JobDesignation;
+package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class JobDesignationCache {
