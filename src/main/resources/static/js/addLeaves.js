@@ -14,7 +14,7 @@ function initialize() {
                 var cell2 = row.insertCell(2);
                 var cell3 = row.insertCell(3);
                 var cell4 = row.insertCell(4);
-                var cell5 = row.insertCell(5);
+               var cell5 = row.insertCell(5);
 
                 cell0.innerHTML = result[i]["employeeID"];
                 cell1.innerHTML = result[i]["leaveDuration"];

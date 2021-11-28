@@ -41,7 +41,7 @@ public class EmployeeleaveConcreteTest {
         EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID,EMPNAME,ManagerID));
         Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
 
-        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,false,null);
+        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,"0",null);
         assertNotNull(testEmp);
         assertEquals("1001",testEmp.getEmployeeID());
         assertNotEquals("1002",testEmp.getEmployeeID());
@@ -94,7 +94,7 @@ public class EmployeeleaveConcreteTest {
         EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID, EMPNAME, ManagerID));
         Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
 
-        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,false,null);
+        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,"1",null);
         LeaveType testType = new LeaveType(1,"Sick",2);
         Boolean validDuration = classUnderTest.checkDateRange(testEmp,testType);
         assertTrue(validDuration);

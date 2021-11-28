@@ -61,6 +61,16 @@ public class DatabaseDML {
 
     }
 
+    public boolean updateQuery(String query)  {
+        try {
+            PreparedStatement preparedStmt = conn.prepareStatement(query);
+            preparedStmt.executeUpdate();
+            return true;
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
 
 }
 

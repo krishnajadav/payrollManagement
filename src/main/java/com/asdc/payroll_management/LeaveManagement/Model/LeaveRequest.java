@@ -3,12 +3,21 @@ package com.asdc.payroll_management.LeaveManagement.Model;
 import java.util.*;
 
 public class LeaveRequest {
+    private String LR_ID;
     private String EmployeeID;
     private int LeaveDuration;
     private int LeaveTypeID;
     private Date LeaveStartdate;
     private Date LeaveEndDate;
     private String isAccepted;
+
+    public String getLR_ID() {
+        return LR_ID;
+    }
+
+    public void setLR_ID(String LR_ID) {
+        this.LR_ID = LR_ID;
+    }
 
     public LeaveRequest(String ID, int Duration, int type, Date startDate, String isAccepted, Date Leave_End_Date){
         this.EmployeeID=ID;

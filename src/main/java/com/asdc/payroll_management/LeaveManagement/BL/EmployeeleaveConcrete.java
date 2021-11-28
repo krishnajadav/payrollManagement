@@ -6,11 +6,9 @@ import com.asdc.payroll_management.LeaveManagement.Model.LeaveRequest;
 import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 import java.util.Date;
 
-// import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -94,7 +92,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
                 break;
             }
         }
-        dbConn.closeDBconnection();
+      //  dbConn.closeDBconnection();
 
 
         if(this.checkEndDateandDurartion(newLeaverequest.getLeaveEndDate(),newLeaverequest.getLeaveDuration())==false){
@@ -112,7 +110,7 @@ public class EmployeeleaveConcrete implements IEmployeeLeaves{
 //        if(this.checkDateRange(newLeaverequest,requestedType)==false){
 //            return false;
 //        }
-        this.getConnection();
+        //this.getConnection();
         boolean insertStatus = dbConn.InsertLRResultset(newLeaverequest);
         dbConn.closeDBconnection();
         return insertStatus;
