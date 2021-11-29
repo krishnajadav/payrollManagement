@@ -1,28 +1,62 @@
 package com.asdc.payroll_management.LeaveManagementTest;
-import com.asdc.payroll_management.LeaveManagement.BL.EmployeeleaveConcrete;
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveEmployee;
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveRequest;
+
+import com.asdc.payroll_management.DataBaseCache.*;
+import com.asdc.payroll_management.LeaveManagement.EmployeeLeavesDOA;
 import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.assertj.core.error.ShouldBeSymbolicLink;
+import org.junit.Before;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.sql.ResultSet;
 import java.text.ParseException;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
-public class EmployeeleaveConcreteTest {
+public class EmployeeleaveDOATest {
+    private static EmployeeLeavesDOA classUnderTest = null;
+
+    @BeforeAll
+    public static void init(){
+        DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
+        try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
+            mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
+            ResultSet rs = mock(ResultSet.class);
+            when(databaseConnection.getData(DBQueriesConstant.allEmployeesQuery)).thenReturn(rs);
+            when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
+            when(rs.getString("Employee_ID")).thenReturn("1225").thenReturn("26118");
+            when(rs.getString("Employee_Name")).thenReturn("jaswanth").thenReturn("Ali");
+            when(rs.getString("Employee_emailID")).thenReturn("jaswanth@gmail.com").thenReturn("ali@gmail.com");
+            when(rs.getString("Employee_Password")).thenReturn("26119").thenReturn("26118");
+            when(rs.getString("Employee_Address")).thenReturn("26119").thenReturn("26118");
+            when(rs.getString("Employee_phoneNumb")).thenReturn("7826410377").thenReturn("7826410388");
+            when(rs.getString("Employee_Salary")).thenReturn("2611900").thenReturn("2611800");
+            when(rs.getString("ManagerID")).thenReturn("26120").thenReturn("26117");
+            when(rs.getString("Department_ID")).thenReturn("26").thenReturn("26");
+            when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
+            EmployeeCache employeeFactory = EmployeeCache.getInstance();
+
+        classUnderTest=new EmployeeLeavesDOA("1225");
+        }catch(Exception e){
+            e.printStackTrace();
+            fail("Tests failed due to exception");
+        }
+    }
 
     @Test
     public void testEmployeeLeaveConcreteExist() {
         //Calculator classUnderTest = new Calculator();
         try {
-            Class C = Class.forName("com.asdc.payroll_management.LeaveManagement.BL.EmployeeleaveConcrete");
+            Class C = Class.forName("com.asdc.payroll_management.LeaveManagement.EmployeeLeavesDOA");
             assertNotNull(C);
         } catch (Exception e) {
             // System.out.println(e.getMessage());
@@ -30,32 +64,12 @@ public class EmployeeleaveConcreteTest {
         }
     }
 
-    @Test
-    public void createLeaveRequesttest() {
-        //Calculator classUnderTest = new Calculator();
 
-        String  EMPID="1001";
-        String EMPNAME = "Ali Shan";
-        String ManagerID = "1002";
-
-        EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID,EMPNAME,ManagerID));
-        Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
-
-        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,"0",null);
-        assertNotNull(testEmp);
-        assertEquals("1001",testEmp.getEmployeeID());
-        assertNotEquals("1002",testEmp.getEmployeeID());
-    }
 
     @Test
     public void getDurartiontest() throws ParseException {
         //Calculator classUnderTest = new Calculator();
 
-        String EMPID = "1001";
-        String EMPNAME = "Ali Shan";
-        String ManagerID = "1002";
-
-        EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID, EMPNAME, ManagerID));
         Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
         Date endDate = new GregorianCalendar(2021, Calendar.OCTOBER, 05).getTime();
 
@@ -69,11 +83,7 @@ public class EmployeeleaveConcreteTest {
     public void getEndDateTest()  {
         //Calculator classUnderTest = new Calculator();
 
-        String EMPID = "1001";
-        String EMPNAME = "Ali Shan";
-        String ManagerID = "1002";
 
-        EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID, EMPNAME, ManagerID));
         Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
         Date endDate=classUnderTest.getEndDate(startDate,4);
         Date expectedEnddate = new GregorianCalendar(2021, Calendar.OCTOBER, 05).getTime();
@@ -87,16 +97,7 @@ public class EmployeeleaveConcreteTest {
     @Test
     public void checkDateRangeTest(){
 
-        String EMPID = "1001";
-        String EMPNAME = "Ali Shan";
-        String ManagerID = "1002";
-
-        EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID, EMPNAME, ManagerID));
-        Date startDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
-
-        LeaveRequest testEmp = classUnderTest.createLeaveRequest(2,1,  startDate,"1",null);
-        LeaveType testType = new LeaveType(1,"Sick",2);
-        Boolean validDuration = classUnderTest.checkDateRange(testEmp,testType);
+        Boolean validDuration = classUnderTest.checkDateRange(3,2);
         assertTrue(validDuration);
         assertFalse(!validDuration);
 
@@ -104,11 +105,7 @@ public class EmployeeleaveConcreteTest {
 
     @Test
     public void checkEndDateandDurartionTest(){
-        String EMPID = "1001";
-        String EMPNAME = "Ali Shan";
-        String ManagerID = "1002";
 
-        EmployeeleaveConcrete classUnderTest = new EmployeeleaveConcrete(new LeaveEmployee(EMPID, EMPNAME, ManagerID));
         Date endDate = new GregorianCalendar(2021, Calendar.OCTOBER, 01).getTime();
 
         Boolean validInput = classUnderTest.checkEndDateandDurartion(null,1);

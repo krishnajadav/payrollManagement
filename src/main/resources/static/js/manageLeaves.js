@@ -1,10 +1,31 @@
 function initialize() {
 
     var request = $.ajax({
-        url: "http://localhost:8080/viewEmployeeLeaves/F01234",
-        type: "GET",
+        url: "http://localhost:8080/getAllStaff",
+        type: "POST",
         contentType: 'application/json; charset=utf-8',
-        //data: "F01234",
+        data: "1226",
+        success: function(result) {
+            console.log(result);
+            var select = document.getElementById("fstaffID");
+            for (var i = 0; i < result.length; i++) {
+                select.options[select.options.length] = new Option(result[i]["employee_ID"], i);
+            }
+        }
+    });
+}
+
+
+function postData(){
+    var select = document.getElementById("fstaffID");
+    var employeeID = select.options[select.selectedIndex].text;
+    console.log(employeeID)
+
+    var request = $.ajax({
+        url: "http://localhost:8080/viewStaffLeaves",
+        type: "POST",
+        contentType: 'application/json; charset=utf-8',
+        data: employeeID,
         success: function(result) {
             console.log(result);
             var table = document.getElementById("fviewLeaves");
@@ -20,11 +41,11 @@ function initialize() {
 
                 let lrId = result[i]["lr_ID"];
                 cell0.innerHTML = lrId;
-                cell1.innerHTML = result[i]["employeeID"];
-                cell2.innerHTML = result[i]["leaveDuration"];
-                cell3.innerHTML = result[i]["leaveTypeID"];
-                cell4.innerHTML = result[i]["leaveStartdate"];
-                cell5.innerHTML = result[i]["leaveEndDate"];
+                cell1.innerHTML = result[i]["lr_EmployeeID"];
+                cell2.innerHTML = result[i]["lr_Duration"];
+                cell3.innerHTML = result[i]["lr_Type"];
+                cell4.innerHTML = result[i]["leave_Request_Date"];
+                cell5.innerHTML = result[i]["leave_End_Date"];
                 let acceptRequestString = `"acceptRequest(${lrId})"`;
                 let denyRequestString = `"denyRequest(${lrId})"`;
 
@@ -37,16 +58,20 @@ function initialize() {
             }
         }
     });
+
+
 }
+
 
 function denyRequest(lrId){
     console.log(lrId);
+    let lrIdString = lrId.toString();
 
     var request = $.ajax({
-        url: "http://localhost:8080/denyLeaveRequest/"+lrId,
+        url: "http://localhost:8080/denyLeaveRequest",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
-        data: lrId,
+        data: lrIdString,
         success: function(result) {
             //console.log("This is console");
             console.log(result);
@@ -69,12 +94,13 @@ function denyRequest(lrId){
 }
 function acceptRequest(lrId){
     console.log(lrId);
+    let lrIdString = lrId.toString();
 
     var request = $.ajax({
-        url: "http://localhost:8080/acceptLeaveRequest/"+lrId,
+        url: "http://localhost:8080/acceptLeaveRequest",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
-       // data: lrId,
+        data: lrIdString,
         success: function(result) {
             //console.log("This is console");
             console.log(result);
@@ -92,4 +118,5 @@ function acceptRequest(lrId){
         }
     });
 }
+
 

@@ -62,13 +62,15 @@ public class LeaveRequestCache {
                 }
             }
             maxLR_ID=maxLR_ID+1;
+            System.out.println(maxLR_ID);
+            e.setLR_ID(maxLR_ID.toString());
 
             modelLeaveRequest.put(maxLR_ID.toString(),e);
         }
         return insertStatus;
     }
 
-    public boolean updateLeaveTrue(LeaveRequest e) throws SQLException, ClassNotFoundException {
+    public boolean updateLeaveTrue(LeaveRequest e) {
        Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.updateLeaveRequestTrueQuery+"\""+e.getLR_ID()+"\";");
        if(updateStatus){
            e.setIsAccepted("1");
@@ -77,7 +79,7 @@ public class LeaveRequestCache {
         return updateStatus;
     }
 
-    public boolean updateLeaveFalse(LeaveRequest e) throws SQLException, ClassNotFoundException {
+    public boolean updateLeaveFalse(LeaveRequest e){
         Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.updateLeaveRequestFalseQuery+"\""+e.getLR_ID()+"\";");
         if(updateStatus){
             e.setIsAccepted("0");

@@ -1,7 +1,8 @@
-package com.asdc.payroll_management.LeaveManagement.BL;
+package com.asdc.payroll_management.LeaveManagement;
 
 import com.alibaba.fastjson.JSONObject;
 import com.asdc.payroll_management.DataBaseCache.LeaveRequest;
+import com.asdc.payroll_management.DataBaseCache.Leaves;
 import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 
 import java.util.Date;
@@ -13,17 +14,21 @@ public interface IEmployeeLeaves {
 
     List<LeaveRequest> getAllLeaves();
 
-    public String getLeaveType(String leaveName);
+    public Leaves getLeaveType(String leaveName);
 
     public boolean addEmployeeLeave(LeaveRequest newLeaveRequest);
 
-    public HashMap<Boolean,LeaveRequest> validateLeaveRequest(JSONObject leaveRequest);
+    public LeaveRequest validateLeaveRequest(LeaveRequest leaveRequest);
 
     public Date getEndDate(Date startdate, int days);
 
     public int getDurartion(Date startdate, Date endDate) throws ParseException;
 
-    public boolean checkDateRange(LeaveRequest a, LeaveType b);
+    public boolean checkDateRange(int acceptedRange, int givenDuration);
+
+    public boolean checkEndDateandDurartion(Date enddate, int durartion);
+
+    public boolean checkStartDateAndEndDate(Date startdate, Date endDate);
 
 
 }

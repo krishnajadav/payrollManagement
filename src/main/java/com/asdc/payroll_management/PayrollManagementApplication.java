@@ -1,6 +1,5 @@
 package com.asdc.payroll_management;
 
-import com.asdc.payroll_management.LeaveManagement.DatabaseDML;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

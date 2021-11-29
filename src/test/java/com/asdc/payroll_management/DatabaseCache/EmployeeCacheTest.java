@@ -63,8 +63,6 @@ public class EmployeeCacheTest {
     @Test
     public void testInsertData()  {
         Employee testEmp = new Employee("26118","Ali","ali@gmail.com","abc","124 street","12345","12345","1234","1","1");
-//        HashMap<String,Employee> testEmployees=new HashMap<>();
-//        testEmployees.put("26118",new Employee("jaswanth","jas@gmail.com","abc","124 street","12345","12345","1234","1","1","1"));
         EmployeeCache employeeFactory = EmployeeCache.getInstance();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
         String query=DBQueriesConstant.insertEmployeeQuery+" values('"+testEmp.getEmployee_ID()+"','"
