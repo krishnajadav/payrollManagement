@@ -1,9 +1,7 @@
 package com.asdc.payroll_management.LeaveManagement;
 
-import com.alibaba.fastjson.JSONObject;
 import com.asdc.payroll_management.DataBaseCache.LeaveRequest;
 import com.asdc.payroll_management.DataBaseCache.Leaves;
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 
 import java.util.Date;
 import java.text.ParseException;
