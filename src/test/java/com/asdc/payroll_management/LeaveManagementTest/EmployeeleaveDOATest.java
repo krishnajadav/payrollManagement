@@ -2,7 +2,6 @@ package com.asdc.payroll_management.LeaveManagementTest;
 
 import com.asdc.payroll_management.DataBaseCache.*;
 import com.asdc.payroll_management.LeaveManagement.EmployeeLeavesDOA;
-import com.asdc.payroll_management.LeaveManagement.Model.LeaveType;
 import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.assertj.core.error.ShouldBeSymbolicLink;
 import org.junit.Before;
