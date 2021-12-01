@@ -18,9 +18,7 @@ class UserAuthenticationDAOTest {
 			UserAuthenticationDAO UADAO=new UserAuthenticationDAO();		
 			UserAuthentication ua=new UserAuthentication();
 			ua.setUserEmail("test@test.com");
-			ua.setUserPassword("abc@123");
-			ua.setUserType("HR");	
-			
+			ua.setUserPassword("abc@123");			
 			String result=UADAO.checkUserAuthentication(ua);	
 			assertEquals(0, 0);  
 		

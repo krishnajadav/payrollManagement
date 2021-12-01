@@ -4,7 +4,6 @@ public class UserAuthentication {
 
 	private String userEmail; 
 	private String userPassword;
-	private String userType;
 	public UserAuthentication() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -13,7 +12,6 @@ public class UserAuthentication {
 		super();
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;
-		this.userType = userType;
 	}
 	public String getUserEmail() {
 		return userEmail;
@@ -26,12 +24,6 @@ public class UserAuthentication {
 	}
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
-	}
-	public String getUserType() {
-		return userType;
-	}
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 	
 	public boolean validate()

@@ -9,9 +9,6 @@ public class Employee {
 	
 	private String employee_Address; 
 	private String employee_phoneNumb; 
-	private int jd_ID; 
-	private String managerID;
-	private int department_ID;
 	
 	public Employee() {
 		super();
@@ -27,9 +24,6 @@ public class Employee {
 		this.employee_Password = employee_Password;
 		this.employee_Address = employee_Address;
 		this.employee_phoneNumb = employee_phoneNumb;
-		this.jd_ID = jd_ID;
-		this.managerID = managerID;
-		this.department_ID = department_ID;
 	}
 	public String getEmployee_ID() {
 		return employee_ID;
@@ -67,28 +61,10 @@ public class Employee {
 	public void setEmployee_phoneNumb(String employee_phoneNumb) {
 		this.employee_phoneNumb = employee_phoneNumb;
 	}
-	public int getJd_ID() {
-		return jd_ID;
-	}
-	public void setJd_ID(int jd_ID) {
-		this.jd_ID = jd_ID;
-	}
-	public String getManagerID() {
-		return managerID;
-	}
-	public void setManagerID(String managerID) {
-		this.managerID = managerID;
-	}
-	public int getDepartment_ID() {
-		return department_ID;
-	}
-	public void setDepartment_ID(int department_ID) {
-		this.department_ID = department_ID;
-	}
 	
 	public boolean validate()
 	{
-	   if(employee_ID=="" || employee_Name==""||employee_emailID==""||employee_Password=="")
+	   if(employee_ID=="" || employee_Name==""||employee_emailID==""||employee_Password==""||employee_Address==""||employee_phoneNumb=="")
 	   {
 		 return false;   
 	   }

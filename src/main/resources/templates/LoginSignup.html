@@ -84,16 +84,9 @@
 
                         <div class="signin-form profile">
 
+                            <input type="text" id="txtloginemail" placeholder="Email"  style="margin-top: 17px;">
 
-							<label class="userType"><input type="radio" name="luserType" value="Employee" checked>Employee</label>
-							
-							<label class="userType"><input type="radio" name="luserType" value="HR">HR</label>
-							
-							<label class="userType"><input type="radio" name="luserType" value="Manager">Manager</label><br/>
-
-                            <input type="text" id="lemail" placeholder="Email"  style="margin-top: 17px;">
-
-                            <input type="password" id="lpass" placeholder="Password" >
+                            <input type="password" id="txtloginpass" placeholder="Password" >
 
                         </div>
 
@@ -111,22 +104,19 @@
 
                         <div class="signin-form profile">
 
-							
-							<label class="userType"><input type="radio" name="ruserType" value="Employee" checked>Employee</label>
-							
-							<label class="userType"><input type="radio" name="ruserType" value="HR">HR</label>
-							
-							<label class="userType"><input type="radio" name="ruserType" value="Manager">Manager</label><br/>							
+                            <input type="text" id="txtfullname" placeholder="Full Name" style="margin-top: 17px;">
 
-                            <input type="text" id="rfullname" placeholder="Full Name" style="margin-top: 17px;">
+                            <input type="text" id="txtempcode" placeholder="Employee Code">
 
-                            <input type="text" id="rempcode" class="empcodevisible" placeholder="Employee Code">
-
-                            <input type="text" id="remail" placeholder="Email">
-
-                            <input type="password" id="rpass" placeholder="Password">
+                            <input type="text" id="txtemail" placeholder="Email">
                             
-                            <input type="password" id="rcpass" placeholder="Confirm Password">
+                             <input type="text" id="txtmno" placeholder="Mobile Number" maxlength="12">
+                             
+                             <textarea id="txtaddress" rows="5" cols="50" placeholder="Address"></textarea>
+
+                            <input type="password" id="txtpass" placeholder="Password">
+                            
+                            <input type="password" id="txtconpass" placeholder="Confirm Password">
 
                         </div>
 
@@ -147,28 +137,11 @@
 	
 	    <script>
     $( document ).ready(function() {
-
-    	
-    	$('input[type=radio][name=ruserType]').change(function() {
-    	    
-    		if (this.value == 'Employee') {
-    	        
-    			$( "#rempcode" ).removeClass( "empcodehide" );
-    			
-    	    }
-    		else
-    		{
-    			$( "#rempcode" ).addClass( "empcodehide" );
-    		}
-    	    
-    	});
-    	
-    	
+    	    	
     	 $("#btnLogin").click(function () {
-    		 
-    		    var userType=$("input[name='luserType']:checked").val();	 
-    			var userEmail = $("#lemail").val();
-    			var userPassword =$("#lpass").val();
+    		 	 
+    			var userEmail = $("#txtloginemail").val();
+    			var userPassword =$("#txtloginpass").val();
     			
      			var request = $.ajax({
     				url: "http://localhost:8080/UserAuthentication/check",
@@ -176,8 +149,7 @@
     				contentType: 'application/json; charset=utf-8',
     				data: JSON.stringify({
     					'userEmail': userEmail,
-    					'userPassword': userPassword,
-    					'userType': userType
+    					'userPassword': userPassword
     				}),
     				success: function(result) {
     					
@@ -209,43 +181,26 @@
     	 
  	    $("#btnSignup").click(function () {
     		
- 	    	if($("#rpass").val()==$("#rcpass").val())
- 	    	{
- 			    var userType=$("input[name='ruserType']:checked").val();	 
- 				var userEmail = $("#remail").val();
- 				var userPassword =$("#rpass").val();
- 				var usercode = $("#rempcode").val();
- 				var userFullName =$("#rfullname").val();
+ 	    	if($("#txtpass").val()==$("#txtconpass").val())
+ 	    	{ 
+ 				var userEmail = $("#txtemail").val();
+ 				var userPassword =$("#txtconpass").val();
+ 				var usercode = $("#txtempcode").val();
+ 				var userFullName =$("#txtfullname").val();
+ 				var userMobileNumber = $("#txtmno").val();
+ 				var userAddress =$("#txtaddress").val();
+ 				
  				var URL="",Data="";
  				
- 				if(userType=="Employee")
- 				{
  					URL="http://localhost:8080/Employee/Save";
  					Data={
     					'employee_ID': usercode,
     					'employee_Name': userFullName,
     					'employee_emailID': userEmail,
-    					'employee_Password':userPassword
-    				}
- 				}
- 				else if(userType=="HR")
- 				{
- 				   URL="http://localhost:8080/HR/Save";
-					Data={
-	    					'hR_Name': userFullName,
-	    					'hR_EmailID': userEmail,
-	    					'hR_Password':userPassword
-	    				}
- 				}
- 				else
- 				{
- 				   URL="http://localhost:8080/Manager/Save";
-					Data={
-	    					'manager_Name': userFullName,
-	    					'manager_EmailID': userEmail,
-	    					'manager_Password':userPassword
-	    				}
- 				}		
+    					'employee_Password':userPassword,
+    					'employee_phoneNumb': userMobileNumber,
+    					'employee_Address':userAddress
+    				} 						
  						
      			var request = $.ajax({
     				url: URL,
@@ -256,7 +211,7 @@
     					
     					if(result=="Success")
     					{
-	   		                 swal(userType+" insert successfully", "", "success", {
+	   		                 swal("Employee insert successfully", "", "success", {
 		                            button: "Close",
 		                        });
 	   		              clear();
@@ -288,13 +243,15 @@
  	    
         
     	var clear=function(){
-				$("#remail").val("");
- 				$("#rpass").val("");
- 				$("#rempcode").val("");
- 				$("#rfullname").val("");
- 				$("#rcpass").val("")			
-    			 $("#lemail").val("");
-    			 $("#lpass").val("");
+				$("#txtemail").val("");
+ 				$("#txtpass").val("");
+ 				$("#txtempcode").val("");
+ 				$("#txtfullname").val("");
+ 				$("#txtconpass").val("");	
+ 				$("#txtaddress").val("");
+ 				$("#txtmno").val("");
+    			 $("#txtloginemail").val("");
+    			 $("#txtloginpass").val("");
     	}
     });
     </script>

@@ -13,12 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EmployeeController {
 
 	    private EmployeeConcreteFactory EmpCF=new EmployeeConcreteFactory();
-
-	    @RequestMapping("/GetAllEmployees")
-	    public List<Employee> getALLEmployees() throws SQLException {
-	        return EmpCF.getAllEmployees();
-	    } 
-	    
+    
 	    @RequestMapping(value = "/Employee/Save",method = RequestMethod.POST)
 	    public String saveEmployee(@RequestBody Employee emp) {	    	
 	    

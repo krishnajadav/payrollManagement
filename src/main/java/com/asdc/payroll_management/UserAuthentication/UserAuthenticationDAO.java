@@ -15,8 +15,7 @@ public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 			
 			mySQLDB.LoadDatabase();
 			String callST="{call SP_userAuthentication('"+
-					ua.getUserEmail()+"','"+ua.getUserPassword()+"','"+
-					ua.getUserType()+"')}";
+					ua.getUserEmail()+"','"+ua.getUserPassword()+"')}";
 			ResultSet rs=mySQLDB.ExecuteQuery(callST);
 			
 			if (!rs.isBeforeFirst() ) {    
@@ -25,7 +24,7 @@ public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 			else
 			{
 				rs.next();
-				return rs.getString("userID")+"#"+ua.getUserType();
+				return rs.getString("userID")+"#"+rs.getString("userName")+"#"+rs.getString("Designation");
 			}			
 			
 		}
