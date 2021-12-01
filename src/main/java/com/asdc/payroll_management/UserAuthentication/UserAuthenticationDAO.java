@@ -15,7 +15,7 @@ public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 			
 			mySQLDB.LoadDatabase();
 			String callST="{call SP_userAuthentication('"+
-					ua.getUserEmail()+"','"+ua.getUserPassword()+"')}";
+					ua.getUserEmail()+"','"+ ua.getEncriptedPassword(ua.getUserPassword())+"')}";
 			ResultSet rs=mySQLDB.ExecuteQuery(callST);
 			
 			if (!rs.isBeforeFirst() ) {    

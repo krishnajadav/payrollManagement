@@ -18,7 +18,7 @@ public class EmployeeDAO implements IEmployeeDAO {
 			mySQLDB.LoadDatabase();
 			String callST="{call SP_saveEmployee('"+emp.getEmployee_ID()+"','"+
 					emp.getEmployee_Name()+"','"+emp.getEmployee_emailID()+"','"+
-					emp.getEmployee_Password()+"','"+emp.getEmployee_Address()+"','"+
+					emp.getEncriptedPassword(emp.getEmployee_Password())+"','"+emp.getEmployee_Address()+"','"+
 					emp.getEmployee_phoneNumb()+"')}";
 			 ResultSet rs=mySQLDB.ExecuteQuery(callST);
 			 rs.next();	

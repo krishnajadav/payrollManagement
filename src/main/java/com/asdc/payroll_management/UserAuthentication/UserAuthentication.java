@@ -1,5 +1,7 @@
 package com.asdc.payroll_management.UserAuthentication;
 
+import com.asdc.payroll_management.Utility.EncryptionDecription;
+
 public class UserAuthentication {
 
 	private String userEmail; 
@@ -24,6 +26,12 @@ public class UserAuthentication {
 	}
 	public void setUserPassword(String userPassword) {
 		this.userPassword = userPassword;
+	}
+	
+	public String getEncriptedPassword(String userPassword)
+	{
+		EncryptionDecription objEncrypation=new EncryptionDecription();
+		return objEncrypation.GetCipherText(userPassword);
 	}
 	
 	public boolean validate()

@@ -1,5 +1,7 @@
 package com.asdc.payroll_management.EmployeeRegistration;
 
+import com.asdc.payroll_management.Utility.EncryptionDecription;
+
 public class Employee {
 
 	private String employee_ID; 
@@ -61,6 +63,12 @@ public class Employee {
 	public void setEmployee_phoneNumb(String employee_phoneNumb) {
 		this.employee_phoneNumb = employee_phoneNumb;
 	}
+	
+	public String getEncriptedPassword(String employee_Password)
+	{
+		EncryptionDecription objEncrypation=new EncryptionDecription();
+		return objEncrypation.GetCipherText(employee_Password);
+	}	
 	
 	public boolean validate()
 	{
