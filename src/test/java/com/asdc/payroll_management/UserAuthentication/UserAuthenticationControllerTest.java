@@ -34,22 +34,15 @@ import org.springframework.mock.web.MockHttpServletRequest;
 class UserAuthenticationControllerTest {
 	
 	@Test
-	public void TestcheckUserAuthentication() throws SQLException {
-			
-		try
-		{		
+	public void TestcheckUserAuthentication() throws SQLException {			
+		
 			UserAuthenticationController UAC=new UserAuthenticationController();
 			MockHttpServletRequest request = new MockHttpServletRequest();			
 			UserAuthentication ua=new UserAuthentication();
 			ua.setUserEmail("krishna@gmail.com");
 			ua.setUserPassword("qwed");			
 			String result=UAC.checkUserAuthentication(ua,request);	
-			assertEquals("1232#dfgdfg#Senior Manager", result);  	
-		}
-		catch (Exception e) {
-			fail();
-		}
-		
+			assertEquals("1232#dfgdfg#Senior Manager", result);  		
 	}
 	
 }
