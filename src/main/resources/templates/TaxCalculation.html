@@ -13,7 +13,18 @@
 
 <div class="container">
 
-<br/> <button id="btngenerate" type="button" class="btn btn-primary">Generate Tax</button>   
+
+<div class="col-md-12">
+
+<div class="text-left">
+<button id="btngenerate" type="button" class="btn btn-primary">Generate Tax</button> 
+
+<div class="text-right">
+<button id="btnlogout" type="button" class="btn btn-primary">Logout</button>
+</div> 
+
+</div>
+</div>
 </div>
 
 
@@ -33,11 +44,28 @@
     				data:null,
     				success: function(result) {
     					  var response=result.split("#");	   						 	   						 
-	   				      swal("The Last One Year Tax Details:","SalaryWithoutTax:"+response[0]+" And SalaryWithTax:"+response[1], "success");   						 
+	   				      swal("Total Tax: "+(parseFloat(response[0])-parseFloat(response[1])).toFixed(2),"SalaryWithoutTax:"+response[0]+" And SalaryWithTax:"+response[1], "success"); 
     				}
     			});
      		 	
 		     });
+		    	 
+		    	 
+		    	 $("#btnlogout").click(function () {
+				    	
+		     			var request = $.ajax({
+		    				url: "http://localhost:8080/UserAuthentication/logout",
+		    				type: "GET",
+		    				contentType: 'application/json; charset=utf-8',
+		    				data:null,
+		    				success: function(result) {		    				
+		    					window.location.href = "http://localhost:8080/LoginSignup";		    					
+		    				}
+		    			});
+		     		 	
+				     });
+		    	 
+		    	 
    	
 		    });
     

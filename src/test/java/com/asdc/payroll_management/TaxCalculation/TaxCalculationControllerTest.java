@@ -35,19 +35,12 @@ class TaxCalculationControllerTest {
 	
 	@Test
 	public void TestgenerateTaxCalculation() throws SQLException {
-			
-		try
-		{		
+				
 			TaxCalculationController TC=new TaxCalculationController();
 			MockHttpServletRequest request = new MockHttpServletRequest();
-			request.getSession().setAttribute("userInfo","FF007#Employee");
-			String result=TC.generateTaxCalculation(request);						
+			request.getSession().setAttribute("userInfo","1232#Krishna#Manager");
+		    TC.generateTaxCalculation(request);						
 			assertEquals(0, 0);  
-		}
-		catch (Exception e) {
-			fail();
-		}
-		
 	}
 	
 }

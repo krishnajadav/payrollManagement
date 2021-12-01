@@ -17,14 +17,17 @@ public class TaxCalculationController {
 	    @RequestMapping(value = "/TaxCalculation/generate",method = RequestMethod.GET)
 	    public String generateTaxCalculation(HttpServletRequest request) {	
 	    	
-	    	String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");	    	
-	    	TaxCalculation TC=new TaxCalculation(userInfo[0],userInfo[1], 0, 0);
-	    	Double salary=Double.parseDouble(TCCF.generateTaxCalculation(TC));
+	    	String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");	 
+	    	TaxCalculation TC=new TaxCalculation(userInfo[0], 0, 0);
+	    	String salaryCal=TCCF.generateTaxCalculation(TC);
+	    	if(salaryCal==null)
+	    	{
+	    		salaryCal="0";
+	    	}	    	
+	    	Double salary=Double.parseDouble(salaryCal);
 	    	TC.setSalary(salary);
-	    	TC.setSalaryWithoutTax(salary);
-	    		    	
-            return TC.getSalaryWithoutTax()+"#"+TC.getSalary();
-            
+	    	TC.setSalaryWithoutTax(salary);	    	
+            return TC.getSalaryWithoutTax()+"#"+TC.getSalary();           
 	    }
 	    
 		@RequestMapping("/TaxCalculation")

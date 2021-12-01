@@ -10,7 +10,7 @@ public class UserAuthentication {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public UserAuthentication(String userEmail, String userPassword, String userType) {
+	public UserAuthentication(String userEmail, String userPassword) {
 		super();
 		this.userEmail = userEmail;
 		this.userPassword = userPassword;

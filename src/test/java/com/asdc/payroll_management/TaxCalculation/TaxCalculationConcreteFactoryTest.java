@@ -17,8 +17,7 @@ class TaxCalculationConcreteFactoryTest {
 		{		
 			TaxCalculationConcreteFactory TCCF=new TaxCalculationConcreteFactory();		
 			TaxCalculation tc=new TaxCalculation();
-			tc.setUserID("FF007");
-			tc.setUserType("Employee");	
+			tc.setUserID("FF007");	
 			String result=TCCF.generateTaxCalculation(tc);		
 			assertEquals(0, 0); 
 		

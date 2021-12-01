@@ -3,14 +3,12 @@ package com.asdc.payroll_management.TaxCalculation;
 public class TaxCalculation {
 
 	private String userID; 
-	private String userType;
 	private double salary;
 	private double salaryWithoutTax;
 	
-	public TaxCalculation(String userID, String userType, double salary, double salaryWithoutTax) {
+	public TaxCalculation(String userID, double salary, double salaryWithoutTax) {
 		super();
 		this.userID = userID;
-		this.userType = userType;
 		this.salary = salary;
 		this.salaryWithoutTax = salaryWithoutTax;
 	}
@@ -27,15 +25,7 @@ public class TaxCalculation {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
-
+	
 	public double getSalary() {
 		return salary;
 	}

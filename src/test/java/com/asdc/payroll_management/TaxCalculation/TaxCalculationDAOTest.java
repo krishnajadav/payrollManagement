@@ -17,8 +17,7 @@ class TaxCalculationDAOTest {
 		{		
 			TaxCalculationDAO TCDAO=new TaxCalculationDAO();		
 			TaxCalculation tc=new TaxCalculation();
-			tc.setUserID("FF007");
-			tc.setUserType("Employee");			
+			tc.setUserID("FF007");		
 			String result=TCDAO.generateTaxCalculation(tc);	
 			assertEquals(0, 0);  
 		

@@ -20,7 +20,10 @@ public class UserAuthenticationController {
 	    	if(ua.validate())
 	    	{	    		
 		    	String userInfo=UACF.checkUserAuthentication(ua);
-		    	request.getSession().setAttribute("userInfo",userInfo);
+		    	if(userInfo!="Invalid User")
+		    	{
+			    	request.getSession().setAttribute("userInfo",userInfo);	
+		    	}
 		    	return userInfo;
 	    	}
 	    	else
@@ -35,5 +38,12 @@ public class UserAuthenticationController {
 			mv.setViewName("LoginSignup");
 			return mv;
 		}
+		
+		@RequestMapping("/UserAuthentication/logout")
+		public String logout(HttpServletRequest request) {			
+			request.getSession().removeValue("userInfo");
+			return "Clear";
+		}
+		
 	       
 }

@@ -15,7 +15,7 @@ public class TaxCalculationDAO implements ITaxCalculationDAO {
 			
 			mySQLDB.LoadDatabase();
 			String callST="{call SP_userTaxCalculation('"+
-					tc.getUserID()+"','"+tc.getUserType()+"')}";
+					tc.getUserID()+"')}";
 			ResultSet rs=mySQLDB.ExecuteQuery(callST);
 			
 			if (!rs.isBeforeFirst() ) {    
