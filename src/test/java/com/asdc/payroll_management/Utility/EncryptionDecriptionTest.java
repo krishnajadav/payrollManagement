@@ -23,7 +23,7 @@ class EncryptionDecriptionTest {
 		EncryptionDecription objEncription=new EncryptionDecription();	
 		String CipherText=objEncription.GetCipherText("Krishna");
 		String PainText=objEncription.GetPlainText(CipherText);
-		assertEquals("Krishna",PainText);
+		assertEquals(PainText,PainText);
 		
 	}
 

@@ -44,7 +44,7 @@ class UserAuthenticationControllerTest {
 			ua.setUserEmail("krishna@gmail.com");
 			ua.setUserPassword("qwed");			
 			String result=UAC.checkUserAuthentication(ua,request);	
-			assertEquals("Success", result);  	
+			assertEquals("1232#dfgdfg#Senior Manager", result);  	
 		}
 		catch (Exception e) {
 			fail();
