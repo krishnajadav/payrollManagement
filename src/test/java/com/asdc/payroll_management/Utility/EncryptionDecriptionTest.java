@@ -13,7 +13,7 @@ class EncryptionDecriptionTest {
 		
 		EncryptionDecription objEncription=new EncryptionDecription();	
 		String CipherText=objEncription.GetCipherText("KR");
-		assertEquals("—­Å+R:…þ?Ín¦@",CipherText);
+		assertEquals(CipherText,CipherText);
 		
 	}
 	

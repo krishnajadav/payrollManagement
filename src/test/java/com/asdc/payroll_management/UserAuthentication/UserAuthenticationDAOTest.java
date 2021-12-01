@@ -17,10 +17,10 @@ class UserAuthenticationDAOTest {
 		{		
 			UserAuthenticationDAO UADAO=new UserAuthenticationDAO();		
 			UserAuthentication ua=new UserAuthentication();
-			ua.setUserEmail("test@test.com");
-			ua.setUserPassword("abc@123");			
+			ua.setUserEmail("krishna@gmail.com");
+			ua.setUserPassword("qwed");			
 			String result=UADAO.checkUserAuthentication(ua);	
-			assertEquals(0, 0);  
+			assertEquals("Success", result);  
 		
 		}
 		catch (Exception e) {

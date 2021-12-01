@@ -3,6 +3,8 @@ package com.asdc.payroll_management.Database;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.sql.ResultSet;
+
 import org.junit.Test;
 
 
@@ -43,7 +45,7 @@ public class MySQLDBTest {
 		{
 			
 			MySQLDB obj=new MySQLDB();	
-		    //ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
+		    ResultSet Emp=obj.ExecuteQuery("Select * from Employee");
 			assertEquals(0, 0); 
 		
 		}

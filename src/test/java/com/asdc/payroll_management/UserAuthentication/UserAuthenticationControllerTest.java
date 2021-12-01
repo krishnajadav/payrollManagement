@@ -41,10 +41,10 @@ class UserAuthenticationControllerTest {
 			UserAuthenticationController UAC=new UserAuthenticationController();
 			MockHttpServletRequest request = new MockHttpServletRequest();			
 			UserAuthentication ua=new UserAuthentication();
-			ua.setUserEmail("test@test.com");
-			ua.setUserPassword("abc@123");		
-			String result=UAC.checkUserAuthentication(ua,request);		
-			assertEquals(0, 0);  
+			ua.setUserEmail("krishna@gmail.com");
+			ua.setUserPassword("qwed");			
+			String result=UAC.checkUserAuthentication(ua,request);	
+			assertEquals("Success", result);  	
 		}
 		catch (Exception e) {
 			fail();
