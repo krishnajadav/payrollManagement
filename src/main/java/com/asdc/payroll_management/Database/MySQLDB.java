@@ -8,55 +8,80 @@ import java.util.Map;
 
 public class MySQLDB implements IDB {
 
-
-    private Connection con;
-    private ResultSet rs;
-    private Statement st;
-
-    @Override
-    public void LoadDatabase(){
-        	
-            try {
-                con = DriverManager.getConnection("jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_17_DEVINT","CSCI5308_17_DEVINT_USER","aiJ9Eidoo1kieyej");
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }           
-            
-    }
+	private Connection con;
+	private ResultSet rs;
+	private Statement st;
 
 	@Override
-	public ResultSet ExecuteQuery(String query) {
-		
-		if(con==null)
-		{
-			LoadDatabase();
-		}
-		
-        try {
-            st = con.createStatement();
-            rs = st.executeQuery(query);                        
-         
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+	public void LoadDatabase() {
 
-        return rs;
-
-	}
-	
-	@Override
-	public void Close() {
-		
 		try {
-			
-			rs.close();
-			st.close();
-		    con.close();
-		    
+			con = DriverManager.getConnection("jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_17_DEVINT",
+					"CSCI5308_17_DEVINT_USER", "aiJ9Eidoo1kieyej");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	@Override
+	public ResultSet ExecuteQuery(String query) {
+
+		if (con == null) {
+			LoadDatabase();
+		}
+
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+		return rs;
+
+	}
+
+	@Override
+	public void Close() {
+
+		try {
+
+			rs.close();
+			st.close();
+			con.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Override
+	public boolean InsertResultset(String query, PreparedStatement preparedStmt) {
+		boolean success = false;
+		if (con == null) {
+			LoadDatabase();
+		}
+
+		try {
+			st = con.createStatement();
+			rs = st.executeQuery(query);
+			preparedStmt.execute();
+			if (rs != null)
+				return true;
+			else
+				return false;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Override
+	public Connection getConnection() {
+		return con;
 	}
 
 }

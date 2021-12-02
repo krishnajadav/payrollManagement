@@ -6,9 +6,12 @@ public interface IDB {
 
 	void LoadDatabase();
 
-    ResultSet ExecuteQuery(String query);
+	ResultSet ExecuteQuery(String query);
 
-    void Close();
+	public boolean InsertResultset(String query, PreparedStatement preparedStmt);
 
-	
+	public Connection getConnection();
+
+	void Close();
+
 }

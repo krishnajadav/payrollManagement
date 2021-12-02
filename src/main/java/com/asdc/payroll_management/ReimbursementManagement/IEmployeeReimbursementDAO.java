@@ -5,7 +5,7 @@ import java.text.ParseException;
 import java.util.List;
 
 public interface IEmployeeReimbursementDAO {
-	List<ReimbursementRequest> getAllReimbursements() throws SQLException;
+	public List<ReimbursementRequest> getAllReimbursements(String EmployeeID) throws SQLException;
 
 	public List<ReimbursementType> getAllReimbursementTypes() throws SQLException;
 

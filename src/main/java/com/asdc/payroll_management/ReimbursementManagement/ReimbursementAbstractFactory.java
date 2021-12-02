@@ -17,4 +17,13 @@ public abstract class ReimbursementAbstractFactory implements IReimbursement {
 			throws ParseException, SQLException {
 		return false;
 	}
+
+	public List<ReimbursementRequest> getSpecificEmployeeReimbursements(String EmployeeID) throws SQLException {
+		return null;
+	}
+
+	public boolean updateReimbursementRequest(String ManagerID, ReimbursementRequest rr, int UpdateAccepted)
+			throws SQLException {
+		return false;
+	}
 }
