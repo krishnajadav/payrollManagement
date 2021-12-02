@@ -8,10 +8,10 @@ public class ReimbursementRequest {
 	private String ReimbursementNote;
 	private int ReimbursementAmount;
 	private Date ReimbursementDate;
-	private String isAccepted;
+	private int isAccepted;
 
 	public ReimbursementRequest(String employeeID, int reimbursementTypeID, String reimbursementNote,
-			int reimbursementAmount, Date reimbursementDate, String isAccepted) {
+			int reimbursementAmount, Date reimbursementDate, int isAccepted) {
 		super();
 		EmployeeID = employeeID;
 		ReimbursementTypeID = reimbursementTypeID;
@@ -21,11 +21,11 @@ public class ReimbursementRequest {
 		this.isAccepted = isAccepted;
 	}
 
-	public String getIsAccepted() {
+	public int getIsAccepted() {
 		return isAccepted;
 	}
 
-	public void setIsAccepted(String isAccepted) {
+	public void setIsAccepted(int isAccepted) {
 		this.isAccepted = isAccepted;
 	}
 
