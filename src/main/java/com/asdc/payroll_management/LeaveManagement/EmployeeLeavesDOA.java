@@ -32,7 +32,6 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
 
             if(leaveRequest.getLR_EmployeeID().equalsIgnoreCase(employee.getEmployee_ID()) && leaveRequest.getIsAccepted() == null){
                 leaveRequests.add(leaveRequest);
-                //System.out.println(leaveRequest);
             }
         }
         return leaveRequests;
@@ -73,24 +72,34 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         Date Leave_Request_Date =  new Date(Long.parseLong(leaveRequest.getLeave_Request_Date()));
         Date Leave_End_Date =  leaveRequest.getLeave_End_Date()==null ? null: new Date(Long.parseLong(leaveRequest.getLeave_End_Date()));
 
-        String ErrorMessage="";
+        StringBuilder ErrorMessage= new StringBuilder();
         Boolean validResponse=true;
+
+        if(LR_Duration <=0 && Leave_End_Date!=null && Leave_Request_Date!=null){
+            LR_Duration =(this.getDurartion(Leave_Request_Date,Leave_End_Date));
+        }
+        if(Leave_End_Date== null && LR_Duration>0){
+            Leave_End_Date=this.getEndDate(Leave_Request_Date,LR_Duration);
+        }
+
         if(LR_Type == null){
             validResponse=false;
-            ErrorMessage=ErrorMessage+" Leave Type Invalid";
+            ErrorMessage.append(" Leave Type Invalid\n");
+        }else if(Leave_Request_Date==null){
+            validResponse=false;
+            ErrorMessage.append("Start Date Needs to be filled\n");
+        }else if(Leave_End_Date== null && LR_Duration<=0){
+            validResponse=false;
+            ErrorMessage.append("End Date or Duration needs to be Valid\n");
         }else if(!this.checkEndDateandDurartion(Leave_End_Date, LR_Duration)){
             validResponse=false;
-            ErrorMessage=ErrorMessage+" End Date or Duration should be populated";
+            ErrorMessage.append(" End Date or Duration should be populated\n");
         }else if(!(this.checkDateRange(Integer.parseInt(LR_Type.getLeaves_DuartionLimit()),LR_Duration))){
             validResponse=false;
-            ErrorMessage=ErrorMessage+" Requested leaves extend the duration limit of the leave type";
+            ErrorMessage.append(" Requested leaves extend the duration limit of the leave type\n");
         }else if(this.checkStartDateAndEndDate(Leave_Request_Date,Leave_End_Date)){
             validResponse=false;
-            ErrorMessage=ErrorMessage+" Start Date should be before End Date";
-        }else if(LR_Duration <=0){
-            LR_Duration =(this.getDurartion(Leave_Request_Date,Leave_End_Date));
-        }else if(Leave_End_Date== null){
-            Leave_End_Date=this.getEndDate(Leave_Request_Date,LR_Duration);
+            ErrorMessage.append(" Start Date should be before End Date\n");
         }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String strDate = dateFormat.format(Leave_Request_Date);
@@ -101,16 +110,18 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         LeaveRequest newLeaveRequest =null;
         if(validResponse){
              newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeaves_ID(),null,strDate,endDate);
+        }else{
+            newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeaves_ID(),null,strDate,endDate);
+            newLeaveRequest.setError(ErrorMessage.toString());
         }
-
         return newLeaveRequest;
     }
 
 
     @Override
     public boolean checkDateRange(int acceptedRange, int givenDuration) {
-
-        if(acceptedRange>=givenDuration){
+        System.out.println("Accepted Range: "+acceptedRange+" Given Duration: "+givenDuration);
+        if(givenDuration<=acceptedRange){
             return true;
         }else{
             return false;

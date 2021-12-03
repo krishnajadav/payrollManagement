@@ -8,7 +8,7 @@ public class LeaveRequest {
     private String isAccepted ;
     private String Leave_Request_Date ;
     private String Leave_End_Date ;
-    private String error;
+    private String error=null;
 
     public LeaveRequest(String LR_ID, String LR_EmployeeID, String LR_Duration, String LR_Type, String isAccepted, String leave_Request_Date, String leave_End_Date) {
         this.LR_ID = LR_ID;

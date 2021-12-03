@@ -68,7 +68,7 @@ function postData() {
             console.log("This is console");
             console.log(result);
             // if(result.error == null){
-            if(result){
+            if(result.error==null){
                 var empcode = document.getElementById('femployeeID');
                 empcode.value = result.employeeID;
                 document.getElementById('femployeeID').disabled = true;
@@ -78,7 +78,7 @@ function postData() {
                 document.getElementById('fleaveEndDate').disabled = true;
             } else{
                 var errordiv = document.getElementById('div-error-info');
-                errordiv.innerHTML = "<p style='color:red;'>"+result.ErrorMessage+'</p>;';
+                errordiv.innerHTML = "<p style='color:red;'>"+result.error+'</p>;';
             }
         }, error: function(err) {
             console.log(err);
