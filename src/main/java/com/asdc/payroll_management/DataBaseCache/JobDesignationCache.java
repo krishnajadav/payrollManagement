@@ -2,6 +2,7 @@ package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class JobDesignationCache {
@@ -31,8 +32,8 @@ public class JobDesignationCache {
         }
     }
 
-    public List<JobDesignation> get(){
-        return modelJobDesignations;
+    public List<JobDesignation> getAllDesignations(){
+        return new ArrayList<>(modelJobDesignations);
     }
 
 }

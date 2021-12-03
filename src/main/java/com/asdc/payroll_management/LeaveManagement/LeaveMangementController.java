@@ -32,7 +32,7 @@ public class LeaveMangementController {
             leavesManager.addEmployeeLeave(validLeaveRequest);
             System.out.println("Insert Successful");
         }else{
-            System.err.println("Invalid Leave");
+            System.out.println("Invalid Leave");
         }
         return validLeaveRequest;
 

@@ -18,7 +18,7 @@ public class ManagerCache {
         load();
     }
 
-    public void load() {
+    private void load() {
         try {
             ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allManagersQuery);
             while (rs.next()) {
@@ -36,7 +36,8 @@ public class ManagerCache {
     }
 
     public HashMap<String, Manager> get(){
-        return modelManagers;
+
+        return  new HashMap<>(modelManagers);
     }
 
     public Manager getOne(String id){

@@ -43,8 +43,8 @@ public class DepartmentCacheTest {
                 when(rs.getString("HR_ID")).thenReturn("22");
 
                 DepartmentCache departmentFactory = DepartmentCache.getInstance();
-                assertEquals("Finance",departmentFactory.get().get("26118").getDepartment_Name());
-                assertNotEquals("Marketing",departmentFactory.get().get("26118").getDepartment_Name());
+                assertEquals("Finance",departmentFactory.getDepartments().get("26118").getDepartment_Name());
+                assertNotEquals("Marketing",departmentFactory.getDepartments().get("26118").getDepartment_Name());
 
             }
         }catch(Exception e){

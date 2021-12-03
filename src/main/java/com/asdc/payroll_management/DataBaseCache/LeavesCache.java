@@ -20,7 +20,7 @@ public class LeavesCache {
     }
 
 
-    public void load() {
+    private void load() {
         try {
             ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allLeavesQuery);
             while (rs.next()) {
@@ -36,7 +36,7 @@ public class LeavesCache {
     }
 
     public HashMap<String,Leaves> get(){
-        return modelLeaves;
+        return new HashMap<>(modelLeaves);
     }
 
 }

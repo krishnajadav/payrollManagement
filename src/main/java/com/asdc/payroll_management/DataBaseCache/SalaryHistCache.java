@@ -30,7 +30,7 @@ public class SalaryHistCache {
 
     public HashMap<String,SalaryHist> get(){
 
-        return modelSalaryHistory;
+        return new HashMap<>(modelSalaryHistory);
     }
 
     public SalaryHist getOne(String id){

@@ -44,8 +44,8 @@ public class HRCacheTest {
                 when(rs.getString("HR_Salary")).thenReturn("22");
                 HRCache hrFactory = HRCache.getInstance();
 
-                assertEquals("Ali",hrFactory.get().get("26118").getHR_Name());
-                assertNotEquals("2500",hrFactory.get().get("26118").getHR_Salary());
+                assertEquals("Ali",hrFactory.getallHRS().get("26118").getHR_Name());
+                assertNotEquals("2500",hrFactory.getallHRS().get("26118").getHR_Salary());
 
             }
         }catch(Exception e){

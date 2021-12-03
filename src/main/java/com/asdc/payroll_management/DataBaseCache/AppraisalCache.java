@@ -45,9 +45,9 @@ public class AppraisalCache {
         }
     }
 
-        public HashMap<String, Appraisal> get () {
+        public HashMap<String, Appraisal> getAppraisals () {
 
-            return modelAppraisals;
+            return new HashMap<>(modelAppraisals);
         }
 
 

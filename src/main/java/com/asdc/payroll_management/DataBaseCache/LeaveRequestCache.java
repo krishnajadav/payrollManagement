@@ -42,11 +42,11 @@ public class LeaveRequestCache {
         }
     }
 
-    public HashMap<String,LeaveRequest> get(){
-        return modelLeaveRequest;
+    public HashMap<String,LeaveRequest> getAllLeaves(){
+        return new HashMap<>(modelLeaveRequest);
     }
 
-    public LeaveRequest getOne(String id){
+    public LeaveRequest getOneLeave(String id){
         return modelLeaveRequest.get(id);
     }
 

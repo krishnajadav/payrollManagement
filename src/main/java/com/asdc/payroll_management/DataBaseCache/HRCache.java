@@ -37,11 +37,11 @@ public class HRCache {
         }
     }
 
-    public HashMap<String,HR> get(){
-        return modelHR;
+    public HashMap<String,HR> getallHRS(){
+        return new HashMap<>(modelHR);
     }
 
-    public HR getOne(String id){
+    public HR getOneHR(String id){
         return modelHR.get(id);
     }
 

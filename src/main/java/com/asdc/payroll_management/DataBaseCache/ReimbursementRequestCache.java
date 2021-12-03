@@ -41,7 +41,8 @@ public class ReimbursementRequestCache {
     }
 
     public  HashMap<String, ReimbursementRequest> get(){
-        return modelReimbursementRequests;
+
+        return new HashMap<>(modelReimbursementRequests);
     }
 
     public ReimbursementRequest getOne(String id){

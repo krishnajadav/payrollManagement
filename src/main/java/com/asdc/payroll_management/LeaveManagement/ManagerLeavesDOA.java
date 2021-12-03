@@ -34,7 +34,7 @@ public class ManagerLeavesDOA implements IManagerLeaves{
     @Override
     public Boolean acceptLeave(String lrID){
         LeaveRequestCache leaveRequestCache = LeaveRequestCache.getInstance();
-        LeaveRequest leaveRequest = leaveRequestCache.getOne(lrID);
+        LeaveRequest leaveRequest = leaveRequestCache.getOneLeave(lrID);
         Boolean updateStatus= leaveRequestCache.updateLeaveTrue(leaveRequest);
             return updateStatus;
         }
@@ -42,7 +42,7 @@ public class ManagerLeavesDOA implements IManagerLeaves{
         @Override
         public Boolean rejectLeave(String lrID){
             LeaveRequestCache leaveRequestCache = LeaveRequestCache.getInstance();
-            LeaveRequest leaveRequest = leaveRequestCache.getOne(lrID);
+            LeaveRequest leaveRequest = leaveRequestCache.getOneLeave(lrID);
             Boolean updateStatus= leaveRequestCache.updateLeaveFalse(leaveRequest);
             return updateStatus;
         }

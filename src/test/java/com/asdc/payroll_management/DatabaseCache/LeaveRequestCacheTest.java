@@ -45,8 +45,8 @@ public class LeaveRequestCacheTest {
                 when(rs.getString("Leave_End_Date")).thenReturn("22");
                 LeaveRequestCache leaveRequestFactory =  LeaveRequestCache.getInstance();
 
-                assertEquals("26118",leaveRequestFactory.get().get("2").getLR_EmployeeID());
-                assertNotEquals("5",leaveRequestFactory.get().get("2").getLR_Type());
+                assertEquals("26118",leaveRequestFactory.getAllLeaves().get("2").getLR_EmployeeID());
+                assertNotEquals("5",leaveRequestFactory.getAllLeaves().get("2").getLR_Type());
 
             }
         }catch(Exception e){
@@ -67,7 +67,7 @@ public class LeaveRequestCacheTest {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);
             leaveRequestFactory.insert(e);
-            LeaveRequest newEmp=leaveRequestFactory.getOne("2");
+            LeaveRequest newEmp=leaveRequestFactory.getOneLeave("2");
 
             assertEquals("26119",newEmp.getLR_EmployeeID());
             assertEquals("1",newEmp.getLR_Type());
@@ -90,11 +90,11 @@ public class LeaveRequestCacheTest {
             when(databaseConnection.updateData(DBQueriesConstant.updateLeaveRequestTrueQuery+"\""+e.getLR_ID()+"\";")).thenReturn(true);
             when(databaseConnection.updateData(DBQueriesConstant.updateLeaveRequestFalseQuery+"\""+e.getLR_ID()+"\";")).thenReturn(true);
             leaveRequestFactory.updateLeaveTrue(e);
-            LeaveRequest newLR = leaveRequestFactory.getOne("2");
+            LeaveRequest newLR = leaveRequestFactory.getOneLeave("2");
             assertEquals("1",newLR.getIsAccepted());
 
             leaveRequestFactory.updateLeaveFalse(e);
-            LeaveRequest newLR2 = leaveRequestFactory.getOne("2");
+            LeaveRequest newLR2 = leaveRequestFactory.getOneLeave("2");
             assertEquals("0",newLR2.getIsAccepted());
 
         }catch(Exception ex){

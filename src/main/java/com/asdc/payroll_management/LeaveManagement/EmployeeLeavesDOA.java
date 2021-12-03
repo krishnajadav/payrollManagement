@@ -25,7 +25,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
     public List<LeaveRequest> getAllLeaves(){
         List<LeaveRequest> leaveRequests= new ArrayList<>();
         LeaveRequestCache leaveRequestCache=LeaveRequestCache.getInstance();
-        HashMap<String, LeaveRequest> allLeaves =leaveRequestCache.get();
+        HashMap<String, LeaveRequest> allLeaves =leaveRequestCache.getAllLeaves();
 
         for (Map.Entry mapElement : allLeaves.entrySet()) {
             LeaveRequest leaveRequest = (LeaveRequest) mapElement.getValue();

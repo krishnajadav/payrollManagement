@@ -37,9 +37,9 @@ public class DepartmentCache {
         }
     }
 
-    public HashMap<String,Department> get(){
+    public HashMap<String,Department> getDepartments(){
 
-        return modelDepartments;
+        return new HashMap<>(modelDepartments);
     }
 
 

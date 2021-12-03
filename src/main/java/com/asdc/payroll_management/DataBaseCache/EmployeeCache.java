@@ -45,7 +45,7 @@ public class EmployeeCache {
 
     public HashMap<String,Employee> get(){
 
-        return modelEmployees;
+        return new HashMap<>(modelEmployees);
     }
 
     public Employee getOne(String id){

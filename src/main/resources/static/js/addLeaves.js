@@ -78,7 +78,7 @@ function postData() {
                 document.getElementById('fleaveEndDate').disabled = true;
             } else{
                 var errordiv = document.getElementById('div-error-info');
-                errordiv.innerHTML = '<p style="color:red;">'+result.ErrorMessage+'</p>;';
+                errordiv.innerHTML = "<p style='color:red;'>"+result.ErrorMessage+'</p>;';
             }
         }, error: function(err) {
             console.log(err);

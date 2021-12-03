@@ -38,7 +38,7 @@ public class ReimbursementCache {
 
     public HashMap<String,Reimbursement> get(){
 
-        return modelReimbursement;
+        return new HashMap<>(modelReimbursement);
     }
 
 }
