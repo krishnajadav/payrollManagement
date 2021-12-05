@@ -40,9 +40,9 @@ public class UserAuthenticationController {
 		}
 		
 		@RequestMapping("/UserAuthentication/logout")
-		public String logout(HttpServletRequest request) {			
+		public ModelAndView logout(HttpServletRequest request) {			
 			request.getSession().removeValue("userInfo");
-			return "Clear";
+			return new ModelAndView("redirect:/LoginSignup");
 		}
 		
 	       
