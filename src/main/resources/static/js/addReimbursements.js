@@ -1,9 +1,10 @@
 function initialize() {
 
     var request = $.ajax({
-        url: "http://localhost:8080/viewMyReimbursements/F01234",
-        type: "GET",
+        url: "http://localhost:8080/viewMyReimbursements",
+        type: "POST",
         contentType: 'application/json; charset=utf-8',
+        data: "1225",
         success: function(result) {
             console.log(result);
             var table = document.getElementById("fviewReimbursements");
@@ -15,11 +16,18 @@ function initialize() {
                 var cell3 = row.insertCell(3);
                 var cell4 = row.insertCell(4);
 
+				let isAcceptedvalue="";
+                if(result[i]["isAccepted"]){
+                    isAcceptedvalue="Accepted";
+                }else{
+                    isAcceptedvalue="Pending";
+                }
+				
                 cell0.innerHTML = result[i]["ReimbursementTypeID"];
                 cell1.innerHTML = result[i]["ReimbursementNote"];
                 cell2.innerHTML = result[i]["ReimbursementAmount"];
                 cell3.innerHTML = result[i]["ReimbursementDate"];
-                cell4.innerHTML = result[i]["isAccepted"];
+                cell4.innerHTML = isAcceptedvalue;
 
 
             }

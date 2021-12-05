@@ -4,7 +4,7 @@ import java.sql.*;
 
 public interface IDB {
 
-	void LoadDatabase();
+	void LoadDatabase() throws ClassNotFoundException;
 
 	ResultSet ExecuteQuery(String query);
 

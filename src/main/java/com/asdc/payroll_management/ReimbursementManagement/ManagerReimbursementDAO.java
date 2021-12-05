@@ -12,7 +12,12 @@ public class ManagerReimbursementDAO extends EmployeeReimbursementDAO {
 		List<ReimbursementRequest> reimbursementRequests = new ArrayList<>();
 
 		String query = "select * from `Reimbursement_Request` where RR_EmployeeID=\"" + EmployeeID;
-		mySQLDB.LoadDatabase();
+		try {
+			mySQLDB.LoadDatabase();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ResultSet allReimbursements = mySQLDB.ExecuteQuery(query);
 		while (allReimbursements.next()) {
 			String RR_EmployeeID = allReimbursements.getString("RR_EmployeeID");
@@ -30,7 +35,12 @@ public class ManagerReimbursementDAO extends EmployeeReimbursementDAO {
 
 	public boolean updateReimbursementRequest(String ManagerID, ReimbursementRequest rr, int UpdateAccepted) throws SQLException {
 		String query = "select 'ManagerID' from `Employee` where RR_EmployeeID=\"" + rr.getEmployeeID();
-		mySQLDB.LoadDatabase();
+		try {
+			mySQLDB.LoadDatabase();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ResultSet manager = mySQLDB.ExecuteQuery(query);
 		String employeeManagerID = null;
 		while (manager.next()) {

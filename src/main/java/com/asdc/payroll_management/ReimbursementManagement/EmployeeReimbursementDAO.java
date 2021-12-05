@@ -19,7 +19,12 @@ public class EmployeeReimbursementDAO implements IEmployeeReimbursementDAO {
 	@Override
 	public List<ReimbursementRequest> getAllReimbursements(String EmployeeID) throws SQLException {
 		List<ReimbursementRequest> reimbursementRequests = new ArrayList<>();
-		mySQLDB.LoadDatabase();
+		try {
+			mySQLDB.LoadDatabase();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		/*
 		 * String employeeQuery =
 		 * "select 'Employee_Name','ManagerID' from 'Employee' where 'EmployeeID'=" +
@@ -51,7 +56,12 @@ public class EmployeeReimbursementDAO implements IEmployeeReimbursementDAO {
 	public List<ReimbursementType> getAllReimbursementTypes() throws SQLException {
 		List<ReimbursementType> rt = new ArrayList<>();
 		String query = "select * from `Reimbursements_Type` ;";
-		mySQLDB.LoadDatabase();
+		try {
+			mySQLDB.LoadDatabase();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		ResultSet allReimbursementTypes = mySQLDB.ExecuteQuery(query);
 		while (allReimbursementTypes.next()) {
 			int id = allReimbursementTypes.getInt("RT_ID");
@@ -67,7 +77,12 @@ public class EmployeeReimbursementDAO implements IEmployeeReimbursementDAO {
 	@Override
 	public boolean addEmployeeReimbursement(ReimbursementRequest newReimbursementRqeust)
 			throws ParseException, SQLException {
-		mySQLDB.LoadDatabase();
+		try {
+			mySQLDB.LoadDatabase();
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		List<ReimbursementType> reimbursementTypes = this.getAllReimbursementTypes();
 		ReimbursementType requestedType = null;
 		for (ReimbursementType temp : reimbursementTypes) {

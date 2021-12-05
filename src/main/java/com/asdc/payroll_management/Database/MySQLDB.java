@@ -13,9 +13,10 @@ public class MySQLDB implements IDB {
 	private Statement st;
 
 	@Override
-	public void LoadDatabase() {
+	public void LoadDatabase() throws ClassNotFoundException {
 
 		try {
+			Class.forName("com.mysql.jdbc.Driver");		
 			con = DriverManager.getConnection("jdbc:mysql://db-5308.cs.dal.ca:3306/CSCI5308_17_DEVINT",
 					"CSCI5308_17_DEVINT_USER", "aiJ9Eidoo1kieyej");
 		} catch (SQLException e) {
@@ -28,7 +29,12 @@ public class MySQLDB implements IDB {
 	public ResultSet ExecuteQuery(String query) {
 
 		if (con == null) {
-			LoadDatabase();
+			try {
+				LoadDatabase();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		try {
@@ -62,7 +68,12 @@ public class MySQLDB implements IDB {
 	public boolean InsertResultset(String query, PreparedStatement preparedStmt) {
 		boolean success = false;
 		if (con == null) {
-			LoadDatabase();
+			try {
+				LoadDatabase();
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 
 		try {
