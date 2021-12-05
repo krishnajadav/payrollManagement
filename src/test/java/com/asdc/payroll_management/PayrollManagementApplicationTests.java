@@ -1,15 +1,14 @@
 package com.asdc.payroll_management;
 
- import org.junit.jupiter.api.Test;
- import org.springframework.boot.test.context.SpringBootTest;
- import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
 
- @SpringBootTest
+@SpringBootTest
 class PayrollManagementApplicationTests {
 
-   @Test
+    @Test
     void contextLoads() {
 	   assertEquals("1","1");
     }
-   
+
 }
