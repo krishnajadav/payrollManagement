@@ -8,6 +8,7 @@ class PayrollManagementApplicationTests {
 
     @Test
     void contextLoads() {
+	   assertEquals("1","1");
     }
 
 }
