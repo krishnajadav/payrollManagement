@@ -35,7 +35,7 @@ public class LeavesCache {
         }
     }
 
-    public HashMap<String,Leaves> get(){
+    public HashMap<String,Leaves> getAllLeaveTypes(){
         return new HashMap<>(modelLeaves);
     }
 

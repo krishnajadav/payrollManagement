@@ -52,8 +52,8 @@ public class AppraisalCacheTest {
                 when(rs.getString("communication_rating")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("projects_rating")).thenReturn("26119").thenReturn("26118");
                 AppraisalCache appraisalFactory = AppraisalCache.getInstance();
-                assertEquals("26118",appraisalFactory.getOne("26119").getManager_ID());
-                assertEquals("7826410388",appraisalFactory.getOne("26118").getManager_comments());
+                assertEquals("26118",appraisalFactory.getIndividualAppraisals("26119").getManager_ID());
+                assertEquals("7826410388",appraisalFactory.getIndividualAppraisals("26118").getManager_comments());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -74,7 +74,7 @@ public class AppraisalCacheTest {
             when(databaseConnection.insertData(query)).thenReturn(true);
             AppraisalCache appraisalFactory = AppraisalCache.getInstance();
             appraisalFactory.insert(appraisal);
-            Appraisal testAppraisal=appraisalFactory.getOne("26120");
+            Appraisal testAppraisal=appraisalFactory.getIndividualAppraisals("26120");
             assertEquals("125",testAppraisal.getManager_ID());
             assertEquals("abc",testAppraisal.getEployee_comments());
             assertNotEquals("Jas",testAppraisal.getManager_ID());

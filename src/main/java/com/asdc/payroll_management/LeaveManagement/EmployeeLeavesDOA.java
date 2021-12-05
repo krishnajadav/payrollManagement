@@ -18,7 +18,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
 
     public EmployeeLeavesDOA(String empID) {
         EmployeeCache employeeCache=EmployeeCache.getInstance();
-        employee= employeeCache.getOne(empID);
+        employee= employeeCache.getEmployee(empID);
     }
 
     @Override
@@ -41,7 +41,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
     public Leaves getLeaveType(String leaveName){
         Leaves leaveType = null;
         LeavesCache leavesCache= LeavesCache.getInstance();
-        HashMap<String,Leaves> leavesHashMap = leavesCache.get();
+        HashMap<String,Leaves> leavesHashMap = leavesCache.getAllLeaveTypes();
         for (Map.Entry mapElement : leavesHashMap.entrySet()) {
             leaveType = (Leaves) mapElement.getValue();
             if(leaveType.getLeaves_Name().equalsIgnoreCase(leaveName)){

@@ -51,13 +51,13 @@ public class AppraisalCache {
         }
 
 
-    public  Appraisal getOne(String id){
+    public  Appraisal getIndividualAppraisals(String id){
 
         return modelAppraisals.get(id);
     }
 
 
-    public boolean insert(Appraisal e ) throws SQLException, ClassNotFoundException {
+    public boolean insert(Appraisal e ){
         String query=DBQueriesConstant.insertAppraisalQuery+" values('"+e.getEmployee_ID()+"','"
                 +e.getManager_ID()+"','"+e.getEmployee_rating()+"','"+e.getEployee_comments()+"','"+e.getManager_rating()+"','"+e.getManager_comments()+"','"+e.getEmployee_projects()+"','"+e.getTechnologies_learnt()+"','"+e.getFinal_rating()+"','"+e.getCommunication_rating()+"','"+e.getProjects_rating()+"')";
         Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);

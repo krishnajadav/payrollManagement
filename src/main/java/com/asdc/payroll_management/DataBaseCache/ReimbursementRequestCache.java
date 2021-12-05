@@ -40,7 +40,7 @@ public class ReimbursementRequestCache {
         }
     }
 
-    public  HashMap<String, ReimbursementRequest> get(){
+    public  HashMap<String, ReimbursementRequest> getAllReimbursementRequest(){
 
         return new HashMap<>(modelReimbursementRequests);
     }

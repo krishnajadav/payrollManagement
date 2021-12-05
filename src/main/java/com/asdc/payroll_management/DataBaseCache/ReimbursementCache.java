@@ -36,7 +36,7 @@ public class ReimbursementCache {
         }
     }
 
-    public HashMap<String,Reimbursement> get(){
+    public HashMap<String,Reimbursement> getAllReimbursements(){
 
         return new HashMap<>(modelReimbursement);
     }
