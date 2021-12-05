@@ -9,8 +9,8 @@ before_script:
   - gem install dpl
 
 stages:
-  - test
   - build
+  - test
   - deploy
 
 test:
