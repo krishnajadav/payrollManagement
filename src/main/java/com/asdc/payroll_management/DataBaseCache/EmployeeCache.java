@@ -43,12 +43,12 @@ public class EmployeeCache {
         }
     }
 
-    public HashMap<String,Employee> get(){
+    public HashMap<String,Employee> getAllEmployees(){
 
         return new HashMap<>(modelEmployees);
     }
 
-    public Employee getOne(String id){
+    public Employee getEmployee(String id){
         return modelEmployees.get(id);
     }
 

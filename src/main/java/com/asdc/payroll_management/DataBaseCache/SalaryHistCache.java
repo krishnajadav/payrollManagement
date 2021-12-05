@@ -28,12 +28,12 @@ public class SalaryHistCache {
         }
     }
 
-    public HashMap<String,SalaryHist> get(){
+    public HashMap<String,SalaryHist> getAllSalaries(){
 
         return new HashMap<>(modelSalaryHistory);
     }
 
-    public SalaryHist getOne(String id){
+    public SalaryHist getOneSalary(String id){
 
         return modelSalaryHistory.get(id);
     }

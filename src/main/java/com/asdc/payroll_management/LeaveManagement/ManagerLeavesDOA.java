@@ -13,13 +13,13 @@ public class ManagerLeavesDOA implements IManagerLeaves{
 
     public ManagerLeavesDOA(String empID){
         EmployeeCache employeeCache = EmployeeCache.getInstance();
-        employee=employeeCache.getOne(empID);
+        employee=employeeCache.getEmployee(empID);
     }
 
     @Override
     public List<Employee> getAllStaff() {
         EmployeeCache employeeCache = EmployeeCache.getInstance();
-        HashMap<String, Employee> employeeHashMap = employeeCache.get();
+        HashMap<String, Employee> employeeHashMap = employeeCache.getAllEmployees();
         List<Employee> employees = new ArrayList<>();
         for (Map.Entry mapElement : employeeHashMap.entrySet()) {
             Employee employeeTemp = (Employee) mapElement.getValue();
