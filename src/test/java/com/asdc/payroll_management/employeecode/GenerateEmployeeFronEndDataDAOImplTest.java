@@ -10,8 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.asdc.payroll_management.DataBaseCache.Department;
 import com.asdc.payroll_management.DataBaseCache.DepartmentCache;
 import com.asdc.payroll_management.DataBaseCache.Employee;
@@ -19,15 +17,14 @@ import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 import com.asdc.payroll_management.DataBaseCache.JobDesignation;
 import com.asdc.payroll_management.DataBaseCache.JobDesignationCache;
 
-class EmployeeCodeGeneratorControllerTest {
+class GenerateEmployeeFronEndDataDAOImplTest {
 
-	private EmployeeCodeGeneratorController underTest = new EmployeeCodeGeneratorController();
+	private GenerateEmployeeFronEndDataDAOImpl underTest = new GenerateEmployeeFronEndDataDAOImpl();
 
 	@Test
 	void classExistanceTest() {
 		try {
-			Class<?> classFinder = Class
-					.forName("com.asdc.payroll_management.employeecode.EmployeeCodeGeneratorController");
+			Class<?> classFinder = Class.forName("com.asdc.payroll_management.employeecode.GenerateEmployeeFronEndDataDAOImpl");
 			assertNotNull(classFinder);
 		} catch (ClassNotFoundException e) {
 			fail("class not found");
@@ -35,45 +32,7 @@ class EmployeeCodeGeneratorControllerTest {
 	}
 
 	@Test
-	void employeeCodeGenerationHomepageTest() {
-		try {
-			ModelAndView actualOutput = underTest.employeeCodeGenerationHomepage();
-			assertEquals("EmployeeCodeGeneration", actualOutput.getViewName());
-
-		} catch (Exception e) {
-			fail("Exception occured: " + e.getStackTrace());
-		}
-	}
-	
-	@Test
-	void getDesignationsTest() {
-		try {
-			List<JobDesignation> designations = new ArrayList<JobDesignation>();
-			JobDesignation designation1 = new JobDesignation("DESIGNATION_1");
-			JobDesignation designation2 = new JobDesignation("DESIGNATION_2");
-			JobDesignation designation3 = new JobDesignation("DESIGNATION_3");
-			designations.add(designation1);
-			designations.add(designation2);
-			designations.add(designation3);
-			JobDesignationCache jobDesignation = Mockito.mock(JobDesignationCache.class);
-			MockedStatic<JobDesignationCache> mocked = mockStatic(JobDesignationCache.class);
-			mocked.when(JobDesignationCache::getInstance).thenReturn(jobDesignation);
-			Mockito.when(jobDesignation.getAllDesignations()).thenReturn(designations);
-			List<String> actualOutput = underTest.getDesignations();
-			for (String value : actualOutput) {
-				if (!(value.equals("DESIGNATION_1") || value.equals("DESIGNATION_2")
-						|| value.equals("DESIGNATION_3"))) {
-					fail("unexpected value found.");
-				}
-			}
-			mocked.close();
-		} catch (Exception e) {
-			fail("Exception occured: " + e.getStackTrace());
-		}
-	}
-	
-	@Test
-	void getDepartmentsTest() {
+	void getDepartmentsFromCacheTest() {
 		try {
 			HashMap<String, Department> departments = new HashMap<String, Department>();
 			Department department1 = new Department("DEPT_ID1", "DEPT_NAME1", "HR_ID1");
@@ -86,7 +45,7 @@ class EmployeeCodeGeneratorControllerTest {
 			MockedStatic<DepartmentCache> mocked = mockStatic(DepartmentCache.class);
 			mocked.when(DepartmentCache::getInstance).thenReturn(departmentCache);
 			Mockito.when(departmentCache.getDepartments()).thenReturn(departments);
-			List<String> actualOutput = underTest.getDepartments();
+			List<String> actualOutput = underTest.getDepartmentsFromCache();
 			for (String value : actualOutput) {
 				if (!(value.equals("DEPT_NAME1 (DEPT_ID1)") || value.equals("DEPT_NAME2 (DEPT_ID2)")
 						|| value.equals("DEPT_NAME3 (DEPT_ID3)"))) {
@@ -98,9 +57,9 @@ class EmployeeCodeGeneratorControllerTest {
 			fail("Exception occured: " + e.getStackTrace());
 		}
 	}
-	
+
 	@Test
-	void getManagerNamesTest() {
+	void getManagerNamesFromCacheTest() {
 		try {
 			HashMap<String, Employee> employees = new HashMap<String, Employee>();
 			Employee employee1 = new Employee("MANAGER_ID1", "MANAGER_NAME1", null, null, null, null, null, null, null,
@@ -116,7 +75,7 @@ class EmployeeCodeGeneratorControllerTest {
 			MockedStatic<EmployeeCache> mocked = mockStatic(EmployeeCache.class);
 			mocked.when(EmployeeCache::getInstance).thenReturn(employeeCache);
 			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employees);
-			List<String> actualOutput = underTest.getManagerNames();
+			List<String> actualOutput = underTest.getManagerNamesFromCache();
 			for (String value : actualOutput) {
 				if (!(value.equals("MANAGER_NAME1 (MANAGER_ID1)") || value.equals("MANAGER_NAME2 (MANAGER_ID2)")
 						|| value.equals("MANAGER_NAME3 (MANAGER_ID3)"))) {
@@ -126,11 +85,38 @@ class EmployeeCodeGeneratorControllerTest {
 			mocked.close();
 		} catch (Exception e) {
 			fail("Exception occured: " + e.getStackTrace());
-		}	
+		}
 	}
-	
+
 	@Test
-	void generateAndGetEmployeeCodeTest() {
+	void getDesignationsFromCacheTest() {
+		try {
+			List<JobDesignation> designations = new ArrayList<JobDesignation>();
+			JobDesignation designation1 = new JobDesignation("DESIGNATION_1");
+			JobDesignation designation2 = new JobDesignation("DESIGNATION_2");
+			JobDesignation designation3 = new JobDesignation("DESIGNATION_3");
+			designations.add(designation1);
+			designations.add(designation2);
+			designations.add(designation3);
+			JobDesignationCache jobDesignation = Mockito.mock(JobDesignationCache.class);
+			MockedStatic<JobDesignationCache> mocked = mockStatic(JobDesignationCache.class);
+			mocked.when(JobDesignationCache::getInstance).thenReturn(jobDesignation);
+			Mockito.when(jobDesignation.getAllDesignations()).thenReturn(designations);
+			List<String> actualOutput = underTest.getDesignationsFromCache();
+			for (String value : actualOutput) {
+				if (!(value.equals("DESIGNATION_1") || value.equals("DESIGNATION_2")
+						|| value.equals("DESIGNATION_3"))) {
+					fail("unexpected value found.");
+				}
+			}
+			mocked.close();
+		} catch (Exception e) {
+			fail("Exception occured: " + e.getStackTrace());
+		}
+	}
+
+	@Test
+	void processInputTest() {
 		try {
 			EmployeeData employeeData = new EmployeeData();
 			employeeData.setDepartmentID("DEPT_ID");
@@ -142,7 +128,6 @@ class EmployeeCodeGeneratorControllerTest {
 			employeeData.setFullName("Jaswanth Mandava");
 			employeeData.setManagerID("EMP_ID");
 			employeeData.setManagerName("MANAGER_NAME");
-			employeeData.setAccessLevel("admin");
 
 			GenerateEmployeeCodeDAOImpl generateEmployeeCodeDAO = Mockito.mock(GenerateEmployeeCodeDAOImpl.class);
 			MockedStatic<GenerateEmployeeCodeDAOImpl> mocked1 = mockStatic(GenerateEmployeeCodeDAOImpl.class);
@@ -153,53 +138,20 @@ class EmployeeCodeGeneratorControllerTest {
 			mocked2.when(EmployeeCache::getInstance).thenReturn(employeeCache);
 			Mockito.when(employeeCache.insert(Mockito.any())).thenReturn(true);
 
-			List<Object> actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
+			List<Object> actualOutput = underTest.processInput(employeeData);
 			assertNull(actualOutput.get(1));
 
-			employeeData.setManagerName("");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("Manager Name cannot be empty.<br>", actualOutput.get(1));
-			
-			employeeData.setManagerName("MANAGER_NAME");
-			employeeData.setEmployeeSalary("mj");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("salary should be a valid number that is greater than 0.<br>", actualOutput.get(1));
-			
-			employeeData.setEmployeeSalary("1234567");
-			employeeData.setDepartmentName("");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("Department cannot be empty.<br>", actualOutput.get(1));
-			
-			employeeData.setDepartmentName("DEPT NAME");
-			employeeData.setEmployeeJoiningDate("1221212");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("joining date should be in the format dd/MM/yyyy.<br>", actualOutput.get(1));
-			
-			employeeData.setEmployeeJoiningDate("12/12/2012");
-			employeeData.setEmployeeDesignation("");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("Designation cannot be empty.<br>", actualOutput.get(1));
-			
 			employeeData.setFullName("Jaswanth@ Mandava");
-			employeeData.setEmployeeDesignation("SE 1");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
+			actualOutput = underTest.processInput(employeeData);
 			assertEquals("Full Name should only have alphabets and it cannot be empty.<br>", actualOutput.get(1));
-			
-			employeeData.setFullName("");
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			assertEquals("Full Name should only have alphabets and it cannot be empty.<br>", actualOutput.get(1));
-			
+
 			employeeData.setFullName("Jaswanth Mandava");
 			Mockito.when(employeeCache.insert(Mockito.any())).thenReturn(false);
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
-			
-			employeeData.setFullName("Jaswanth Mandava");
-			Mockito.when(employeeCache.insert(Mockito.any())).thenReturn(false);
-			actualOutput = underTest.generateAndGetEmployeeCode(employeeData);
+			actualOutput = underTest.processInput(employeeData);
 			assertEquals("Error occured while inserting data into DB.", actualOutput.get(1));
 			mocked1.close();
 			mocked2.close();
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Exception occured: " + e.getStackTrace());
