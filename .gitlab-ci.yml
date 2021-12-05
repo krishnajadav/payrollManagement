@@ -7,12 +7,19 @@ before_script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
-  - chmod +x ./gradlew
 
 stages:
   - test
+  - build
   - deploy
 
+test:
+  stage: test
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
+    - ./gradlew test 
 
 build:
   stage: build
@@ -23,15 +30,6 @@ build:
     - ./gradlew build 
 
 
-test:
-  stage: test
-  tags: 
-    - dalfcs_docker_kvm
-    - dalfcs_gitlab_docker_ci
-  script:
-    - ./gradlew test 
-
-
 deploy:
   stage: deploy
   tags:
@@ -40,3 +38,4 @@ deploy:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY    
+
