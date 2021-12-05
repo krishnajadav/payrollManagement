@@ -11,8 +11,9 @@ public class Employee {
     private String ManagerID;
     private String Department_ID;
     private String Designation;
+    private String Access_level;
 
-    public Employee(String employee_ID, String employee_Name, String employee_emailID, String employee_Password, String employee_Address, String employee_phoneNumb, String employee_Salary, String managerID, String department_ID, String Designation) {
+    public Employee(String employee_ID, String employee_Name, String employee_emailID, String employee_Password, String employee_Address, String employee_phoneNumb, String employee_Salary, String managerID, String department_ID, String Designation,String Access_level) {
         Employee_ID = employee_ID;
         Employee_Name = employee_Name;
         Employee_emailID = employee_emailID;
@@ -23,6 +24,7 @@ public class Employee {
         ManagerID = managerID;
         Department_ID = department_ID;
         this.Designation = Designation;
+        this.Access_level=Access_level;
     }
 
     public String getEmployee_ID() {
@@ -104,4 +106,13 @@ public class Employee {
     public void setDesignation(String Designation) {
         this.Designation = Designation;
     }
+
+    public String getAccess_level() {
+        return Access_level;
+    }
+
+    public void setAccess_level(String access_level) {
+        Access_level = access_level;
+    }
+
 }

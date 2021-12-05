@@ -4,7 +4,7 @@ function initialize() {
         url: "http://localhost:8080/viewMyLeaves",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
-        data: "1225",
+        //data: ,
         success: function(result) {
             console.log(result);
             var table = document.getElementById("fviewLeaves");
@@ -42,7 +42,7 @@ function initialize() {
 
 function postData() {
    // confirm(document.getElementById("femployeeID").value);
-    var employeeID = document.getElementById("femployeeID").value;
+    //var employeeID = document.getElementById("femployeeID").value;
     var leaveDuration = document.getElementById("fLeaveDuration").value;
     var leaveTypeString = document.getElementById("fleaveTypeID").value;
     var leaveStartdate = new Date(document.getElementById("fLeaveStartdate").value).getTime();
@@ -57,7 +57,7 @@ function postData() {
         contentType: 'application/json; charset=utf-8',
         // data: "hellow",
         data: JSON.stringify({
-            'lr_EmployeeID': employeeID,
+            //'lr_EmployeeID': employeeID,
             'lr_Duration': leaveDuration,
             'lr_Type': leaveTypeString,
             'leave_Request_Date': leaveStartdate,
@@ -69,13 +69,15 @@ function postData() {
             console.log(result);
             // if(result.error == null){
             if(result.error==null){
-                var empcode = document.getElementById('femployeeID');
-                empcode.value = result.employeeID;
-                document.getElementById('femployeeID').disabled = true;
+                // var empcode = document.getElementById('femployeeID');
+                // empcode.value = result.employeeID;
+                //document.getElementById('femployeeID').disabled = true;
                 document.getElementById('fLeaveDuration').disabled = true;
                 document.getElementById('fleaveTypeID').disabled = true;
                 document.getElementById('fLeaveStartdate').disabled = true;
                 document.getElementById('fleaveEndDate').disabled = true;
+                var errordiv = document.getElementById('div-error-info');
+                errordiv.innerHTML = "<p style='color:Green;'>Insert Successfully</p>;";
             } else{
                 var errordiv = document.getElementById('div-error-info');
                 errordiv.innerHTML = "<p style='color:red;'>"+result.error+'</p>;';

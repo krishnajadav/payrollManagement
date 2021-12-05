@@ -17,18 +17,25 @@ public class LeaveMangementController {
     private  List<LeaveRequest> leaveRequestList;
 
     @RequestMapping("/AddLeaves")
-    public ModelAndView addLeaves() {
+    public ModelAndView addLeaves(HttpServletRequest request) {
+
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("AddLeavesForm");
-        return mv;
+        if(request.getSession().getAttribute("userInfo")!=null)
+        {
+            mv.setViewName("AddLeavesForm");
+            return mv;
+        }
+        else
+        {
+            return new ModelAndView("redirect:/LoginSignup");
+        }
     }
 
     @RequestMapping(value = "/getEmployeeLeaves", method = RequestMethod.POST)
     public @ResponseBody LeaveRequest addEmployeeLeaves(@RequestBody LeaveRequest employeeLeaveData,HttpServletRequest request) {
 
-      //  System.out.println(employeeLeaveData.toString());
-       // System.out.println(employeeLeaveData.toJSONString());
-      //  String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");
+       String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");
+       employeeLeaveData.setLR_EmployeeID(userInfo[0]);
         IEmployeeLeaves leavesManager = new EmployeeLeavesDOA(employeeLeaveData.getLR_EmployeeID());
        // employeeLeaveData.setLR_EmployeeID(userInfo[0]);
         LeaveRequest validLeaveRequest = leavesManager.validateLeaveRequest(employeeLeaveData);
@@ -45,9 +52,10 @@ public class LeaveMangementController {
 
 
     @RequestMapping(value = "/viewMyLeaves")
-    public List<LeaveRequest>  viewMyLeaves(@RequestBody String empcode, Model model) throws SQLException {
+    public List<LeaveRequest>  viewMyLeaves( Model model,HttpServletRequest request) throws SQLException {
 
-        IEmployeeLeaves leavesManager = new EmployeeLeavesDOA(empcode);
+        String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");
+        IEmployeeLeaves leavesManager = new EmployeeLeavesDOA(userInfo[0]);
 
         leaveRequestList = leavesManager.getAllLeaves();
         model.addAttribute("LeaveRequestlist",leaveRequestList);

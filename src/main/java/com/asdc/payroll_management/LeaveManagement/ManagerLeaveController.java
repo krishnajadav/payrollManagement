@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @RestController
@@ -15,15 +16,24 @@ public class ManagerLeaveController {
     private  List<LeaveRequest> leaveRequestList;
 
     @RequestMapping("/ManageLeaves")
-    public ModelAndView addLeaves() {
+    public ModelAndView addLeaves(HttpServletRequest request) {
         ModelAndView mv = new ModelAndView();
-        mv.setViewName("ManageLeavesForm");
-        return mv;
+        if(request.getSession().getAttribute("userInfo")!=null)
+        {
+            mv.setViewName("ManageLeavesForm");
+            return mv;
+        }
+        else
+        {
+            return new ModelAndView("redirect:/LoginSignup");
+        }
     }
 
     @RequestMapping(value = "/getAllStaff")
-    public List<Employee> viewMyLeaves(@RequestBody String empcode) {
-        ManagerLeavesDOA managerLeavesDOA = new ManagerLeavesDOA(empcode);
+    public List<Employee> viewMyLeaves(HttpServletRequest request) {
+
+        String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");
+        ManagerLeavesDOA managerLeavesDOA = new ManagerLeavesDOA(userInfo[0]);
         List<Employee> allStaffEmployees = managerLeavesDOA.getAllStaff();
         return allStaffEmployees;
     }

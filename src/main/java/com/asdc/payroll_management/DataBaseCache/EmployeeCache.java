@@ -35,8 +35,8 @@ public class EmployeeCache {
                 String ManagerID = rs.getString("ManagerID");
                 String Department_ID = rs.getString("Department_ID");
                 String Designation = rs.getString("Designation");
-
-                modelEmployees.put(Employee_ID, new Employee(Employee_ID, Employee_Name, Employee_emailID, Employee_Password, Employee_Address, Employee_phoneNumb, Employee_Salary, ManagerID, Department_ID, Designation));
+                String Access_level = rs.getString("Access_level");
+                modelEmployees.put(Employee_ID, new Employee(Employee_ID, Employee_Name, Employee_emailID, Employee_Password, Employee_Address, Employee_phoneNumb, Employee_Salary, ManagerID, Department_ID, Designation, Access_level));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -55,7 +55,7 @@ public class EmployeeCache {
     public boolean insert(Employee e ){
     String query=DBQueriesConstant.insertEmployeeQuery+" values('"+e.getEmployee_ID()+"','"
             +e.getEmployee_Name()+"','"+e.getEmployee_emailID()+"','"+e.getEmployee_Password()+"','"+e.getEmployee_Address()+"','"+e.getEmployee_phoneNumb()+"','"
-            +e.getEmployee_Salary()+"','"+e.getManagerID()+"','"+e.getDepartment_ID()+"','"+e.getDesignation()+"')";
+            +e.getEmployee_Salary()+"','"+e.getManagerID()+"','"+e.getDepartment_ID()+"','"+e.getDesignation()+"','"+e.getAccess_level()+"')";
     boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
     if(insertStatus){
         modelEmployees.put(e.getEmployee_ID(),e);

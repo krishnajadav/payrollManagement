@@ -51,6 +51,7 @@ public class EmployeeCacheTest {
                 when(rs.getString("ManagerID")).thenReturn("26120").thenReturn("26117");
                 when(rs.getString("Department_ID")).thenReturn("26").thenReturn("26");
                 when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
+                when(rs.getString("Access_level")).thenReturn("Senior Manager").thenReturn("Manager");
                 EmployeeCache employeeFactory = EmployeeCache.getInstance();
                 assertEquals(2,employeeFactory.get().size());
             }
@@ -62,12 +63,12 @@ public class EmployeeCacheTest {
 
     @Test
     public void testInsertData()  {
-        Employee testEmp = new Employee("26118","Ali","ali@gmail.com","abc","124 street","12345","12345","1234","1","1");
+        Employee testEmp = new Employee("26118","Ali","ali@gmail.com","abc","124 street","12345","12345","1234","1","1","Manager");
         EmployeeCache employeeFactory = EmployeeCache.getInstance();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
         String query=DBQueriesConstant.insertEmployeeQuery+" values('"+testEmp.getEmployee_ID()+"','"
                 +testEmp.getEmployee_Name()+"','"+testEmp.getEmployee_emailID()+"','"+testEmp.getEmployee_Password()+"','"+testEmp.getEmployee_Address()+"','"+testEmp.getEmployee_phoneNumb()+"','"
-                +testEmp.getEmployee_Salary()+"','"+testEmp.getManagerID()+"','"+testEmp.getDepartment_ID()+"','"+testEmp.getDesignation()+"')";
+                +testEmp.getEmployee_Salary()+"','"+testEmp.getManagerID()+"','"+testEmp.getDepartment_ID()+"','"+testEmp.getDesignation()+"','"+testEmp.getAccess_level()+"')";
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);

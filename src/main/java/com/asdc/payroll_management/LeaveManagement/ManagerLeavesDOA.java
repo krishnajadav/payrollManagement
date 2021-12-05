@@ -26,7 +26,6 @@ public class ManagerLeavesDOA implements IManagerLeaves{
             if (employeeTemp.getManagerID().equalsIgnoreCase(employee.getEmployee_ID())) {
                 employees.add(employeeTemp);
             }
-
         }
         return employees;
     }
@@ -36,8 +35,9 @@ public class ManagerLeavesDOA implements IManagerLeaves{
         LeaveRequestCache leaveRequestCache = LeaveRequestCache.getInstance();
         LeaveRequest leaveRequest = leaveRequestCache.getOneLeave(lrID);
         Boolean updateStatus= leaveRequestCache.updateLeaveTrue(leaveRequest);
-            return updateStatus;
+        return updateStatus;
         }
+
 
         @Override
         public Boolean rejectLeave(String lrID){
@@ -46,4 +46,5 @@ public class ManagerLeavesDOA implements IManagerLeaves{
             Boolean updateStatus= leaveRequestCache.updateLeaveFalse(leaveRequest);
             return updateStatus;
         }
+
 }
