@@ -9,8 +9,8 @@ before_script:
   - gem install dpl
 
 stages:
-  - test
   - build
+  - test
   - deploy
 
 test:
@@ -38,9 +38,4 @@ deploy:
   image: ruby:latest
   script:
     - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY    
-
-
-
-
-
 
