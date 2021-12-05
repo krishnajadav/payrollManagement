@@ -22,15 +22,15 @@ public class HRCache {
 
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allHRQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_HR_QUERY);
             while (rs.next()) {
-                String HR_ID = rs.getString("HR_ID");
-                String HR_Name = rs.getString("HR_Name");
-                String HR_EmailID = rs.getString("HR_EmailID");
-                String HR_Password = rs.getString("HR_Password");
-                String HR_Salary = rs.getString("HR_Salary");
+                String hrId = rs.getString("HR_ID");
+                String hrName = rs.getString("HR_Name");
+                String hrEmailID = rs.getString("HR_EmailID");
+                String hrPassword = rs.getString("HR_Password");
+                String hrSalary = rs.getString("HR_Salary");
 
-                modelHR.put(HR_ID, new HR(HR_ID, HR_Name, HR_EmailID, HR_Password, HR_Salary));
+                modelHR.put(hrId, new HR(hrId, hrName, hrEmailID, hrPassword, hrSalary));
             }
         }catch (Exception e){
             e.printStackTrace();
@@ -45,12 +45,12 @@ public class HRCache {
         return modelHR.get(id);
     }
 
-    public boolean insert(HR e ) throws SQLException, ClassNotFoundException {
-        String query=DBQueriesConstant.insertHRQuery+" values('"+e.getHR_ID()+"','"
-                +e.getHR_Name()+"','"+e.getHR_EmailID()+"','"+e.getHR_Password()+"','"+e.getHR_Salary()+"')";
+    public boolean insert(HR hr ) throws SQLException, ClassNotFoundException {
+        String query=DBQueriesConstant.INSERT_HR_QUERY +" values('"+hr.getHrId()+"','"
+                +hr.getHrName()+"','"+hr.getHrEmail()+"','"+hr.getHrPassword()+"','"+hr.getHrSalary()+"')";
         Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
         if(insertStatus){
-            modelHR.put(e.getHR_ID(),e);
+            modelHR.put(hr.getHrId(),hr);
         }
         return insertStatus;
     }

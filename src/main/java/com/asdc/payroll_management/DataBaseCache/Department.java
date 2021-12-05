@@ -1,37 +1,37 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class Department {
-    private String Department_ID;
-    private String Department_Name;
-    private String HR_ID;
+    private String departmentID;
+    private String departmentName;
+    private String hrId;
 
-    public Department(String department_ID, String department_Name, String HR_ID) {
-        Department_ID = department_ID;
-        Department_Name = department_Name;
-        this.HR_ID = HR_ID;
+    public Department(String departmentID, String departmentName, String hrId) {
+        departmentID = departmentID;
+        departmentName = departmentName;
+        this.hrId = hrId;
     }
 
-    public String getDepartment_ID() {
-        return Department_ID;
+    public String getDepartmentID() {
+        return departmentID;
     }
 
-    public void setDepartment_ID(String department_ID) {
-        Department_ID = department_ID;
+    public void setDepartmentID(String departmentID) {
+        this.departmentID = departmentID;
     }
 
-    public String getDepartment_Name() {
-        return Department_Name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setDepartment_Name(String department_Name) {
-        Department_Name = department_Name;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
-    public String getHR_ID() {
-        return HR_ID;
+    public String getHrId() {
+        return hrId;
     }
 
-    public void setHR_ID(String HR_ID) {
-        this.HR_ID = HR_ID;
+    public void setHrId(String hrId) {
+        this.hrId = hrId;
     }
 }

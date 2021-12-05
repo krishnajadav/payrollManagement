@@ -34,7 +34,7 @@ public class LeaveRequestCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allLeaveRequestsQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_LEAVE_REQUESTS_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("LR_ID")).thenReturn("2");
                 when(rs.getString("LR_EmployeeID")).thenReturn("26118");
@@ -45,8 +45,8 @@ public class LeaveRequestCacheTest {
                 when(rs.getString("Leave_End_Date")).thenReturn("22");
                 LeaveRequestCache leaveRequestFactory =  LeaveRequestCache.getInstance();
 
-                assertEquals("26118",leaveRequestFactory.getAllLeaves().get("2").getLR_EmployeeID());
-                assertNotEquals("5",leaveRequestFactory.getAllLeaves().get("2").getLR_Type());
+                assertEquals("26118",leaveRequestFactory.getAllLeaves().get("2").getLrEmployeeid());
+                assertNotEquals("5",leaveRequestFactory.getAllLeaves().get("2").getLrType());
 
             }
         }catch(Exception e){
@@ -60,8 +60,8 @@ public class LeaveRequestCacheTest {
         LeaveRequest e = new LeaveRequest("2","26119","2","1","0","2021-01-01","2021-01-02");
         LeaveRequestCache leaveRequestFactory = LeaveRequestCache.getInstance();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String query=DBQueriesConstant.insertLeaveRequestQuery+" values("+e.getLR_EmployeeID()+"','"
-                +e.getLR_Duration()+","+e.getLR_Type()+","+e.getLeave_Request_Date()+","+e.getLeave_End_Date()+")";
+        String query=DBQueriesConstant.INSERT_LEAVE_REQUEST_QUERY +" values("+e.getLrEmployeeid()+"','"
+                +e.getLrDuration()+","+e.getLrType()+","+e.getLeaveRequestDate()+","+e.getLeaveEndDate()+")";
         //Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
@@ -69,8 +69,8 @@ public class LeaveRequestCacheTest {
             leaveRequestFactory.insert(e);
             LeaveRequest newEmp=leaveRequestFactory.getOneLeave("2");
 
-            assertEquals("26119",newEmp.getLR_EmployeeID());
-            assertEquals("1",newEmp.getLR_Type());
+            assertEquals("26119",newEmp.getLrEmployeeid());
+            assertEquals("1",newEmp.getLrType());
             assertNotEquals("Jas",newEmp.getIsAccepted());
 
 
@@ -87,8 +87,8 @@ public class LeaveRequestCacheTest {
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
-            when(databaseConnection.updateData(DBQueriesConstant.updateLeaveRequestTrueQuery+"\""+e.getLR_ID()+"\";")).thenReturn(true);
-            when(databaseConnection.updateData(DBQueriesConstant.updateLeaveRequestFalseQuery+"\""+e.getLR_ID()+"\";")).thenReturn(true);
+            when(databaseConnection.updateData(DBQueriesConstant.UPDATE_LEAVE_REQUEST_TRUE_QUERY +"\""+e.getLrId()+"\";")).thenReturn(true);
+            when(databaseConnection.updateData(DBQueriesConstant.UPDATE_LEAVE_REQUEST_FALSE_QUERY +"\""+e.getLrId()+"\";")).thenReturn(true);
             leaveRequestFactory.updateLeaveTrue(e);
             LeaveRequest newLR = leaveRequestFactory.getOneLeave("2");
             assertEquals("1",newLR.getIsAccepted());

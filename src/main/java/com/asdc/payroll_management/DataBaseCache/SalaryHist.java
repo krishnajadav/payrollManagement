@@ -1,67 +1,67 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class SalaryHist {
-    private String SH_ID;
-    private String Salary;
-    private String Start_Date;
-    private String End_Date;
-    private String Employee_ID;
-    private String Employee_Type;
+    private String shId;
+    private String salary;
+    private String startDate;
+    private String endDate;
+    private String employeeID;
+    private String employeeType;
 
-    public SalaryHist(String SH_ID, String salary, String start_Date, String end_Date, String employee_ID, String employee_Type) {
-        this.SH_ID = SH_ID;
-        Salary = salary;
-        Start_Date = start_Date;
-        End_Date = end_Date;
-        Employee_ID = employee_ID;
-        Employee_Type = employee_Type;
+    public SalaryHist(String shId, String salary, String startDate, String endDate, String employeeID, String employeeType) {
+        this.shId = shId;
+        this.salary = salary;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.employeeID = employeeID;
+        this.employeeType = employeeType;
     }
 
-    public String getSH_ID() {
-        return SH_ID;
+    public String getShId() {
+        return shId;
     }
 
-    public void setSH_ID(String SH_ID) {
-        this.SH_ID = SH_ID;
+    public void setShId(String shId) {
+        this.shId = shId;
     }
 
     public String getSalary() {
-        return Salary;
+        return salary;
     }
 
     public void setSalary(String salary) {
-        Salary = salary;
+        this.salary = salary;
     }
 
-    public String getStart_Date() {
-        return Start_Date;
+    public String getStartDate() {
+        return startDate;
     }
 
-    public void setStart_Date(String start_Date) {
-        Start_Date = start_Date;
+    public void setStartDate(String startDate) {
+        this.startDate = startDate;
     }
 
-    public String getEnd_Date() {
-        return End_Date;
+    public String getEndDate() {
+        return endDate;
     }
 
-    public void setEnd_Date(String end_Date) {
-        End_Date = end_Date;
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
     }
 
-    public String getEmployee_ID() {
-        return Employee_ID;
+    public String getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployee_ID(String employee_ID) {
-        Employee_ID = employee_ID;
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
     }
 
-    public String getEmployee_Type() {
-        return Employee_Type;
+    public String getEmployeeType() {
+        return employeeType;
     }
 
-    public void setEmployee_Type(String employee_Type) {
-        Employee_Type = employee_Type;
+    public void setEmployeeType(String employeeType) {
+        this.employeeType = employeeType;
     }
 }

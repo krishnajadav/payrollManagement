@@ -23,7 +23,7 @@ public class ReimbursementCache {
     private void load() {
 
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allReimbursementQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_REIMBURSEMENT_QUERY);
             while (rs.next()) {
                 String RT_ID = rs.getString("RT_ID");
                 String Reimbursement_Type = rs.getString("Reimbursement_Type");

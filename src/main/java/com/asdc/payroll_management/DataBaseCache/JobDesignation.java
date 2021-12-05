@@ -1,14 +1,14 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class JobDesignation {
-    private String Designation_Name;
+    private String designationName;
 
-    public JobDesignation(String designation_Name) {
-        Designation_Name = designation_Name;
+    public JobDesignation(String designationName) {
+        this.designationName = designationName;
     }
 
-    public String getDesignation_Name() {
-        return Designation_Name;
+    public String getDesignationName() {
+        return designationName;
     }
 
 }

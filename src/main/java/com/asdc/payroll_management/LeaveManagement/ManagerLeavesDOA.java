@@ -23,7 +23,7 @@ public class ManagerLeavesDOA implements IManagerLeaves{
         List<Employee> employees = new ArrayList<>();
         for (Map.Entry mapElement : employeeHashMap.entrySet()) {
             Employee employeeTemp = (Employee) mapElement.getValue();
-            if (employeeTemp.getManagerID().equalsIgnoreCase(employee.getEmployee_ID())) {
+            if (employeeTemp.getManagerID().equalsIgnoreCase(employee.getEmployeeID())) {
                 employees.add(employeeTemp);
             }
         }

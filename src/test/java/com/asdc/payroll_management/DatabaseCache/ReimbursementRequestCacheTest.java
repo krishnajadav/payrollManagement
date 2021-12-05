@@ -35,7 +35,7 @@ public class ReimbursementRequestCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allReimbursementRequestsQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_REIMBURSEMENT_REQUESTS_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("RR_ID")).thenReturn("1");
                 when(rs.getString("RR_EmployeeID")).thenReturn("26118");
@@ -48,8 +48,8 @@ public class ReimbursementRequestCacheTest {
 
                 ReimbursementRequestCache reimbursementRequestCache = ReimbursementRequestCache.getInstance();
 
-                assertEquals("3",reimbursementRequestCache.get().get("1").getRR_TypeID());
-                assertNotEquals("30000",reimbursementRequestCache.get().get("1").getRR_Amount());
+                assertEquals("3",reimbursementRequestCache.getAllReimbursementRequest().get("1").getRRTypeID());
+                assertNotEquals("30000",reimbursementRequestCache.getAllReimbursementRequest().get("1").getRrAmount());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -64,17 +64,17 @@ public class ReimbursementRequestCacheTest {
 //        testEmployees.put("26118",new Employee("jaswanth","jas@gmail.com","abc","124 street","12345","12345","1234","1","1","1"));
         ReimbursementRequestCache reimbursementRequestCache = ReimbursementRequestCache.getInstance();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String query=DBQueriesConstant.insertReimbursementRequestsQuery+" values('"+reimbursementRequest.getRR_ID()+"','"
-                +reimbursementRequest.getRR_EmployeeID()+"','"+reimbursementRequest.getRR_TypeID()+"','"+reimbursementRequest.getRR_Note()+"','"+reimbursementRequest.getRR_Amount()+"','"+reimbursementRequest.getRR_Date()+"','"+reimbursementRequest.getIsAccepted()+"')";
+        String query=DBQueriesConstant.INSERT_REIMBURSEMENT_REQUESTS_QUERY +" values('"+reimbursementRequest.getRrId()+"','"
+                +reimbursementRequest.getRrEmployeeid()+"','"+reimbursementRequest.getRRTypeID()+"','"+reimbursementRequest.getRrNote()+"','"+reimbursementRequest.getRrAmount()+"','"+reimbursementRequest.getRrDate()+"','"+reimbursementRequest.getIsAccepted()+"')";
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);
             reimbursementRequestCache.insert(reimbursementRequest);
-            HashMap<String,ReimbursementRequest> reimbursementRequestHashMap=reimbursementRequestCache.get();
+            HashMap<String,ReimbursementRequest> reimbursementRequestHashMap=reimbursementRequestCache.getAllReimbursementRequest();
             ReimbursementRequest request = reimbursementRequestHashMap.get("2");
-            assertEquals("26119",request.getRR_EmployeeID());
+            assertEquals("26119",request.getRrEmployeeid());
             assertEquals("0",request.getIsAccepted());
-            assertNotEquals("2021-12-01",request.getRR_Date());
+            assertNotEquals("2021-12-01",request.getRrDate());
 
 
         }catch(Exception e){

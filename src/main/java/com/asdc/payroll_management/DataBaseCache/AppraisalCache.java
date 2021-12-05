@@ -1,7 +1,6 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 
 public class AppraisalCache {
@@ -22,7 +21,7 @@ public class AppraisalCache {
     private void load() {
 
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allAppraisalQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_APPRAISAL_QUERY);
             while (rs.next()) {
                 String employee_ID = rs.getString("employee_ID");
                 String manager_ID = rs.getString("manager_ID");
@@ -57,13 +56,13 @@ public class AppraisalCache {
     }
 
 
-    public boolean insert(Appraisal e ){
-        String query=DBQueriesConstant.insertAppraisalQuery+" values('"+e.getEmployee_ID()+"','"
-                +e.getManager_ID()+"','"+e.getEmployee_rating()+"','"+e.getEployee_comments()+"','"+e.getManager_rating()+"','"+e.getManager_comments()+"','"+e.getEmployee_projects()+"','"+e.getTechnologies_learnt()+"','"+e.getFinal_rating()+"','"+e.getCommunication_rating()+"','"+e.getProjects_rating()+"')";
+    public boolean insert(Appraisal appraisal){
+        String query=DBQueriesConstant.INSERT_APPRAISAL_QUERY +" values('"+appraisal.getEmployeeID()+"','"
+                +appraisal.getManagerID()+"','"+appraisal.getEmployeeRating()+"','"+appraisal.getEployeeComments()+"','"+appraisal.getManagerRating()+"','"+appraisal.getManagerComments()+"','"+appraisal.getEmployeeProjects()+"','"+appraisal.getTechnologiesLearnt()+"','"+appraisal.getFinalRating()+"','"+appraisal.getCommunicationRating()+"','"+appraisal.getProjectsRating()+"')";
         Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
         if(insertStatus){
 
-            modelAppraisals.put(e.getEmployee_ID(),e);
+            modelAppraisals.put(appraisal.getEmployeeID(),appraisal);
         }
         return insertStatus;
     }

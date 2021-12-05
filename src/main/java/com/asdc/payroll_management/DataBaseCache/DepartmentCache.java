@@ -24,7 +24,7 @@ public class DepartmentCache {
     private void load() {
 
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allDepartmentQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_DEPARTMENT_QUERY);
             while (rs.next()) {
                 String Department_ID = rs.getString("Department_ID");
                 String Department_Name = rs.getString("Department_Name");

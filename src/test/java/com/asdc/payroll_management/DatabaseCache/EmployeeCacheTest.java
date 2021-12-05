@@ -39,7 +39,7 @@ public class EmployeeCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allEmployeesQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.All_EMPLOYEE_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
                 when(rs.getString("Employee_ID")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("Employee_Name")).thenReturn("jaswanth").thenReturn("Ali");
@@ -53,7 +53,7 @@ public class EmployeeCacheTest {
                 when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("Access_level")).thenReturn("Senior Manager").thenReturn("Manager");
                 EmployeeCache employeeFactory = EmployeeCache.getInstance();
-                assertEquals(2,employeeFactory.get().size());
+                assertEquals(2,employeeFactory.getAllEmployees().size());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -66,18 +66,18 @@ public class EmployeeCacheTest {
         Employee testEmp = new Employee("26118","Ali","ali@gmail.com","abc","124 street","12345","12345","1234","1","1","Manager");
         EmployeeCache employeeFactory = EmployeeCache.getInstance();
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String query=DBQueriesConstant.insertEmployeeQuery+" values('"+testEmp.getEmployee_ID()+"','"
-                +testEmp.getEmployee_Name()+"','"+testEmp.getEmployee_emailID()+"','"+testEmp.getEmployee_Password()+"','"+testEmp.getEmployee_Address()+"','"+testEmp.getEmployee_phoneNumb()+"','"
-                +testEmp.getEmployee_Salary()+"','"+testEmp.getManagerID()+"','"+testEmp.getDepartment_ID()+"','"+testEmp.getDesignation()+"','"+testEmp.getAccess_level()+"')";
+        String query=DBQueriesConstant.INSERT_EMPLOYEE_QUERY +" values('"+testEmp.getEmployeeID()+"','"
+                +testEmp.getEmployeeName()+"','"+testEmp.getEmployeeEmail()+"','"+testEmp.getEmployeePassword()+"','"+testEmp.getEmployeeAddress()+"','"+testEmp.getEmployeePhoneNumb()+"','"
+                +testEmp.getEmployeeSalary()+"','"+testEmp.getManagerID()+"','"+testEmp.getDepartmentID()+"','"+testEmp.getDesignation()+"','"+testEmp.getAccessLevel()+"')";
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);
             employeeFactory.insert(testEmp);
-            HashMap<String,Employee> testEmployees=employeeFactory.get();
+            HashMap<String,Employee> testEmployees=employeeFactory.getAllEmployees();
             Employee newEmp = testEmployees.get("26118");
-            assertEquals("Ali",newEmp.getEmployee_Name());
-            assertEquals("abc",newEmp.getEmployee_Password());
-            assertNotEquals("Jas",newEmp.getEmployee_Name());
+            assertEquals("Ali",newEmp.getEmployeeName());
+            assertEquals("abc",newEmp.getEmployeePassword());
+            assertNotEquals("Jas",newEmp.getEmployeeName());
         }catch(Exception e){
             e.printStackTrace();
             fail("Tests failed due to exception");

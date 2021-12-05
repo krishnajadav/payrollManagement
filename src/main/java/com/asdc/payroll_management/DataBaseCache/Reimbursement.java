@@ -1,37 +1,37 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class Reimbursement {
-    private String RT_ID;
-    private String Reimbursement_Type;
-    private String Reimbursement_Limit;
+    private String rtId;
+    private String reimbursementType;
+    private String reimbursementLimit;
 
-    public Reimbursement(String RT_ID, String reimbursement_Type, String reimbursement_Limit) {
-        this.RT_ID = RT_ID;
-        Reimbursement_Type = reimbursement_Type;
-        Reimbursement_Limit = reimbursement_Limit;
+    public Reimbursement(String rtId, String reimbursementType, String reimbursementLimit) {
+        this.rtId = rtId;
+        this.reimbursementType = reimbursementType;
+        this.reimbursementLimit = reimbursementLimit;
     }
 
-    public String getRT_ID() {
-        return RT_ID;
+    public String getRtId() {
+        return rtId;
     }
 
-    public void setRT_ID(String RT_ID) {
-        this.RT_ID = RT_ID;
+    public void setRtId(String rtId) {
+        this.rtId = rtId;
     }
 
-    public String getReimbursement_Type() {
-        return Reimbursement_Type;
+    public String getReimbursementType() {
+        return reimbursementType;
     }
 
-    public void setReimbursement_Type(String reimbursement_Type) {
-        Reimbursement_Type = reimbursement_Type;
+    public void setReimbursementType(String reimbursementType) {
+        this.reimbursementType = reimbursementType;
     }
 
-    public String getReimbursement_Limit() {
-        return Reimbursement_Limit;
+    public String getReimbursementLimit() {
+        return reimbursementLimit;
     }
 
-    public void setReimbursement_Limit(String reimbursement_Limit) {
-        Reimbursement_Limit = reimbursement_Limit;
+    public void setReimbursementLimit(String reimbursementLimit) {
+        this.reimbursementLimit = reimbursementLimit;
     }
 }

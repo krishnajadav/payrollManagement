@@ -4,9 +4,7 @@ import com.asdc.payroll_management.DataBaseCache.DBQueriesConstant;
 import com.asdc.payroll_management.DataBaseCache.DatabaseConnection;
 import com.asdc.payroll_management.DataBaseCache.Employee;
 import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
-import com.asdc.payroll_management.LeaveManagement.EmployeeLeavesDOA;
 import com.asdc.payroll_management.LeaveManagement.ManagerLeavesDOA;
-import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
@@ -41,7 +39,7 @@ public class ManagerLeaveDOATest {
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             ResultSet rs = mock(ResultSet.class);
-            when(databaseConnection.getData(DBQueriesConstant.allEmployeesQuery)).thenReturn(rs);
+            when(databaseConnection.getData(DBQueriesConstant.All_EMPLOYEE_QUERY)).thenReturn(rs);
             when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
             when(rs.getString("Employee_ID")).thenReturn("1225").thenReturn("26118");
             when(rs.getString("Employee_Name")).thenReturn("jaswanth").thenReturn("Ali");
@@ -69,7 +67,7 @@ public class ManagerLeaveDOATest {
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             ResultSet rs = mock(ResultSet.class);
-            when(databaseConnection.getData(DBQueriesConstant.allEmployeesQuery)).thenReturn(rs);
+            when(databaseConnection.getData(DBQueriesConstant.All_EMPLOYEE_QUERY)).thenReturn(rs);
             when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
             when(rs.getString("Employee_ID")).thenReturn("1225").thenReturn("26118");
             when(rs.getString("Employee_Name")).thenReturn("jaswanth").thenReturn("Ali");

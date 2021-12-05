@@ -1,7 +1,6 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,18 +22,18 @@ public class LeaveRequestCache {
 
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allLeaveRequestsQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_LEAVE_REQUESTS_QUERY);
             while (rs.next()) {
-                String LR_ID = rs.getString("LR_ID");
-                String LR_EmployeeID = rs.getString("LR_EmployeeID");
-                String LR_Duration = rs.getString("LR_Duration");
-                String LR_Type = rs.getString("LR_Type");
+                String lrId = rs.getString("LR_ID");
+                String lrEmployeeID = rs.getString("LR_EmployeeID");
+                String lrDuration = rs.getString("LR_Duration");
+                String lrType = rs.getString("LR_Type");
                 String isAccepted = rs.getString("isAccepted");
-                String Leave_Request_Date = rs.getString("Leave_Request_Date");
-                String Leave_End_Date = rs.getString("Leave_End_Date");
-                LeaveRequest tempLeaveRequest = new LeaveRequest(LR_ID, LR_EmployeeID, LR_Duration, LR_Type, Leave_End_Date, Leave_Request_Date, Leave_End_Date);
+                String leaveRequestDate = rs.getString("Leave_Request_Date");
+                String leaveEndDate = rs.getString("Leave_End_Date");
+                LeaveRequest tempLeaveRequest = new LeaveRequest(lrId, lrEmployeeID, lrDuration, lrType, leaveEndDate, leaveRequestDate, leaveEndDate);
                 tempLeaveRequest.setIsAccepted(isAccepted);
-                modelLeaveRequest.put(LR_ID, tempLeaveRequest);
+                modelLeaveRequest.put(lrId, tempLeaveRequest);
 
             }
         }catch (Exception e){
@@ -50,9 +49,9 @@ public class LeaveRequestCache {
         return modelLeaveRequest.get(id);
     }
 
-    public boolean insert(LeaveRequest e ){
-        String query=DBQueriesConstant.insertLeaveRequestQuery+" values('"+e.getLR_EmployeeID()+"','"
-                +e.getLR_Duration()+"','"+e.getLR_Type()+"','"+e.getLeave_Request_Date()+"','"+e.getLeave_End_Date()+"')";
+    public boolean insert(LeaveRequest leaveRequest ){
+        String query=DBQueriesConstant.INSERT_LEAVE_REQUEST_QUERY +" values('"+leaveRequest.getLrEmployeeid()+"','"
+                +leaveRequest.getLrDuration()+"','"+leaveRequest.getLrType()+"','"+leaveRequest.getLeaveRequestDate()+"','"+leaveRequest.getLeaveEndDate()+"')";
         Boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
         if(insertStatus){
             Integer maxLR_ID=0;
@@ -63,27 +62,27 @@ public class LeaveRequestCache {
             }
             maxLR_ID=maxLR_ID+1;
             System.out.println(maxLR_ID);
-            e.setLR_ID(maxLR_ID.toString());
+            leaveRequest.setLrId(maxLR_ID.toString());
 
-            modelLeaveRequest.put(maxLR_ID.toString(),e);
+            modelLeaveRequest.put(maxLR_ID.toString(),leaveRequest);
         }
         return insertStatus;
     }
 
-    public boolean updateLeaveTrue(LeaveRequest e) {
-       Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.updateLeaveRequestTrueQuery+"\""+e.getLR_ID()+"\";");
+    public boolean updateLeaveTrue(LeaveRequest leaveRequest) {
+       Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.UPDATE_LEAVE_REQUEST_TRUE_QUERY +"\""+leaveRequest.getLrId()+"\";");
        if(updateStatus){
-           e.setIsAccepted("1");
-           modelLeaveRequest.put(e.getLR_ID(),e);
+           leaveRequest.setIsAccepted("1");
+           modelLeaveRequest.put(leaveRequest.getLrId(),leaveRequest);
        }
         return updateStatus;
     }
 
-    public boolean updateLeaveFalse(LeaveRequest e){
-        Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.updateLeaveRequestFalseQuery+"\""+e.getLR_ID()+"\";");
+    public boolean updateLeaveFalse(LeaveRequest leaveRequest){
+        Boolean updateStatus =DatabaseConnection.getInstance().updateData(DBQueriesConstant.UPDATE_LEAVE_REQUEST_FALSE_QUERY +"\""+leaveRequest.getLrId()+"\";");
         if(updateStatus){
-            e.setIsAccepted("0");
-            modelLeaveRequest.put(e.getLR_ID(),e);
+            leaveRequest.setIsAccepted("0");
+            modelLeaveRequest.put(leaveRequest.getLrId(),leaveRequest);
         }
         return updateStatus;
     }

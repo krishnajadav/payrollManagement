@@ -30,7 +30,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         for (Map.Entry mapElement : allLeaves.entrySet()) {
             LeaveRequest leaveRequest = (LeaveRequest) mapElement.getValue();
 
-            if(leaveRequest.getLR_EmployeeID().equalsIgnoreCase(employee.getEmployee_ID()) && leaveRequest.getIsAccepted() == null){
+            if(leaveRequest.getLrEmployeeid().equalsIgnoreCase(employee.getEmployeeID()) && leaveRequest.getIsAccepted() == null){
                 leaveRequests.add(leaveRequest);
             }
         }
@@ -44,7 +44,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         HashMap<String,Leaves> leavesHashMap = leavesCache.getAllLeaveTypes();
         for (Map.Entry mapElement : leavesHashMap.entrySet()) {
             leaveType = (Leaves) mapElement.getValue();
-            if(leaveType.getLeaves_Name().equalsIgnoreCase(leaveName)){
+            if(leaveType.getLeavesName().equalsIgnoreCase(leaveName)){
                 break;
             }
         }
@@ -63,14 +63,14 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
     @Override
     public LeaveRequest validateLeaveRequest(LeaveRequest leaveRequest){
         //String LR_ID =leaveRequest.getString("EmployeeID");
-        String LR_EmployeeID = leaveRequest.getLR_EmployeeID();
+        String LR_EmployeeID = leaveRequest.getLrEmployeeid();
 
-        Integer LR_Duration = leaveRequest.getLR_Duration().equalsIgnoreCase("")?0:Integer.parseInt(leaveRequest.getLR_Duration());
+        Integer LR_Duration = leaveRequest.getLrDuration().equalsIgnoreCase("")?0:Integer.parseInt(leaveRequest.getLrDuration());
 
-        Leaves LR_Type = getLeaveType(leaveRequest.getLR_Type());
+        Leaves LR_Type = getLeaveType(leaveRequest.getLrType());
 //        String isAccepted = leaveRequest.getString("EmployeeID");
-        Date Leave_Request_Date =  new Date(Long.parseLong(leaveRequest.getLeave_Request_Date()));
-        Date Leave_End_Date =  leaveRequest.getLeave_End_Date()==null ? null: new Date(Long.parseLong(leaveRequest.getLeave_End_Date()));
+        Date Leave_Request_Date =  new Date(Long.parseLong(leaveRequest.getLeaveRequestDate()));
+        Date Leave_End_Date =  leaveRequest.getLeaveEndDate()==null ? null: new Date(Long.parseLong(leaveRequest.getLeaveEndDate()));
 
         StringBuilder ErrorMessage= new StringBuilder();
         Boolean validResponse=true;
@@ -94,7 +94,7 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         }else if(!this.checkEndDateandDurartion(Leave_End_Date, LR_Duration)){
             validResponse=false;
             ErrorMessage.append(" End Date or Duration should be populated\n");
-        }else if(!(this.checkDateRange(Integer.parseInt(LR_Type.getLeaves_DuartionLimit()),LR_Duration))){
+        }else if(!(this.checkDateRange(Integer.parseInt(LR_Type.getLeavesDuartionLimit()),LR_Duration))){
             validResponse=false;
             ErrorMessage.append(" Requested leaves extend the duration limit of the leave type\n");
         }else if(this.checkStartDateAndEndDate(Leave_Request_Date,Leave_End_Date)){
@@ -105,13 +105,13 @@ public class EmployeeLeavesDOA implements IEmployeeLeaves {
         String strDate = dateFormat.format(Leave_Request_Date);
         String endDate = dateFormat.format(Leave_End_Date);
 
-        System.out.println(LR_EmployeeID+" "+(LR_Duration).toString()+" "+LR_Type.getLeaves_ID()+" "+strDate+" "+endDate);
+        System.out.println(LR_EmployeeID+" "+(LR_Duration).toString()+" "+LR_Type.getLeavesID()+" "+strDate+" "+endDate);
 
         LeaveRequest newLeaveRequest =null;
         if(validResponse){
-             newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeaves_ID(),null,strDate,endDate);
+             newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeavesID(),null,strDate,endDate);
         }else{
-            newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeaves_ID(),null,strDate,endDate);
+            newLeaveRequest = new LeaveRequest(null,LR_EmployeeID,(LR_Duration).toString(),LR_Type.getLeavesID(),null,strDate,endDate);
             newLeaveRequest.setError(ErrorMessage.toString());
         }
         return newLeaveRequest;

@@ -2,7 +2,6 @@ package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class JobDesignationCache {
@@ -22,7 +21,7 @@ public class JobDesignationCache {
 
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allJobDesignations);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_JOB_DESIGNATIONS);
             while (rs.next()) {
                 String Designation_Name = rs.getString("Designation_Name");
                 modelJobDesignations.add(new JobDesignation(Designation_Name));
