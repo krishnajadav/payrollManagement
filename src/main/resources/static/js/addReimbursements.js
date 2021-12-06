@@ -51,11 +51,11 @@ function postData() {
         type: "POST",
         contentType: 'application/json; charset=utf-8',
         data: JSON.stringify({
-            'EmployeeID': employeeID,
-            'ReimbursementTypeID': reimbursementType,
-            'ReimbursmentNote': reimbursementNote,
-            'ReimbursementAmount': reimbursementAmount,
-            'ReimbursementDate': reimbursementDate,
+            'RR_EmployeeID': employeeID,
+            'RR_TypeID': reimbursementType,
+            'RR_Note': reimbursementNote,
+            'RR_Amount': reimbursementAmount,
+            'RR_Date': reimbursementDate,
 			'isAccepted' : false
         }),
         success: function(result) {
