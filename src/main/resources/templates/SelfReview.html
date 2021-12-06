@@ -1,0 +1,83 @@
+<HTML>
+<head>
+<title>Employee Appraisal</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/SelfReview.js}"></script>
+<style>
+h1{
+	text-align: center;
+}
+table {
+    border-collapse: collapse;
+}
+table, th, td {
+	border: 1px solid black;
+	position: relative;
+}
+</style>
+<body onload="initialize()">
+	<h1>Self Appraisal</h1>
+	<br>
+	<br>
+	<div id="div-error-info"></div>
+	<label>Self Review</label>
+	<table id="fselfreview" style="width:100%">
+		<tr>
+			<th>Employee ID</th>
+			<th>Employee Name</th>
+			<th>Rating</th>
+			<th>Comments</th>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<label>Peer Review</label>
+	<table id="fpeerreview" style="width:100%">
+		<tr>
+			<th>Employee ID</th>
+			<th>Employee Name</th>
+			<th>Rating</th>
+			<th>Comments</th>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<label>Projects participated</label>
+	<table id="fprojectsparticipated" style="width:10%">
+		<tr>
+			<th>Project Name</th>
+		</tr>
+		<tr>
+			<td><input type='text' style='border:solid 1px black;'/></td>
+		</tr>
+		<tr>
+			<td><input type='text' style='border:solid 1px black;'/></td>
+		</tr>
+	</table>
+	<input type="button" id="fsubmit" name="submit" onClick="addRow('project')"
+		value="Add Row" />
+	<br>
+	<br>
+	<label>New Technologies learned</label>
+	<table id="ftechnologieslearned" style="width:10%">
+		<tr>
+			<th>Technology Name</th>
+		</tr>
+		<tr>
+			<td><input type='text' style='border:solid 1px black;'/></td>
+		</tr>
+		<tr>
+			<td><input type='text' style='border:solid 1px black;'/></td>
+		</tr>
+	</table>
+	<input type="button" id="fsubmit" name="submit" onClick="addRow('tech')"
+		value="Add Row" />
+	<br>
+	<br>
+	<input type="button" id="fsubmit" name="submit" onClick="postData()"
+		value="Submit" />
+
+	
+</body>
+</HTML>

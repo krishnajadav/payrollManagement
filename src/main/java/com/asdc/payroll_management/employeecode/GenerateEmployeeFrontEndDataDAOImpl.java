@@ -11,7 +11,7 @@ import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 import com.asdc.payroll_management.DataBaseCache.JobDesignation;
 import com.asdc.payroll_management.DataBaseCache.JobDesignationCache;
 
-public class GenerateEmployeeFronEndDataDAOImpl implements IGenerateEmployeeFronEndDataDAO {
+public class GenerateEmployeeFrontEndDataDAOImpl implements IGenerateEmployeeFronEndDataDAO {
 
 	private void generateEmployeeData(EmployeeData employeeData) {
 		GenerateEmployeeCodeDAOImpl.getInstance().generateEmployeeCode(employeeData);

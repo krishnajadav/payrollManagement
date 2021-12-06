@@ -17,14 +17,14 @@ import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 import com.asdc.payroll_management.DataBaseCache.JobDesignation;
 import com.asdc.payroll_management.DataBaseCache.JobDesignationCache;
 
-class GenerateEmployeeFronEndDataDAOImplTest {
+class GenerateEmployeeFrontEndDataDAOImplTest {
 
-	private GenerateEmployeeFronEndDataDAOImpl underTest = new GenerateEmployeeFronEndDataDAOImpl();
+	private GenerateEmployeeFrontEndDataDAOImpl underTest = new GenerateEmployeeFrontEndDataDAOImpl();
 
 	@Test
 	void classExistanceTest() {
 		try {
-			Class<?> classFinder = Class.forName("com.asdc.payroll_management.employeecode.GenerateEmployeeFronEndDataDAOImpl");
+			Class<?> classFinder = Class.forName("com.asdc.payroll_management.employeecode.GenerateEmployeeFrontEndDataDAOImpl");
 			assertNotNull(classFinder);
 		} catch (ClassNotFoundException e) {
 			fail("class not found");

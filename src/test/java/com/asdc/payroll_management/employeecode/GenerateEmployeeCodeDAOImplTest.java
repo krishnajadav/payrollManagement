@@ -59,7 +59,7 @@ class GenerateEmployeeCodeDAOImplTest {
 			GenerateEmployeeCodeDAOImpl.getInstance().generateEmployeeCode(employeeData);
 			assertEquals("1", employeeData.getEmployeeID());
 			
-			HashMap<String, Employee> map = new HashMap<String, Employee>();
+			HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
 			Employee employee1 = new Employee("2", null, null, null, null, null, null, null, null, null,null);
 			Employee employee2 = new Employee("4", null, null, null, null, null, null, null, null, null, null);
 			Employee employee3 = new Employee("7", null, null, null, null, null, null, null, null, null, null);
@@ -67,14 +67,14 @@ class GenerateEmployeeCodeDAOImplTest {
 			Employee employee5 = new Employee("3", null, null, null, null, null, null, null, null, null, null);
 			Employee employee6 = new Employee("8", null, null, null, null, null, null, null, null, null, null);
 			
-			map.put(employee1.getEmployee_ID(), employee1);
-			map.put(employee2.getEmployee_ID(), employee2);
-			map.put(employee3.getEmployee_ID(), employee3);
-			map.put(employee4.getEmployee_ID(), employee4);
-			map.put(employee5.getEmployee_ID(), employee5);
-			map.put(employee6.getEmployee_ID(), employee6);
+			employeeMap.put(employee1.getEmployee_ID(), employee1);
+			employeeMap.put(employee2.getEmployee_ID(), employee2);
+			employeeMap.put(employee3.getEmployee_ID(), employee3);
+			employeeMap.put(employee4.getEmployee_ID(), employee4);
+			employeeMap.put(employee5.getEmployee_ID(), employee5);
+			employeeMap.put(employee6.getEmployee_ID(), employee6);
 			
-			Mockito.when(employeeCache.getAllEmployees()).thenReturn(map);
+			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employeeMap);
 			GenerateEmployeeCodeDAOImpl.getInstance().generateEmployeeCode(employeeData);
 			assertEquals("9", employeeData.getEmployeeID());
 			mocked.close();
