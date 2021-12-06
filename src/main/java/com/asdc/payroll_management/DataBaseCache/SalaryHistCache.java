@@ -6,16 +6,26 @@ import java.util.HashMap;
 
 public class SalaryHistCache {
     private static HashMap<String, SalaryHist> modelSalaryHistory = new HashMap<>();
-    private DatabaseConnection newDB ;
+    private static SalaryHistCache salaryHistCache=null;
 
-    public SalaryHistCache()  {
-        newDB= DatabaseConnection.getInstance();
+
+    public static SalaryHistCache getInstance(){
+        if(salaryHistCache==null){
+            salaryHistCache=new SalaryHistCache();
+        }
+        return salaryHistCache;
     }
 
 
-    public void load(){
+
+    private SalaryHistCache()  {
+        load();
+    }
+
+
+    private void load(){
         try {
-            ResultSet rs = newDB.getData(DBQueriesConstant.ALL_SALARY_HIST_QUERY);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_SALARY_HIST_QUERY);
             while (rs.next()) {
                 String SH_ID = rs.getString("SH_ID");
                 String Salary = rs.getString("Salary");

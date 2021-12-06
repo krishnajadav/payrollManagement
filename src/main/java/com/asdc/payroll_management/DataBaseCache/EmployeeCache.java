@@ -1,5 +1,7 @@
 package com.asdc.payroll_management.DataBaseCache;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 import java.sql.ResultSet;
 import java.util.HashMap;
 
@@ -61,6 +63,15 @@ public class EmployeeCache {
         }
         return insertStatus;
     }
+
+    public Boolean update(String query,Employee employee){
+        boolean insertStatus = DatabaseConnection.getInstance().insertData(query);
+        if (insertStatus) {
+            modelEmployees.put(employee.getEmployeeID(), employee);
+        }
+        return insertStatus;
+    }
+
 
 
 }
