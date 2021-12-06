@@ -1,45 +1,57 @@
 package com.asdc.payroll_management.EmployeeRegistration;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
-
-import com.asdc.payroll_management.Database.MySQLDB;
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 public class EmployeeDAO implements IEmployeeDAO {
-
-	  MySQLDB mySQLDB = new MySQLDB();
-	
 	@Override
-    public String saveEmployee(Employee emp)
+    public String saveEmployee(com.asdc.payroll_management.EmployeeRegistration.Employee emp)
     {	
 		try {
 			
-			mySQLDB.LoadDatabase();
-			String callST="{call SP_saveEmployee('"+emp.getEmployee_ID()+"','"+
-					emp.getEmployee_Name()+"','"+emp.getEmployee_emailID()+"','"+
-					emp.getEncriptedPassword(emp.getEmployee_Password())+"','"+emp.getEmployee_Address()+"','"+
-					emp.getEmployee_phoneNumb()+"')}";
-			 ResultSet rs=mySQLDB.ExecuteQuery(callST);
-			 rs.next();	
-			   if(rs.getString("CheckStatus").equals("UserExist"))
-			   {
-				   return "This user already Exist";  
-			   }
-			   else if(rs.getString("CheckStatus").equals("WrongCode"))
-			   {
-				   return "Wrong employee code"; 
-			   }
-			   else
-			   {
-				   return "Success"; 
-			   }
+	        EmployeeCache employeeCache = EmployeeCache.getInstance();
+	        HashMap<String, Employee> employeeHashMap = employeeCache.getAllEmployees();
+	        for (Map.Entry mapElement : employeeHashMap.entrySet()) {
+	            Employee employeeTemp = (Employee) mapElement.getValue();
+	           
+	            if(employeeTemp.getEmployee_emailID()==null)
+	            {
+	            	employeeTemp.setEmployee_emailID("");
+	            }
+	            
+	            if (employeeTemp.getEmployee_emailID().equals(emp.getEmployee_emailID()))
+	            {	            
+	            	 return "This user already Exist";
+	            }
+	            else
+	            {	
+	            	if(employeeTemp.getEmployee_ID().equals(emp.getEmployee_ID()) && employeeTemp.getEmployee_emailID().length()==0)
+	            	{
+	            		employeeTemp.setEmployee_Name(emp.getEmployee_Name());
+	            		employeeTemp.setEmployee_emailID(emp.getEmployee_emailID());
+	            		employeeTemp.setEmployee_Password(emp.getEncriptedPassword(emp.getEmployee_Password()));
+	            		employeeTemp.setEmployee_Address(emp.getEmployee_Address());
+	            		employeeTemp.setEmployee_phoneNumb(emp.getEmployee_phoneNumb());
+	            		
+	            		String query="UPDATE Employee SET Employee_Name='"+emp.getEmployee_Name()+"',Employee_emailID='"+emp.getEmployee_emailID()+"',Employee_Password='"+emp.getEncriptedPassword(emp.getEmployee_Password())+"',Employee_Address='"+emp.getEmployee_Address()+"',Employee_phoneNumb='"+emp.getEmployee_phoneNumb()+"' WHERE Employee_ID='"+emp.getEmployee_ID()+"'";
+	            		Boolean isUpdated=employeeCache.update(query,employeeTemp);
+	            		if(isUpdated)
+	            		{
+	            			return "Success";
+	            		}
+	            		else
+	            		{
+	            			return "Can not insert this record";
+	            		}
+	            	}
+	            }
+	        }	        
+	        return "Wrong employee code"; 
 		}
 		catch (Exception e) {
-			// TODO: handle exception
 			return "Error";
 		}
-    }
-	
-		
+    }		
 }

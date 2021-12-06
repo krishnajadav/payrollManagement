@@ -48,8 +48,8 @@ public class ReimbursementRequestCacheTest {
 
                 ReimbursementRequestCache reimbursementRequestCache = ReimbursementRequestCache.getInstance();
 
-                assertEquals("3",reimbursementRequestCache.get().get("1").getRR_TypeID());
-                assertNotEquals("30000",reimbursementRequestCache.get().get("1").getRR_Amount());
+                assertEquals("3",reimbursementRequestCache.getAllReimbursementRequest().get("1").getRR_TypeID());
+                assertNotEquals("30000",reimbursementRequestCache.getAllReimbursementRequest().get("1").getRR_Amount());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -70,7 +70,7 @@ public class ReimbursementRequestCacheTest {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);
             reimbursementRequestCache.insert(reimbursementRequest);
-            HashMap<String,ReimbursementRequest> reimbursementRequestHashMap=reimbursementRequestCache.get();
+            HashMap<String,ReimbursementRequest> reimbursementRequestHashMap=reimbursementRequestCache.getAllReimbursementRequest();
             ReimbursementRequest request = reimbursementRequestHashMap.get("2");
             assertEquals("26119",request.getRR_EmployeeID());
             assertEquals("0",request.getIsAccepted());

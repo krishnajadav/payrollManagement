@@ -53,7 +53,7 @@ public class EmployeeCacheTest {
                 when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("Access_level")).thenReturn("Senior Manager").thenReturn("Manager");
                 EmployeeCache employeeFactory = EmployeeCache.getInstance();
-                assertEquals(2,employeeFactory.get().size());
+                assertEquals(2,employeeFactory.getAllEmployees().size());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class EmployeeCacheTest {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             when(databaseConnection.insertData(query)).thenReturn(true);
             employeeFactory.insert(testEmp);
-            HashMap<String,Employee> testEmployees=employeeFactory.get();
+            HashMap<String,Employee> testEmployees=employeeFactory.getAllEmployees();
             Employee newEmp = testEmployees.get("26118");
             assertEquals("Ali",newEmp.getEmployee_Name());
             assertEquals("abc",newEmp.getEmployee_Password());

@@ -40,8 +40,8 @@ public class ReimburesmentCacheTest {
                 when(rs.getString("Reimbursement_Limit")).thenReturn("500");
                 ReimbursementCache reimbursementCache = ReimbursementCache.getInstance();
 
-                assertEquals("Food",reimbursementCache.get().get("1").getReimbursement_Type());
-                assertNotEquals("30000",reimbursementCache.get().get("1").getReimbursement_Limit());
+                assertEquals("Food",reimbursementCache.getAllReimbursements().get("1").getReimbursement_Type());
+                assertNotEquals("30000",reimbursementCache.getAllReimbursements().get("1").getReimbursement_Limit());
             }
         }catch(Exception e){
             e.printStackTrace();

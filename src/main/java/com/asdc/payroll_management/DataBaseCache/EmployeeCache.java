@@ -63,6 +63,14 @@ public class EmployeeCache {
     return insertStatus;
     }
 
+    
+    public Boolean update(String query,Employee employee){
+        boolean insertStatus = DatabaseConnection.getInstance().insertData(query);
+        if (insertStatus) {
+            modelEmployees.put(employee.getEmployee_ID(), employee);
+        }
+        return insertStatus;
+    }
 
 
 

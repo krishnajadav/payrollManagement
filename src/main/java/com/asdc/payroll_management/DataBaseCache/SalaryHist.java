@@ -6,15 +6,13 @@ public class SalaryHist {
     private String Start_Date;
     private String End_Date;
     private String Employee_ID;
-    private String Employee_Type;
 
-    public SalaryHist(String SH_ID, String salary, String start_Date, String end_Date, String employee_ID, String employee_Type) {
+    public SalaryHist(String SH_ID, String salary, String start_Date, String end_Date, String employee_ID) {
         this.SH_ID = SH_ID;
         Salary = salary;
         Start_Date = start_Date;
         End_Date = end_Date;
         Employee_ID = employee_ID;
-        Employee_Type = employee_Type;
     }
 
     public String getSH_ID() {
@@ -55,13 +53,5 @@ public class SalaryHist {
 
     public void setEmployee_ID(String employee_ID) {
         Employee_ID = employee_ID;
-    }
-
-    public String getEmployee_Type() {
-        return Employee_Type;
-    }
-
-    public void setEmployee_Type(String employee_Type) {
-        Employee_Type = employee_Type;
     }
 }

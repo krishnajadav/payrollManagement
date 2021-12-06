@@ -43,8 +43,8 @@ public class LeavesCacheTest {
                 when(rs.getString("Leaves_DuartionLimit")).thenReturn("2");
 
                 LeavesCache leavesFactory = LeavesCache.getInstance();
-                assertEquals("Sick Leave",leavesFactory.get().get("1").getLeaves_Name());
-                assertNotEquals("3",leavesFactory.get().get("1").getLeaves_DuartionLimit());
+                assertEquals("Sick Leave",leavesFactory.getAllLeaveTypes().get("1").getLeaves_Name());
+                assertNotEquals("3",leavesFactory.getAllLeaveTypes().get("1").getLeaves_DuartionLimit());
 
             }
         }catch(Exception e){

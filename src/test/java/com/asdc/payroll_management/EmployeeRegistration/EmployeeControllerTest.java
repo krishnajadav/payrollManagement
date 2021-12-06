@@ -1,17 +1,11 @@
 package com.asdc.payroll_management.EmployeeRegistration;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
 
 import org.junit.jupiter.api.Test;
-
-import com.asdc.payroll_management.Database.MySQLDB;
 
 class EmployeeControllerTest {
 	
@@ -36,5 +30,4 @@ class EmployeeControllerTest {
 		}
 		
 	}
-	
 }
