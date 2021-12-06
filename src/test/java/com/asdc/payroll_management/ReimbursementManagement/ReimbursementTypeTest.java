@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import com.asdc.payroll_management.ReimbursementManagementOld.ReimbursementType;
+
 class ReimbursementTypeTest {
 
 	private ReimbursementType rt = new ReimbursementType(1, "Food", 50);

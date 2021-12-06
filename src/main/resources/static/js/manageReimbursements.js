@@ -1,7 +1,7 @@
 function initialize() {
 
     var request = $.ajax({
-        url: "http://localhost:8080/getAllStaff",
+        url: "http://localhost:8080/getAllStaffReimbursements",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
         data: "1226",
@@ -9,7 +9,7 @@ function initialize() {
             console.log(result);
             var select = document.getElementById("fstaffID");
             for (var i = 0; i < result.length; i++) {
-                select.options[select.options.length] = new Option(result[i]["employee_ID"], i);
+                select.options[select.options.length] = new Option(result[i]["Employee_ID"], i);
             }
         }
     });
@@ -22,13 +22,13 @@ function postData(){
     console.log(employeeID)
 
     var request = $.ajax({
-        url: "http://localhost:8080/viewStaffLeaves",
+        url: "http://localhost:8080/viewAllStaffReimbursements",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
         data: employeeID,
         success: function(result) {
             console.log(result);
-            var table = document.getElementById("fviewLeaves");
+            var table = document.getElementById("fviewReimbursements");
             for (var i = 0; i < result.length; i++) {
                 var row = table.insertRow(i);
                 var cell0 = row.insertCell(0);
@@ -36,23 +36,19 @@ function postData(){
                 var cell2 = row.insertCell(2);
                 var cell3 = row.insertCell(3);
                 var cell4 = row.insertCell(4);
-                var cell5 = row.insertCell(5);
-                var cell6 = row.insertCell(6);
 
                 let lrId = result[i]["lr_ID"];
-                cell0.innerHTML = lrId;
-                cell1.innerHTML = result[i]["lr_EmployeeID"];
-                cell2.innerHTML = result[i]["lr_Duration"];
-                cell3.innerHTML = result[i]["lr_Type"];
-                cell4.innerHTML = result[i]["leave_Request_Date"];
-                cell5.innerHTML = result[i]["leave_End_Date"];
-                let acceptRequestString = `"acceptRequest(${lrId})"`;
-                let denyRequestString = `"denyRequest(${lrId})"`;
+                cell0.innerHTML = result[i]["RR_TypeID"];
+                cell1.innerHTML = result[i]["RR_Note"];
+                cell2.innerHTML = result[i]["RR_Amount"];
+                cell3.innerHTML = result[i]["RR_Date"];
+                let acceptRequestString = `"acceptRequest(${RR_ID})"`;
+                let denyRequestString = `"denyRequest(${RR_ID})"`;
 
-                cell6.innerHTML =
-                    "<input type=\"button\" id=\"faccept_"+result[i]["lr_ID"]+"\" data_id=\""+result[i]["lr_ID"]+"\" name=\"faccept\" onClick = "+acceptRequestString+" value=\"Accept\" />\n" +
+                cell4.innerHTML =
+                    "<input type=\"button\" id=\"faccept_"+result[i]["RR_ID"]+"\" data_id=\""+result[i]["RR_ID"]+"\" name=\"faccept\" onClick = "+acceptRequestString+" value=\"Accept\" />\n" +
                     "            <br>\n" +
-                    "            <input type=\"button\" id=\"fdeny_"+result[i]["lr_ID"]+"\" data_id=\""+result[i]["LR_ID"]+"\" name=\"fdeny\" onClick = "+denyRequestString+" value=\"Deny\" />";
+                    "            <input type=\"button\" id=\"fdeny_"+result[i]["RR_ID"]+"\" data_id=\""+result[i]["RR_ID"]+"\" name=\"fdeny\" onClick = "+denyRequestString+" value=\"Deny\" />";
 
 
             }
@@ -63,24 +59,20 @@ function postData(){
 }
 
 
-function denyRequest(lrId){
-    console.log(lrId);
-    let lrIdString = lrId.toString();
+function denyRequest(RR_ID){
+    console.log(RR_ID);
+    let RR_IDString = RR_ID.toString();
 
     var request = $.ajax({
-        url: "http://localhost:8080/denyLeaveRequest",
+        url: "http://localhost:8080/rejectReimbursementRequest",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
-        data: lrIdString,
+        data: RR_IDString,
         success: function(result) {
-            //console.log("This is console");
             console.log(result);
-            // if(result.error == null){
             if(result){
-                // var empcode = document.getElementById('faccept_'+lrId);
-                // empcode.value = result.employeeID;
-                document.getElementById('faccept_'+lrId).disabled = true;
-                document.getElementById('fdeny_'+lrId).disabled = true;
+                document.getElementById('faccept_'+RR_ID).disabled = true;
+                document.getElementById('fdeny_'+RR_ID).disabled = true;
 
 
             } else{
@@ -92,22 +84,22 @@ function denyRequest(lrId){
         }
     });
 }
-function acceptRequest(lrId){
-    console.log(lrId);
-    let lrIdString = lrId.toString();
+function acceptRequest(RR_ID){
+    console.log(RR_ID);
+    let RR_IDString = RR_ID.toString();
 
     var request = $.ajax({
-        url: "http://localhost:8080/acceptLeaveRequest",
+        url: "http://localhost:8080/acceptReimbursementRequest",
         type: "POST",
         contentType: 'application/json; charset=utf-8',
-        data: lrIdString,
+        data: RR_IDString,
         success: function(result) {
             //console.log("This is console");
             console.log(result);
 
             if(result){
-                document.getElementById('fdeny_'+lrId).disabled = true;
-                document.getElementById('faccept_'+lrId).disabled = true;
+                document.getElementById('fdeny_'+RR_ID).disabled = true;
+                document.getElementById('faccept_'+RR_ID).disabled = true;
 
             } else{
                 var errordiv = document.getElementById('div-error-info');

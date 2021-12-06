@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
+import com.asdc.payroll_management.ReimbursementManagementOld.ReimbursementEmployee;
+
 class ReimbursementEmployeeTest {
 
 	private ReimbursementEmployee re = new ReimbursementEmployee("F01234", "ABC", "F04321");

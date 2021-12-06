@@ -6,6 +6,8 @@ import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 
+import com.asdc.payroll_management.ReimbursementManagementOld.ReimbursementRequest;
+
 class ReimbursementRequestTest {
 
 	private Date date = new Date();
