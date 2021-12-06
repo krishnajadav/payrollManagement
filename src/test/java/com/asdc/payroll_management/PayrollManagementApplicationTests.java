@@ -8,9 +8,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class PayrollManagementApplicationTests {
 
-    @Test
-    void contextLoads() {
-	   assertEquals("1","1");
-    }
+	@Test
+	void contextLoads() {
+		assertEquals("1", "1");
+	}
 
 }
