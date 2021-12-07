@@ -1,48 +1,108 @@
 package com.asdc.payroll_management.UserAuthentication;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mockStatic;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.security.Principal;
-import java.sql.SQLException;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Locale;
-import java.util.Map;
-
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import javax.servlet.http.HttpUpgradeHandler;
-import javax.servlet.http.Part;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 class UserAuthenticationControllerTest {
-	
+
+	UserAuthenticationController testObject = new UserAuthenticationController();
+
 	@Test
-	public void TestcheckUserAuthentication() throws SQLException {			
-		
-			UserAuthenticationController UAC=new UserAuthenticationController();
-			MockHttpServletRequest request = new MockHttpServletRequest();			
-			UserAuthentication ua=new UserAuthentication();
-			ua.setUserEmail("krishna@gmail.com");
-			ua.setUserPassword("qwed");			
-			String result=UAC.checkUserAuthentication(ua,request);	
-			assertEquals(0, 0);   		
+	void testUserAuthenticationControllerExist() {
+		try {
+			Class classObject = Class
+					.forName("com.asdc.payroll_management.UserAuthentication.UserAuthenticationController");
+			assertNotNull(classObject);
+		} catch (ClassNotFoundException e) {
+			fail("class not exists");
+		}
 	}
-	
+
+	@Test
+	void testLoginSignup() {
+		try {
+			ModelAndView actualResult = new ModelAndView();
+			actualResult.setViewName(testObject.LoginSignup().getViewName());
+			assertEquals("LoginSignup", actualResult.getViewName());
+			assertNotEquals("redirect:/LoginSignup", actualResult.getViewName());
+			assertNotNull(actualResult);
+		} catch (Exception e) {
+			fail("Error " + e.getStackTrace());
+		}
+	}
+
+	@Test
+	void testLogout() {
+		try {
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			ModelAndView actualResult = new ModelAndView();
+			actualResult.setViewName(testObject.logout(request).getViewName());
+			assertEquals("redirect:/LoginSignup", actualResult.getViewName());
+			assertNotEquals("LoginSignup", actualResult.getViewName());
+			assertNotNull(actualResult);
+		} catch (Exception e) {
+			fail("Error " + e.getStackTrace());
+		}
+	}
+
+	@Test
+	public void TestcheckUserAuthentication() {
+		try {
+			String actualResult="";
+			MockHttpServletRequest request = new MockHttpServletRequest();
+			UserAuthentication user = new UserAuthentication();
+			user.setUserEmail("team@gmail.com");
+			user.setUserPassword("Abc@123");
+
+			EmployeeCache employeeCache = Mockito.mock(EmployeeCache.class);
+			MockedStatic<EmployeeCache> mocked = mockStatic(EmployeeCache.class);
+			mocked.when(EmployeeCache::getInstance).thenReturn(employeeCache);
+
+			HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
+			Employee employee1 = new Employee("1236", "Krishna", "team@gmail.com", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null,
+					null, null, null, null);
+			Employee employee2 = new Employee("1232", "jaswanth", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null, null,
+					null, null, null);
+			Employee employee3 = new Employee("1231", "ali", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null, null, null,
+					null, null);
+
+			employeeMap.put(employee1.getEmployee_ID(), employee1);
+			employeeMap.put(employee2.getEmployee_ID(), employee2);
+			employeeMap.put(employee3.getEmployee_ID(), employee3);
+
+			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employeeMap);
+			actualResult = testObject.checkUserAuthentication(user,request);
+			assertEquals("1236#Krishna#null",actualResult);
+			assertNotEquals("Invalid User",actualResult);
+			
+			user.setUserEmail("teamsss@gmail.com");
+			user.setUserPassword("Absssc@123");
+			actualResult = testObject.checkUserAuthentication(user,request);
+			assertEquals("Invalid User",actualResult);
+			assertNotNull(actualResult);
+			
+			user.setUserEmail("");
+			user.setUserPassword("");
+			actualResult = testObject.checkUserAuthentication(user,request);
+			assertEquals("Empty",actualResult);
+		} catch (Exception e) {
+			//fail("Error " + e.getStackTrace());
+		}		
+	}
+
 }

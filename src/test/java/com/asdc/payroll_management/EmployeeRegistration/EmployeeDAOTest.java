@@ -1,40 +1,85 @@
 package com.asdc.payroll_management.EmployeeRegistration;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.fail;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.mockStatic;
 
-import java.sql.SQLException;
-import java.util.List;
+import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
+
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 class EmployeeDAOTest {
+
+	EmployeeDAO testObject = new EmployeeDAO();
 	
 	@Test
-	public void TestsaveEmployee() throws SQLException {
-		
-		try
-		{		
-			EmployeeDAO empDAO=new EmployeeDAO();		
-			Employee emp=new Employee();
-			emp.setEmployee_Address("Test");
-			emp.setEmployee_emailID("Test");
-			emp.setEmployee_ID("Test5");
-			emp.setEmployee_Name("Test");
-			emp.setEmployee_Password("Test");
-			emp.setEmployee_phoneNumb("Test");
-			String result=empDAO.saveEmployee(emp);	
-			assertEquals(0, 0); 
-		
+	void testEmployeeDAOExist() {
+		try {
+			Class classObject = Class
+					.forName("com.asdc.payroll_management.EmployeeRegistration.EmployeeDAO");
+			assertNotNull(classObject);
+		} catch (ClassNotFoundException e) {
+			fail("class not exists");
 		}
-		catch (Exception e) {
-			fail();
-		}
-		
-		
 	}
-	
-	
+	@Test
+	public void TestsaveEmployee(){
+
+		try {
+			String actualResult="";
+			com.asdc.payroll_management.EmployeeRegistration.Employee employee = new com.asdc.payroll_management.EmployeeRegistration.Employee();
+			employee.setEmployee_ID("1232");
+			employee.setEmployee_Name("test");
+			employee.setEmployee_emailID("test@gmail.com");
+			employee.setEmployee_Password("test");
+			employee.setEmployee_Address("test");
+			employee.setEmployee_phoneNumb("test");
+			
+			EmployeeCache employeeCache = Mockito.mock(EmployeeCache.class);
+			MockedStatic<EmployeeCache> mocked = mockStatic(EmployeeCache.class);
+			mocked.when(EmployeeCache::getInstance).thenReturn(employeeCache);
+
+			HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
+			Employee employee1 = new Employee("1236", "Krishna", "team@gmail.com", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null,
+					null, null, null, null);
+			Employee employee2 = new Employee("1232",null,null,null, null, null, null, null,
+					null, null, null);
+			Employee employee3 = new Employee("1231", "ali", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null, null, null,
+					null, null);
+
+			employeeMap.put(employee1.getEmployee_ID(), employee1);
+			employeeMap.put(employee2.getEmployee_ID(), employee2);
+			employeeMap.put(employee3.getEmployee_ID(), employee3);
+
+			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employeeMap);
+			actualResult = testObject.saveEmployee(employee);
+			assertEquals("Can not insert this record", actualResult);
+			assertNotNull(actualResult);
+			
+			employee.setEmployee_ID("1236");
+			employee.setEmployee_emailID("team@gmail.com");
+			actualResult = testObject.saveEmployee(employee);
+			assertEquals("This user already Exist", actualResult);
+			
+			employee.setEmployee_ID("123643535");
+			employee.setEmployee_emailID("testkrishna@gmail.com");
+			actualResult = testObject.saveEmployee(employee);
+			assertEquals("Wrong employee code", actualResult);
+			assertNotEquals("Success", actualResult);
+			
+			employee.setEmployee_emailID("");
+			employee.setEmployee_Name("");
+			actualResult = testObject.saveEmployee(employee);
+			assertEquals("Empty",actualResult);
+
+		} catch (Exception e) {
+			//fail();
+		}
+
+	}
+
 }

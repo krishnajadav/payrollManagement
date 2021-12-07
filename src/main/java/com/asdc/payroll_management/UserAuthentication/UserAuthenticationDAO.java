@@ -1,37 +1,35 @@
 package com.asdc.payroll_management.UserAuthentication;
 
-import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
-import com.asdc.payroll_management.Database.MySQLDB;
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 
-	  MySQLDB mySQLDB = new MySQLDB();
-	
 	@Override
-    public String checkUserAuthentication(UserAuthentication ua)
-    {	
+	public String checkUserAuthentication(UserAuthentication ua) {
 		try {
-			
-			mySQLDB.LoadDatabase();
-			String callST="{call SP_userAuthentication('"+
-					ua.getUserEmail()+"','"+ ua.getEncriptedPassword(ua.getUserPassword())+"')}";
-			ResultSet rs=mySQLDB.ExecuteQuery(callST);
-			
-			if (!rs.isBeforeFirst() ) {    
-				return "Invalid User";	
+
+			EmployeeCache employeeCache = EmployeeCache.getInstance();
+			HashMap<String, Employee> employeeHashMap = employeeCache.getAllEmployees();
+			for (Map.Entry mapElement : employeeHashMap.entrySet()) {
+				Employee employeeTemp = (Employee) mapElement.getValue();
+
+				if (employeeTemp.getEmployee_emailID() == null) {
+					employeeTemp.setEmployee_emailID("");
+				}
+				if (employeeTemp.getEmployee_emailID().equalsIgnoreCase(ua.getUserEmail())
+						&& employeeTemp.getEmployee_Password().equals(ua.getEncriptedPassword(ua.getUserPassword()))) {
+					return employeeTemp.getEmployee_ID() + "#" + employeeTemp.getEmployee_Name() + "#"
+							+ employeeTemp.getAccess_level();
+				}
 			}
-			else
-			{
-				rs.next();
-				return rs.getString("userID")+"#"+rs.getString("userName")+"#"+rs.getString("Designation");
-			}			
-			
-		}
-		catch (Exception e) {
-			// TODO: handle exception
+			return "Invalid User";
+		} catch (Exception e) {
 			return "Empty";
 		}
-    }
-	
+	}
+
 }

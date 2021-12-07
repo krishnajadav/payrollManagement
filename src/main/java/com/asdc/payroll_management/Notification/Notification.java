@@ -8,11 +8,11 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
 public class Notification {
-	
-	private String userEmail; 
+
+	private String userEmail;
 	private String message;
 	private String subject;
-	
+
 	public String getUserEmail() {
 		return userEmail;
 	}
@@ -46,44 +46,38 @@ public class Notification {
 
 	public Notification() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public boolean sendEmail()
-	{     
-		try
-		{
-			 JavaMailSender emailObj=getJavaMailSender();
-		      SimpleMailMessage msg = new SimpleMailMessage(); 
-		      msg.setFrom("krishna.lane4@gmail.com");
-		      msg.setTo(userEmail); 
-		      msg.setSubject(subject); 
-		      msg.setText(message);    
-		      emailObj.send(msg);		
-			  return true;	
-		}
-		catch(Exception e)
-		{
-			return false;	
+	public boolean sendEmail() {
+		try {
+			JavaMailSender emailObj = getJavaMailSender();
+			SimpleMailMessage msg = new SimpleMailMessage();
+			msg.setFrom("krishna.lane4@gmail.com");
+			msg.setTo(userEmail);
+			msg.setSubject(subject);
+			msg.setText(message);
+			emailObj.send(msg);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
-	
-	public JavaMailSender getJavaMailSender() {
-	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
-	    mailSender.setHost("smtp.gmail.com");
-	    mailSender.setPort(587);
-	    
-	    mailSender.setUsername("krishna.lane4@gmail.com");
-	    mailSender.setPassword("dsumwquundgjuthu");
-	    
-	    Properties props = mailSender.getJavaMailProperties();
-	    props.put("mail.transport.protocol", "smtp");
-	    props.put("mail.smtp.auth", "true");
-	    props.put("mail.smtp.starttls.enable", "true");
-	    props.put("mail.debug", "true");
-	    
-	    return mailSender;
+
+	public static JavaMailSender getJavaMailSender() {
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+
+		mailSender.setUsername("krishna.lane4@gmail.com");
+		mailSender.setPassword("dsumwquundgjuthu");
+
+		Properties props = mailSender.getJavaMailProperties();
+		props.put("mail.transport.protocol", "smtp");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.debug", "true");
+
+		return mailSender;
 	}
-	
 
 }

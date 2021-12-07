@@ -3,7 +3,6 @@ package com.asdc.payroll_management.DataBaseCache;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
-
 public class SalaryHistCache {
     private static HashMap<String, SalaryHist> modelSalaryHistory = new HashMap<>();
     private static SalaryHistCache salaryHistCache=null;

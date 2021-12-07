@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <title>Tax Calculation</title>
   <meta charset="utf-8">
@@ -8,22 +8,52 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  
+  <style>
+ul {
+  padding: 0;
+  overflow: hidden;
+  background-color:#6c388d;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+a:hover {
+    color: #ffffff;
+    text-decoration: none;
+}
+</style>
+  
+  
 </head>
 <body>
 
 <div class="container">
 
+<ul>
+  <li><a class="active" href="AddLeaves">Leaves</a></li>
+  <li><a href="TaxCalculation">TaxCalculation</a></li>
+  <li><a href="TaxCalculation">Self Review</a></li>
+  <li><a href="TaxCalculation">Rating</a></li>
+  <li style="margin-left: 60%;"><a id="btnlossgout" href="UserAuthentication/logout">Logout</a></li>
+</ul>
+
+<div class="row">
 
 <div class="col-md-12">
-
-<div class="text-left">
+<br/>
 <button id="btngenerate" type="button" class="btn btn-primary">Generate Tax</button> 
-
-<div class="text-right">
-<button id="btnlogout" type="button" class="btn btn-primary">Logout</button>
-</div> 
-
 </div>
+
 </div>
 </div>
 
@@ -50,24 +80,7 @@
      		 	
 		     });
 		    	 
-		    	 
-		    	 $("#btnlogout").click(function () {
-				    	
-		     			var request = $.ajax({
-		    				url: "http://localhost:8080/UserAuthentication/logout",
-		    				type: "GET",
-		    				contentType: 'application/json; charset=utf-8',
-		    				data:null,
-		    				success: function(result) {		    				
-		    					window.location.href = "http://localhost:8080/LoginSignup";		    					
-		    				}
-		    			});
-		     		 	
-				     });
-		    	 
-		    	 
-   	
-		    });
+		 });
     
     </script>
     

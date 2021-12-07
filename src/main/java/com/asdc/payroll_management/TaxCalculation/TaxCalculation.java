@@ -2,11 +2,12 @@ package com.asdc.payroll_management.TaxCalculation;
 
 public class TaxCalculation {
 
-	private String userID; 
-	private double salary;
-	private double salaryWithoutTax;
-	
-	public TaxCalculation(String userID, double salary, double salaryWithoutTax) {
+	private String userID;
+	private Double salary;
+	private Double salaryWithoutTax;
+	private final int percentage=15;
+
+	public TaxCalculation(String userID, Double salary, Double salaryWithoutTax) {
 		super();
 		this.userID = userID;
 		this.salary = salary;
@@ -15,7 +16,6 @@ public class TaxCalculation {
 
 	public TaxCalculation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	public String getUserID() {
@@ -25,20 +25,20 @@ public class TaxCalculation {
 	public void setUserID(String userID) {
 		this.userID = userID;
 	}
-	
-	public double getSalary() {
+
+	public Double getSalary() {
 		return salary;
 	}
 
-	public void setSalary(double salary) {
+	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
 
-	public double getSalaryWithoutTax() {
+	public Double getSalaryWithoutTax() {
 		return salaryWithoutTax;
 	}
 
-	public void setSalaryWithoutTax(double salaryWithoutTax) {
-		this.salaryWithoutTax =salaryWithoutTax+((salaryWithoutTax*15)/100);
-	}	
+	public void setSalaryWithoutTax(Double salaryWithoutTax) {
+		this.salaryWithoutTax = salaryWithoutTax + ((salaryWithoutTax * percentage) / 100);
+	}
 }
