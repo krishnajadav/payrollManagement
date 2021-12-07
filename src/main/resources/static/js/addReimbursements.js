@@ -17,7 +17,7 @@ function initialize() {
 
 				let isAcceptedvalue = "";
 				if (result[i]["isAccepted"]) {
-					isAcceptedvalue = "Accepted";
+					isAcceptedvalue = result[i]["isAccepted"];
 				} else {
 					isAcceptedvalue = "Pending";
 				}
