@@ -1,7 +1,7 @@
 function initialize() {
 
 	var request = $.ajax({
-		url: "http://localhost:8080/Manager/getAllStaff",
+		url: "http://localhost:8080//Manager/getAllStaff",
 		type: "POST",
 		contentType: 'application/json; charset=utf-8',
 		data: "1226",
