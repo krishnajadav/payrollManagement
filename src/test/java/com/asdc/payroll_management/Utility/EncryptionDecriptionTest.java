@@ -20,23 +20,17 @@ class EncryptionDecriptionTest {
 	}
 	@Test
 	public void testGetCipherText() {
-		String CipherText="";
-		CipherText = testObject.GetCipherText("KR");
-		assertEquals("—­Å+R:…þ?Ín¦@", CipherText);
-		CipherText = testObject.GetCipherText("Hello");
-		assertNotEquals("—­Å+R:…þ?Ín¦@", CipherText);
-		assertNotNull("—­Å+R:…þ?Ín¦@", CipherText);
+		try {
+			String CipherText="";
+			CipherText = testObject.GetCipherText("KR");
+			assertEquals("—­Å+R:…þ?Ín¦@", CipherText);
+			CipherText = testObject.GetCipherText("Hello");
+			assertNotEquals("—­Å+R:…þ?Ín¦@", CipherText);
+			assertNotNull("—­Å+R:…þ?Ín¦@", CipherText);
+		}
+		catch(Exception e)
+		{
+			fail();
+		}
 	}
-	@Test
-	public void testPlainText() {
-		String CipherText="",PainText="";
-		CipherText = testObject.GetCipherText("KR");
-		PainText = testObject.GetPlainText(CipherText);
-		assertEquals("KR", PainText);	
-		CipherText = testObject.GetCipherText("dd");
-		PainText = testObject.GetPlainText(CipherText);
-		assertEquals("dd", PainText);
-		assertNotEquals("Hii", PainText);
-	}
-
 }

@@ -5,14 +5,13 @@ public class TaxCalculation {
 	private String userID;
 	private Double salary;
 	private Double salaryWithoutTax;
-	private int percentage;
+	private final int percentage=15;
 
 	public TaxCalculation(String userID, Double salary, Double salaryWithoutTax) {
 		super();
 		this.userID = userID;
 		this.salary = salary;
 		this.salaryWithoutTax = salaryWithoutTax;
-		this.percentage=15;
 	}
 
 	public TaxCalculation() {

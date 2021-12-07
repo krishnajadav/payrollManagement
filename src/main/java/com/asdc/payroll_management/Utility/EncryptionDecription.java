@@ -22,22 +22,5 @@ public class EncryptionDecription {
 	      {
 	         return e.getMessage();
 	      }		
-	}
-	
-	public String GetPlainText(String CipherText)
-	{  
-		 try 
-	      {
-			    Key keyDecripted = new SecretKeySpec(encryptionkey.getBytes(), "AES");
-			    Cipher cipherObject = Cipher.getInstance("AES");
-			    cipherObject.init(Cipher.DECRYPT_MODE, keyDecripted);	                    
-	            String decrypted = new String(cipherObject.doFinal(CipherText.getBytes()));
-	            return decrypted;
-	      }
-	      catch(Exception e) 
-	      {
-	         return e.getMessage();
-	      }		
 	}	
-	
 }

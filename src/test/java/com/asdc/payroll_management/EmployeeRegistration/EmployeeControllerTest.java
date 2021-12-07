@@ -29,7 +29,7 @@ class EmployeeControllerTest {
 		}
 	}
 	@Test
-	public void TestsaveEmployee() throws SQLException {
+	public void TestsaveEmployee(){
 
 		try {
 			String actualResult="";
