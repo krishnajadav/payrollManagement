@@ -46,9 +46,9 @@ class TaxCalculationDAOTest {
 			SalaryHist salaryHist2 = new SalaryHist("2","1000","2021-11-01","2021-11-30","1236");
 			SalaryHist salaryHist3 = new SalaryHist("3","1000","2021-11-01","2021-11-30","1236");
 
-			salaryHistoryMap.put(salaryHist1.getSH_ID(), salaryHist1);
-			salaryHistoryMap.put(salaryHist2.getSH_ID(), salaryHist2);
-			salaryHistoryMap.put(salaryHist3.getSH_ID(), salaryHist3);
+			salaryHistoryMap.put(salaryHist1.getShId(), salaryHist1);
+			salaryHistoryMap.put(salaryHist2.getShId(), salaryHist2);
+			salaryHistoryMap.put(salaryHist3.getShId(), salaryHist3);
 			
 			Mockito.when(salaryHistCache.getAllSalaries()).thenReturn(salaryHistoryMap);
 

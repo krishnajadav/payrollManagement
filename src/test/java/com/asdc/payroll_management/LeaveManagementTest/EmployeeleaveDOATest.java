@@ -28,7 +28,7 @@ public class EmployeeleaveDOATest {
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
             ResultSet rs = mock(ResultSet.class);
-            when(databaseConnection.getData(DBQueriesConstant.allEmployeesQuery)).thenReturn(rs);
+            when(databaseConnection.getData(DBQueriesConstant.All_EMPLOYEE_QUERY)).thenReturn(rs);
             when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
             when(rs.getString("Employee_ID")).thenReturn("1225").thenReturn("26118");
             when(rs.getString("Employee_Name")).thenReturn("jaswanth").thenReturn("Ali");

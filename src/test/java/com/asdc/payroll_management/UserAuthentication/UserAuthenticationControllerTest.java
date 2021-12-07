@@ -81,9 +81,9 @@ class UserAuthenticationControllerTest {
 			Employee employee3 = new Employee("1231", "ali", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null, null, null, null,
 					null, null);
 
-			employeeMap.put(employee1.getEmployee_ID(), employee1);
-			employeeMap.put(employee2.getEmployee_ID(), employee2);
-			employeeMap.put(employee3.getEmployee_ID(), employee3);
+			employeeMap.put(employee1.getEmployeeID(), employee1);
+			employeeMap.put(employee2.getEmployeeID(), employee2);
+			employeeMap.put(employee3.getEmployeeID(), employee3);
 
 			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employeeMap);
 			actualResult = testObject.checkUserAuthentication(user,request);

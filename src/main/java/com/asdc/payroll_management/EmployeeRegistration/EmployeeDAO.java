@@ -16,20 +16,20 @@ public class EmployeeDAO implements IEmployeeDAO {
 			for (Map.Entry mapElement : employeeHashMap.entrySet()) {
 				Employee employeeTemp = (Employee) mapElement.getValue();
 
-				if (employeeTemp.getEmployee_emailID() == null) {
-					employeeTemp.setEmployee_emailID("");
+				if (employeeTemp.getEmployeeEmail() == null) {
+					employeeTemp.setEmployeeEmail("");
 				}
 
-				if (employeeTemp.getEmployee_emailID().equals(emp.getEmployee_emailID())) {
+				if (employeeTemp.getEmployeeEmail().equals(emp.getEmployee_emailID())) {
 					return "This user already Exist";
 				} else {
-					if (employeeTemp.getEmployee_ID().equals(emp.getEmployee_ID())
-							&& employeeTemp.getEmployee_emailID().length() == 0) {
-						employeeTemp.setEmployee_Name(emp.getEmployee_Name());
-						employeeTemp.setEmployee_emailID(emp.getEmployee_emailID());
-						employeeTemp.setEmployee_Password(emp.getEncriptedPassword(emp.getEmployee_Password()));
-						employeeTemp.setEmployee_Address(emp.getEmployee_Address());
-						employeeTemp.setEmployee_phoneNumb(emp.getEmployee_phoneNumb());
+					if (employeeTemp.getEmployeeID().equals(emp.getEmployee_ID())
+							&& employeeTemp.getEmployeeEmail().length() == 0) {
+						employeeTemp.setEmployeeName(emp.getEmployee_Name());
+						employeeTemp.setEmployeeEmail(emp.getEmployee_emailID());
+						employeeTemp.setEmployeePassword(emp.getEncriptedPassword(emp.getEmployee_Password()));
+						employeeTemp.setEmployeeAddress(emp.getEmployee_Address());
+						employeeTemp.setEmployeePhoneNumb(emp.getEmployee_phoneNumb());
 
 						String query = "UPDATE Employee SET Employee_Name='" + emp.getEmployee_Name()
 								+ "',Employee_emailID='" + emp.getEmployee_emailID() + "',Employee_Password='"

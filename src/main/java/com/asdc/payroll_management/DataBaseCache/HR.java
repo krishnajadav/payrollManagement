@@ -1,57 +1,57 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class HR {
-    private String HR_ID ;
-    private String HR_Name ;
-    private String HR_EmailID ;
-    private String HR_Password ;
-    private String HR_Salary ;
+    private String hrId;
+    private String hrName;
+    private String hrEmail;
+    private String hrPassword;
+    private String hrSalary;
 
-    public HR(String HR_ID, String HR_Name, String HR_EmailID, String HR_Password, String HR_Salary) {
-        this.HR_ID = HR_ID;
-        this.HR_Name = HR_Name;
-        this.HR_EmailID = HR_EmailID;
-        this.HR_Password = HR_Password;
-        this.HR_Salary = HR_Salary;
+    public HR(String hrId, String hrName, String hrEmail, String hrPassword, String hrSalary) {
+        this.hrId = hrId;
+        this.hrName = hrName;
+        this.hrEmail = hrEmail;
+        this.hrPassword = hrPassword;
+        this.hrSalary = hrSalary;
     }
 
-    public String getHR_ID() {
-        return HR_ID;
+    public String getHrId() {
+        return hrId;
     }
 
-    public void setHR_ID(String HR_ID) {
-        this.HR_ID = HR_ID;
+    public void setHrId(String hrId) {
+        this.hrId = hrId;
     }
 
-    public String getHR_Name() {
-        return HR_Name;
+    public String getHrName() {
+        return hrName;
     }
 
-    public void setHR_Name(String HR_Name) {
-        this.HR_Name = HR_Name;
+    public void setHrName(String hrName) {
+        this.hrName = hrName;
     }
 
-    public String getHR_EmailID() {
-        return HR_EmailID;
+    public String getHrEmail() {
+        return hrEmail;
     }
 
-    public void setHR_EmailID(String HR_EmailID) {
-        this.HR_EmailID = HR_EmailID;
+    public void setHrEmail(String hrEmail) {
+        this.hrEmail = hrEmail;
     }
 
-    public String getHR_Password() {
-        return HR_Password;
+    public String getHrPassword() {
+        return hrPassword;
     }
 
-    public void setHR_Password(String HR_Password) {
-        this.HR_Password = HR_Password;
+    public void setHrPassword(String hrPassword) {
+        this.hrPassword = hrPassword;
     }
 
-    public String getHR_Salary() {
-        return HR_Salary;
+    public String getHrSalary() {
+        return hrSalary;
     }
 
-    public void setHR_Salary(String HR_Salary) {
-        this.HR_Salary = HR_Salary;
+    public void setHrSalary(String hrSalary) {
+        this.hrSalary = hrSalary;
     }
 }

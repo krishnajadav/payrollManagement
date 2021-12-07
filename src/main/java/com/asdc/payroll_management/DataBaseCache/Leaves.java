@@ -1,37 +1,37 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class Leaves {
-    private String Leaves_ID;
-    private String Leaves_Name;
-    private String Leaves_DuartionLimit;
+    private String leavesID;
+    private String leavesName;
+    private String leavesDuartionLimit;
 
-    public Leaves(String leaves_ID, String leaves_Name, String leaves_DuartionLimit) {
-        Leaves_ID = leaves_ID;
-        Leaves_Name = leaves_Name;
-        Leaves_DuartionLimit = leaves_DuartionLimit;
+    public Leaves(String leavesID, String leavesName, String leavesDuartionLimit) {
+        this.leavesID = leavesID;
+        this.leavesName = leavesName;
+        this.leavesDuartionLimit = leavesDuartionLimit;
     }
 
-    public String getLeaves_ID() {
-        return Leaves_ID;
+    public String getLeavesID() {
+        return leavesID;
     }
 
-    public void setLeaves_ID(String leaves_ID) {
-        Leaves_ID = leaves_ID;
+    public void setLeavesID(String leavesID) {
+        this.leavesID = leavesID;
     }
 
-    public String getLeaves_Name() {
-        return Leaves_Name;
+    public String getLeavesName() {
+        return leavesName;
     }
 
-    public void setLeaves_Name(String leaves_Name) {
-        Leaves_Name = leaves_Name;
+    public void setLeavesName(String leavesName) {
+        this.leavesName = leavesName;
     }
 
-    public String getLeaves_DuartionLimit() {
-        return Leaves_DuartionLimit;
+    public String getLeavesDuartionLimit() {
+        return leavesDuartionLimit;
     }
 
-    public void setLeaves_DuartionLimit(String leaves_DuartionLimit) {
-        Leaves_DuartionLimit = leaves_DuartionLimit;
+    public void setLeavesDuartionLimit(String leavesDuartionLimit) {
+        this.leavesDuartionLimit = leavesDuartionLimit;
     }
 }

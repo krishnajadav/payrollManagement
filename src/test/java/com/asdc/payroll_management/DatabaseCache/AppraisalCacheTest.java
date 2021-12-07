@@ -38,7 +38,7 @@ public class AppraisalCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allAppraisalQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_APPRAISAL_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(true).thenReturn(false);
                 when(rs.getString("employee_ID")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("manager_ID")).thenReturn("26118").thenReturn("26120");
@@ -52,8 +52,8 @@ public class AppraisalCacheTest {
                 when(rs.getString("communication_rating")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("projects_rating")).thenReturn("26119").thenReturn("26118");
                 AppraisalCache appraisalFactory = AppraisalCache.getInstance();
-                assertEquals("26118",appraisalFactory.getIndividualAppraisals("26119").getManager_ID());
-                assertEquals("7826410388",appraisalFactory.getIndividualAppraisals("26118").getManager_comments());
+                assertEquals("26118",appraisalFactory.getIndividualAppraisals("26119").getManagerID());
+                assertEquals("7826410388",appraisalFactory.getIndividualAppraisals("26118").getManagerComments());
             }
         }catch(Exception e){
             e.printStackTrace();
@@ -66,8 +66,8 @@ public class AppraisalCacheTest {
         Appraisal appraisal = new Appraisal("26120","125","ali@gmail.com","abc","124 street","12345","12345","1234","1","1","2");
 
         DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
-        String query=DBQueriesConstant.insertAppraisalQuery+" values('"+appraisal.getEmployee_ID()+"','"
-                +appraisal.getManager_ID()+"','"+appraisal.getEmployee_rating()+"','"+appraisal.getEployee_comments()+"','"+appraisal.getManager_rating()+"','"+appraisal.getManager_comments()+"','"+appraisal.getEmployee_projects()+"','"+appraisal.getTechnologies_learnt()+"','"+appraisal.getFinal_rating()+"','"+appraisal.getCommunication_rating()+"','"+appraisal.getProjects_rating()+"')";
+        String query=DBQueriesConstant.INSERT_APPRAISAL_QUERY +" values('"+appraisal.getEmployeeID()+"','"
+                +appraisal.getManagerID()+"','"+appraisal.getEmployeeRating()+"','"+appraisal.getEployeeComments()+"','"+appraisal.getManagerRating()+"','"+appraisal.getManagerComments()+"','"+appraisal.getEmployeeProjects()+"','"+appraisal.getTechnologiesLearnt()+"','"+appraisal.getFinalRating()+"','"+appraisal.getCommunicationRating()+"','"+appraisal.getProjectsRating()+"')";
 
         try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
             mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
@@ -75,9 +75,9 @@ public class AppraisalCacheTest {
             AppraisalCache appraisalFactory = AppraisalCache.getInstance();
             appraisalFactory.insert(appraisal);
             Appraisal testAppraisal=appraisalFactory.getIndividualAppraisals("26120");
-            assertEquals("125",testAppraisal.getManager_ID());
-            assertEquals("abc",testAppraisal.getEployee_comments());
-            assertNotEquals("Jas",testAppraisal.getManager_ID());
+            assertEquals("125",testAppraisal.getManagerID());
+            assertEquals("abc",testAppraisal.getEployeeComments());
+            assertNotEquals("Jas",testAppraisal.getManagerID());
 
 
         }catch(Exception ex){

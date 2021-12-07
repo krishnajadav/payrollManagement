@@ -35,8 +35,8 @@ public class LeaveMangementController {
     public @ResponseBody LeaveRequest addEmployeeLeaves(@RequestBody LeaveRequest employeeLeaveData,HttpServletRequest request) {
 
        String[] userInfo=request.getSession().getAttribute("userInfo").toString().split("#");
-       employeeLeaveData.setLR_EmployeeID(userInfo[0]);
-        IEmployeeLeaves leavesManager = new EmployeeLeavesDOA(employeeLeaveData.getLR_EmployeeID());
+       employeeLeaveData.setLrEmployeeid(userInfo[0]);
+        IEmployeeLeaves leavesManager = new EmployeeLeavesDOA(employeeLeaveData.getLrEmployeeid());
        // employeeLeaveData.setLR_EmployeeID(userInfo[0]);
         LeaveRequest validLeaveRequest = leavesManager.validateLeaveRequest(employeeLeaveData);
         if(validLeaveRequest!=null && validLeaveRequest.getError()==null){

@@ -36,15 +36,15 @@ public class DepartmentCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allDepartmentQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_DEPARTMENT_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("Department_ID")).thenReturn("26118");
                 when(rs.getString("Department_Name")).thenReturn("Finance");
                 when(rs.getString("HR_ID")).thenReturn("22");
 
                 DepartmentCache departmentFactory = DepartmentCache.getInstance();
-                assertEquals("Finance",departmentFactory.getDepartments().get("26118").getDepartment_Name());
-                assertNotEquals("Marketing",departmentFactory.getDepartments().get("26118").getDepartment_Name());
+                assertEquals("Finance",departmentFactory.getDepartments().get("26118").getDepartmentName());
+                assertNotEquals("Marketing",departmentFactory.getDepartments().get("26118").getDepartmentName());
 
             }
         }catch(Exception e){

@@ -17,13 +17,13 @@ public class UserAuthenticationDAO implements IUserAuthenticationDAO {
 			for (Map.Entry mapElement : employeeHashMap.entrySet()) {
 				Employee employeeTemp = (Employee) mapElement.getValue();
 
-				if (employeeTemp.getEmployee_emailID() == null) {
-					employeeTemp.setEmployee_emailID("");
+				if (employeeTemp.getEmployeeEmail() == null) {
+					employeeTemp.setEmployeeEmail("");
 				}
-				if (employeeTemp.getEmployee_emailID().equalsIgnoreCase(ua.getUserEmail())
-						&& employeeTemp.getEmployee_Password().equals(ua.getEncriptedPassword(ua.getUserPassword()))) {
-					return employeeTemp.getEmployee_ID() + "#" + employeeTemp.getEmployee_Name() + "#"
-							+ employeeTemp.getAccess_level();
+				if (employeeTemp.getEmployeeEmail().equalsIgnoreCase(ua.getUserEmail())
+						&& employeeTemp.getEmployeePassword().equals(ua.getEncriptedPassword(ua.getUserPassword()))) {
+					return employeeTemp.getEmployeeID() + "#" + employeeTemp.getEmployeeName() + "#"
+							+ employeeTemp.getAccessLevel();
 				}
 			}
 			return "Invalid User";

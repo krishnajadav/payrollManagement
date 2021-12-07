@@ -16,8 +16,8 @@ public class TaxCalculationDAO implements ITaxCalculationDAO {
 			Double totalSalary = 0.0;
 			for (Map.Entry mapElement : salaryHashMap.entrySet()) {
 				SalaryHist salaryTemp = (SalaryHist) mapElement.getValue();
-				if (salaryTemp.getEmployee_ID().equals(tc.getUserID())) {
-					LocalDate startDate = LocalDate.parse(salaryTemp.getStart_Date());
+				if (salaryTemp.getEmployeeID().equals(tc.getUserID())) {
+					LocalDate startDate = LocalDate.parse(salaryTemp.getStartDate());
 					LocalDate currentDate = LocalDate.now();
 					LocalDate yearAgoDate = currentDate.minusYears(1);
 					boolean isWithinYearAgo = ((startDate.isAfter(yearAgoDate)) & (startDate.isBefore(currentDate)));

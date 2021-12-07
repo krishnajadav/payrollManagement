@@ -22,13 +22,13 @@ public class LeavesCache {
 
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allLeavesQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_LEAVES_QUERY);
             while (rs.next()) {
-                String Leaves_ID = rs.getString("Leaves_ID");
-                String Leaves_Name = rs.getString("Leaves_Name");
-                String Leaves_DuartionLimit = rs.getString("Leaves_DuartionLimit");
+                String leavesId = rs.getString("Leaves_ID");
+                String leavesName = rs.getString("Leaves_Name");
+                String leavesDuartionLimit = rs.getString("Leaves_DuartionLimit");
 
-                modelLeaves.put(Leaves_ID, new Leaves(Leaves_ID, Leaves_Name, Leaves_DuartionLimit));
+                modelLeaves.put(leavesId, new Leaves(leavesId, leavesName, leavesDuartionLimit));
             }
         }catch (Exception e){
             e.printStackTrace();

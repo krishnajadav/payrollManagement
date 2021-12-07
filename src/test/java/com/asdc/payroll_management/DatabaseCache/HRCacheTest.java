@@ -35,7 +35,7 @@ public class HRCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allHRQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_HR_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("HR_ID")).thenReturn("26118");
                 when(rs.getString("HR_Name")).thenReturn("Ali");
@@ -44,8 +44,8 @@ public class HRCacheTest {
                 when(rs.getString("HR_Salary")).thenReturn("22");
                 HRCache hrFactory = HRCache.getInstance();
 
-                assertEquals("Ali",hrFactory.getallHRS().get("26118").getHR_Name());
-                assertNotEquals("2500",hrFactory.getallHRS().get("26118").getHR_Salary());
+                assertEquals("Ali",hrFactory.getallHRS().get("26118").getHrName());
+                assertNotEquals("2500",hrFactory.getallHRS().get("26118").getHrSalary());
 
             }
         }catch(Exception e){

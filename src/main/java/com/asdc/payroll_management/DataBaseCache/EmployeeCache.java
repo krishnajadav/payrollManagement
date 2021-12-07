@@ -2,72 +2,68 @@ package com.asdc.payroll_management.DataBaseCache;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
-
-
 public class EmployeeCache {
 
-    private static HashMap<String,Employee> modelEmployees = new HashMap<String,Employee>();
-    private static EmployeeCache employeeFactory=null;
+    private static final HashMap<String, Employee> modelEmployees = new HashMap<String, Employee>();
+    private static EmployeeCache employeeFactory = null;
 
-    public static EmployeeCache getInstance(){
-        if(employeeFactory==null){
-            employeeFactory=new EmployeeCache();
+    private EmployeeCache() {
+        load();
+    }
+
+    public static EmployeeCache getInstance() {
+        if (employeeFactory == null) {
+            employeeFactory = new EmployeeCache();
         }
         return employeeFactory;
     }
 
-    private EmployeeCache(){
-        load();
-    }
-
-
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allEmployeesQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.All_EMPLOYEE_QUERY);
             while (rs.next()) {
-                String Employee_ID = rs.getString("Employee_ID");
-                String Employee_Name = rs.getString("Employee_Name");
-                String Employee_emailID = rs.getString("Employee_emailID");
-                String Employee_Password = rs.getString("Employee_Password");
-                String Employee_Address = rs.getString("Employee_Address");
-                String Employee_phoneNumb = rs.getString("Employee_phoneNumb");
-                String Employee_Salary = rs.getString("Employee_Salary");
-                String ManagerID = rs.getString("ManagerID");
-                String Department_ID = rs.getString("Department_ID");
-                String Designation = rs.getString("Designation");
-                String Access_level = rs.getString("Access_level");
-                modelEmployees.put(Employee_ID, new Employee(Employee_ID, Employee_Name, Employee_emailID, Employee_Password, Employee_Address, Employee_phoneNumb, Employee_Salary, ManagerID, Department_ID, Designation, Access_level));
+                String employeeId = rs.getString("Employee_ID");
+                String employeeName = rs.getString("Employee_Name");
+                String employeeEmailid = rs.getString("Employee_emailID");
+                String employeePassword = rs.getString("Employee_Password");
+                String employeeAddress = rs.getString("Employee_Address");
+                String employeePhoneNumb = rs.getString("Employee_phoneNumb");
+                String employeeSalary = rs.getString("Employee_Salary");
+                String managerID = rs.getString("ManagerID");
+                String departmentId = rs.getString("Department_ID");
+                String designation = rs.getString("Designation");
+                String accessLevel = rs.getString("Access_level");
+                modelEmployees.put(employeeId, new Employee(employeeId, employeeName, employeeEmailid, employeePassword, employeeAddress, employeePhoneNumb, employeeSalary, managerID, departmentId, designation, accessLevel));
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    public HashMap<String,Employee> getAllEmployees(){
+    public HashMap<String, Employee> getAllEmployees() {
 
         return new HashMap<>(modelEmployees);
     }
 
-    public Employee getEmployee(String id){
+    public Employee getEmployee(String id) {
         return modelEmployees.get(id);
     }
 
-    public boolean insert(Employee e ){
-    String query=DBQueriesConstant.insertEmployeeQuery+" values('"+e.getEmployee_ID()+"','"
-            +e.getEmployee_Name()+"','"+e.getEmployee_emailID()+"','"+e.getEmployee_Password()+"','"+e.getEmployee_Address()+"','"+e.getEmployee_phoneNumb()+"','"
-            +e.getEmployee_Salary()+"','"+e.getManagerID()+"','"+e.getDepartment_ID()+"','"+e.getDesignation()+"','"+e.getAccess_level()+"')";
-    boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
-    if(insertStatus){
-        modelEmployees.put(e.getEmployee_ID(),e);
-    }
-    return insertStatus;
+    public boolean insert(Employee employee) {
+        String query = DBQueriesConstant.INSERT_EMPLOYEE_QUERY + " values('" + employee.getEmployeeID() + "','"
+                + employee.getEmployeeName() + "','" + employee.getEmployeeEmail() + "','" + employee.getEmployeePassword() + "','" + employee.getEmployeeAddress() + "','" + employee.getEmployeePhoneNumb() + "','"
+                + employee.getEmployeeSalary() + "','" + employee.getManagerID() + "','" + employee.getDepartmentID() + "','" + employee.getDesignation() + "','" + employee.getAccessLevel() + "')";
+        boolean insertStatus = DatabaseConnection.getInstance().insertData(query);
+        if (insertStatus) {
+            modelEmployees.put(employee.getEmployeeID(), employee);
+        }
+        return insertStatus;
     }
 
-    
     public Boolean update(String query,Employee employee){
         boolean insertStatus = DatabaseConnection.getInstance().insertData(query);
         if (insertStatus) {
-            modelEmployees.put(employee.getEmployee_ID(), employee);
+            modelEmployees.put(employee.getEmployeeID(), employee);
         }
         return insertStatus;
     }

@@ -1,55 +1,55 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class LeaveRequest {
-    private String LR_ID ;
-    private String LR_EmployeeID ;
-    private String LR_Duration ;
-    private String LR_Type ;
+    private String lrId;
+    private String lrEmployeeid;
+    private String lrDuration;
+    private String lrType;
     private String isAccepted ;
-    private String Leave_Request_Date ;
-    private String Leave_End_Date ;
+    private String leaveRequestDate;
+    private String leaveEndDate;
     private String error=null;
 
-    public LeaveRequest(String LR_ID, String LR_EmployeeID, String LR_Duration, String LR_Type, String isAccepted, String leave_Request_Date, String leave_End_Date) {
-        this.LR_ID = LR_ID;
-        this.LR_EmployeeID = LR_EmployeeID;
-        this.LR_Duration = LR_Duration;
-        this.LR_Type = LR_Type;
+    public LeaveRequest(String lrId, String lrEmployeeid, String lrDuration, String lrType, String isAccepted, String leaveRequestDate, String leaveEndDate) {
+        this.lrId = lrId;
+        this.lrEmployeeid = lrEmployeeid;
+        this.lrDuration = lrDuration;
+        this.lrType = lrType;
         this.isAccepted = isAccepted;
-        this.Leave_Request_Date = leave_Request_Date;
-        this.Leave_End_Date = leave_End_Date;
+        this.leaveRequestDate = leaveRequestDate;
+        this.leaveEndDate = leaveEndDate;
     }
 
-    public String getLR_ID() {
-        return LR_ID;
+    public String getLrId() {
+        return lrId;
     }
 
-    public void setLR_ID(String LR_ID) {
-        this.LR_ID = LR_ID;
+    public void setLrId(String lrId) {
+        this.lrId = lrId;
     }
 
-    public String getLR_EmployeeID() {
-        return LR_EmployeeID;
+    public String getLrEmployeeid() {
+        return lrEmployeeid;
     }
 
-    public void setLR_EmployeeID(String LR_EmployeeID) {
-        this.LR_EmployeeID = LR_EmployeeID;
+    public void setLrEmployeeid(String lrEmployeeid) {
+        this.lrEmployeeid = lrEmployeeid;
     }
 
-    public String getLR_Duration() {
-        return LR_Duration;
+    public String getLrDuration() {
+        return lrDuration;
     }
 
-    public void setLR_Duration(String LR_Duration) {
-        this.LR_Duration = LR_Duration;
+    public void setLrDuration(String lrDuration) {
+        this.lrDuration = lrDuration;
     }
 
-    public String getLR_Type() {
-        return LR_Type;
+    public String getLrType() {
+        return lrType;
     }
 
-    public void setLR_Type(String LR_Type) {
-        this.LR_Type = LR_Type;
+    public void setLrType(String lrType) {
+        this.lrType = lrType;
     }
 
     public String getIsAccepted() {
@@ -60,20 +60,20 @@ public class LeaveRequest {
         this.isAccepted = isAccepted;
     }
 
-    public String getLeave_Request_Date() {
-        return Leave_Request_Date;
+    public String getLeaveRequestDate() {
+        return leaveRequestDate;
     }
 
-    public void setLeave_Request_Date(String leave_Request_Date) {
-        Leave_Request_Date = leave_Request_Date;
+    public void setLeaveRequestDate(String leaveRequestDate) {
+        this.leaveRequestDate = leaveRequestDate;
     }
 
-    public String getLeave_End_Date() {
-        return Leave_End_Date;
+    public String getLeaveEndDate() {
+        return leaveEndDate;
     }
 
-    public void setLeave_End_Date(String leave_End_Date) {
-        Leave_End_Date = leave_End_Date;
+    public void setLeaveEndDate(String leaveEndDate) {
+        this.leaveEndDate = leaveEndDate;
     }
 
     public String getError() {

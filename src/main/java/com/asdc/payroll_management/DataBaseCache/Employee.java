@@ -1,118 +1,118 @@
 package com.asdc.payroll_management.DataBaseCache;
 
 public class Employee {
-    private String Employee_ID;
-    private String Employee_Name;
-    private String Employee_emailID;
-    private String Employee_Password;
-    private String Employee_Address;
-    private String Employee_phoneNumb;
-    private String Employee_Salary;
-    private String ManagerID;
-    private String Department_ID;
-    private String Designation;
-    private String Access_level;
+    private String employeeID;
+    private String employeeName;
+    private String employeeEmail;
+    private String employeePassword;
+    private String employeeAddress;
+    private String employeePhoneNumb;
+    private String employeeSalary;
+    private String managerID;
+    private String departmentID;
+    private String designation;
+    private String accessLevel;
 
-    public Employee(String employee_ID, String employee_Name, String employee_emailID, String employee_Password, String employee_Address, String employee_phoneNumb, String employee_Salary, String managerID, String department_ID, String Designation,String Access_level) {
-        Employee_ID = employee_ID;
-        Employee_Name = employee_Name;
-        Employee_emailID = employee_emailID;
-        Employee_Password = employee_Password;
-        Employee_Address = employee_Address;
-        Employee_phoneNumb = employee_phoneNumb;
-        Employee_Salary = employee_Salary;
-        ManagerID = managerID;
-        Department_ID = department_ID;
-        this.Designation = Designation;
-        this.Access_level=Access_level;
+    public Employee(String employeeID, String employeeName, String employeeEmailID, String employeePassword, String employeeAddress, String employeePhoneNumb, String employeeSalary, String managerID, String departmentID, String designation, String accessLevel) {
+        this.employeeID = employeeID;
+        this.employeeName = employeeName;
+        employeeEmail = employeeEmailID;
+        this.employeePassword = employeePassword;
+        this.employeeAddress = employeeAddress;
+        this.employeePhoneNumb = employeePhoneNumb;
+        this.employeeSalary = employeeSalary;
+        this.managerID = managerID;
+        this.departmentID = departmentID;
+        this.designation = designation;
+        this.accessLevel = accessLevel;
     }
 
-    public String getEmployee_ID() {
-        return Employee_ID;
+    public String getEmployeeID() {
+        return employeeID;
     }
 
-    public void setEmployee_ID(String employee_ID) {
-        Employee_ID = employee_ID;
+    public void setEmployeeID(String employeeID) {
+        this.employeeID = employeeID;
     }
 
-    public String getEmployee_Name() {
-        return Employee_Name;
+    public String getEmployeeName() {
+        return employeeName;
     }
 
-    public void setEmployee_Name(String employee_Name) {
-        Employee_Name = employee_Name;
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
     }
 
-    public String getEmployee_emailID() {
-        return Employee_emailID;
+    public String getEmployeeEmail() {
+        return employeeEmail;
     }
 
-    public void setEmployee_emailID(String employee_emailID) {
-        Employee_emailID = employee_emailID;
+    public void setEmployeeEmail(String employeeEmail) {
+        this.employeeEmail = employeeEmail;
     }
 
-    public String getEmployee_Password() {
-        return Employee_Password;
+    public String getEmployeePassword() {
+        return employeePassword;
     }
 
-    public void setEmployee_Password(String employee_Password) {
-        Employee_Password = employee_Password;
+    public void setEmployeePassword(String employeePassword) {
+        this.employeePassword = employeePassword;
     }
 
-    public String getEmployee_Address() {
-        return Employee_Address;
+    public String getEmployeeAddress() {
+        return employeeAddress;
     }
 
-    public void setEmployee_Address(String employee_Address) {
-        Employee_Address = employee_Address;
+    public void setEmployeeAddress(String employeeAddress) {
+        this.employeeAddress = employeeAddress;
     }
 
-    public String getEmployee_phoneNumb() {
-        return Employee_phoneNumb;
+    public String getEmployeePhoneNumb() {
+        return employeePhoneNumb;
     }
 
-    public void setEmployee_phoneNumb(String employee_phoneNumb) {
-        Employee_phoneNumb = employee_phoneNumb;
+    public void setEmployeePhoneNumb(String employeePhoneNumb) {
+        this.employeePhoneNumb = employeePhoneNumb;
     }
 
-    public String getEmployee_Salary() {
-        return Employee_Salary;
+    public String getEmployeeSalary() {
+        return employeeSalary;
     }
 
-    public void setEmployee_Salary(String employee_Salary) {
-        Employee_Salary = employee_Salary;
+    public void setEmployeeSalary(String employeeSalary) {
+        this.employeeSalary = employeeSalary;
     }
 
     public String getManagerID() {
-        return ManagerID;
+        return managerID;
     }
 
     public void setManagerID(String managerID) {
-        ManagerID = managerID;
+        this.managerID = managerID;
     }
 
-    public String getDepartment_ID() {
-        return Department_ID;
+    public String getDepartmentID() {
+        return departmentID;
     }
 
-    public void setDepartment_ID(String department_ID) {
-        Department_ID = department_ID;
+    public void setDepartmentID(String departmentID) {
+        this.departmentID = departmentID;
     }
 
     public String getDesignation() {
-        return Designation;
+        return designation;
     }
 
     public void setDesignation(String Designation) {
-        this.Designation = Designation;
+        this.designation = Designation;
     }
 
-    public String getAccess_level() {
-        return Access_level;
+    public String getAccessLevel() {
+        return accessLevel;
     }
 
-    public void setAccess_level(String access_level) {
-        Access_level = access_level;
+    public void setAccessLevel(String accessLevel) {
+        this.accessLevel = accessLevel;
     }
 
 }

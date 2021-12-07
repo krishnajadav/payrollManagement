@@ -33,15 +33,15 @@ public class ReimburesmentCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allReimbursementQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_REIMBURSEMENT_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("RT_ID")).thenReturn("1");
                 when(rs.getString("Reimbursement_Type")).thenReturn("Food");
                 when(rs.getString("Reimbursement_Limit")).thenReturn("500");
                 ReimbursementCache reimbursementCache = ReimbursementCache.getInstance();
 
-                assertEquals("Food",reimbursementCache.getAllReimbursements().get("1").getReimbursement_Type());
-                assertNotEquals("30000",reimbursementCache.getAllReimbursements().get("1").getReimbursement_Limit());
+                assertEquals("Food",reimbursementCache.getAllReimbursements().get("1").getReimbursementType());
+                assertNotEquals("30000",reimbursementCache.getAllReimbursements().get("1").getReimbursementLimit());
             }
         }catch(Exception e){
             e.printStackTrace();

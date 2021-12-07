@@ -36,15 +36,15 @@ public class LeavesCacheTest {
             try (MockedStatic mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
                 ResultSet rs = mock(ResultSet.class);
-                when(databaseConnection.getData(DBQueriesConstant.allLeavesQuery)).thenReturn(rs);
+                when(databaseConnection.getData(DBQueriesConstant.ALL_LEAVES_QUERY)).thenReturn(rs);
                 when(rs.next()).thenReturn(true).thenReturn(false);
                 when(rs.getString("Leaves_ID")).thenReturn("1");
                 when(rs.getString("Leaves_Name")).thenReturn("Sick Leave");
                 when(rs.getString("Leaves_DuartionLimit")).thenReturn("2");
 
                 LeavesCache leavesFactory = LeavesCache.getInstance();
-                assertEquals("Sick Leave",leavesFactory.getAllLeaveTypes().get("1").getLeaves_Name());
-                assertNotEquals("3",leavesFactory.getAllLeaveTypes().get("1").getLeaves_DuartionLimit());
+                assertEquals("Sick Leave",leavesFactory.getAllLeaveTypes().get("1").getLeavesName());
+                assertNotEquals("3",leavesFactory.getAllLeaveTypes().get("1").getLeavesDuartionLimit());
 
             }
         }catch(Exception e){
