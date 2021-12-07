@@ -27,7 +27,7 @@ public class ReimbursementCache {
             while (rs.next()) {
                 String RT_ID = rs.getString("RT_ID");
                 String Reimbursement_Type = rs.getString("Reimbursement_Type");
-                int Reimbursement_Limit = rs.getInt("Reimbursement_Limit");
+                String Reimbursement_Limit = rs.getString("Reimbursement_Limit");
 
                 modelReimbursement.put(RT_ID, new Reimbursement(RT_ID, Reimbursement_Type, Reimbursement_Limit));
             }
@@ -39,16 +39,6 @@ public class ReimbursementCache {
     public HashMap<String,Reimbursement> getAllReimbursements(){
 
         return new HashMap<>(modelReimbursement);
-    }
-    
-    public String getReimbursement_Type(String RT_ID)
-    {
-    	return modelReimbursement.get(RT_ID).getReimbursement_Type();
-    }
-    
-    public int getReimbursement_Limit(String RT_ID)
-    {
-    	return modelReimbursement.get(RT_ID).getReimbursement_Limit();
     }
 
 }

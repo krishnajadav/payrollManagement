@@ -3,9 +3,9 @@ package com.asdc.payroll_management.DataBaseCache;
 public class Reimbursement {
     private String RT_ID;
     private String Reimbursement_Type;
-    private int Reimbursement_Limit;
+    private String Reimbursement_Limit;
 
-    public Reimbursement(String RT_ID, String reimbursement_Type, int reimbursement_Limit) {
+    public Reimbursement(String RT_ID, String reimbursement_Type, String reimbursement_Limit) {
         this.RT_ID = RT_ID;
         Reimbursement_Type = reimbursement_Type;
         Reimbursement_Limit = reimbursement_Limit;
@@ -27,11 +27,11 @@ public class Reimbursement {
         Reimbursement_Type = reimbursement_Type;
     }
 
-    public int getReimbursement_Limit() {
+    public String getReimbursement_Limit() {
         return Reimbursement_Limit;
     }
 
-    public void setReimbursement_Limit(int reimbursement_Limit) {
+    public void setReimbursement_Limit(String reimbursement_Limit) {
         Reimbursement_Limit = reimbursement_Limit;
     }
 }

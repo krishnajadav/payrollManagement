@@ -20,7 +20,7 @@ public class DBQueriesConstant {
     public static String allManagersQuery = "Select * from Managers;";
 
     public static String allReimbursementRequestsQuery = "Select * from  Reimbursement_Request;";
-    public static String insertReimbursementRequestsQuery = "Insert into Reimbursement_Request (RR_ID,RR_EmployeeID,RR_TypeID,RR_Note,RR_Amount,RR_Date,isAccepted)";
+    public static String insertReimbursementRequestsQuery = "Insert into Reimbursement_Request (RR_EmployeeID,RR_TypeID,RR_Note,RR_Amount,RR_Date,isAccepted)";
     public static String updateReimbursementRequestsTrueQuery = "update Reimbursement_Request set isAccepted=true where RR_ID=";
     public static String updateReimbursementRequestsFalseQuery = "update Reimbursement_Request set isAccepted=false where RR_ID=";
 
@@ -30,7 +30,8 @@ public class DBQueriesConstant {
 
     public static String allAppraisalQuery = "SELECT * FROM Appraisal;";
     public static String insertAppraisalQuery = "Insert into Appraisal (employee_ID,manager_ID,employee_rating,eployee_comments,manager_rating,manager_comments,employee_projects,technologies_learnt,final_rating,communication_rating,projects_rating)";
-
+    public static String updateAppraisalQuery = "update Appraisal set";
+    
     public static String allJobDesignations = "SELECT Designation_Name FROM Job_Designation;";
 
 }

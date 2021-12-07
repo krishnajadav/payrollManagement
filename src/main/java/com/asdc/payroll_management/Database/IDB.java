@@ -4,14 +4,11 @@ import java.sql.*;
 
 public interface IDB {
 
-	void LoadDatabase() throws ClassNotFoundException;
+	void LoadDatabase();
 
-	ResultSet ExecuteQuery(String query);
+    ResultSet ExecuteQuery(String query);
 
-	public boolean InsertResultset(String query, PreparedStatement preparedStmt);
+    void Close();
 
-	public Connection getConnection();
-
-	void Close();
-
+	
 }
