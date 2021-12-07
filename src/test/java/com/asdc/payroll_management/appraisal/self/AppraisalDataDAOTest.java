@@ -43,6 +43,11 @@ class AppraisalDataDAOTest {
 			techsLeaned.add("Tech 1");
 			techsLeaned.add("Tech 2");
 			techsLeaned.add("Tech 3");
+			
+			AppraisalCache appraisalCache = Mockito.mock(AppraisalCache.class);
+			MockedStatic<AppraisalCache> mocked = mockStatic(AppraisalCache.class);
+			mocked.when(AppraisalCache::getInstance).thenReturn(appraisalCache);
+			Mockito.when(appraisalCache.insert(Mockito.any())).thenReturn(true);
 
 			selfReviewData.setComments(
 					"Good team performance throughout the assigned project. Maintained a good learning curve and paid attention to self development throughout the course of the project. Handled team conflicts very well and was always up for Knowledge transfer sessions to the new resources recruited to the project.");
@@ -53,11 +58,6 @@ class AppraisalDataDAOTest {
 			selfReviewData.setTechnologiesLearnt(techsLeaned);
 			appraisalDataDAO.processInput(selfReviewData);
 			assertNull(selfReviewData.getError());
-
-			AppraisalCache appraisalCache = Mockito.mock(AppraisalCache.class);
-			MockedStatic<AppraisalCache> mocked = mockStatic(AppraisalCache.class);
-			mocked.when(AppraisalCache::getInstance).thenReturn(appraisalCache);
-			Mockito.when(appraisalCache.insert(Mockito.any())).thenReturn(true);
 
 			selfReviewData.setComments("");
 			appraisalDataDAO.processInput(selfReviewData);

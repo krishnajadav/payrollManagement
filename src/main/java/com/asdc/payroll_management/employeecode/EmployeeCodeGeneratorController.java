@@ -21,21 +21,21 @@ public class EmployeeCodeGeneratorController {
 	
 	@RequestMapping("/getDesignations")
 	public List<String> getDesignations() {
-		return new GenerateEmployeeFronEndDataDAOImpl().getDesignationsFromCache();
+		return new GenerateEmployeeFrontEndDataDAOImpl().getDesignationsFromCache();
 	}
 	
 	@RequestMapping("/getDepartments")
 	public List<String> getDepartments() {
-		return new GenerateEmployeeFronEndDataDAOImpl().getDepartmentsFromCache();
+		return new GenerateEmployeeFrontEndDataDAOImpl().getDepartmentsFromCache();
 	}
 	
 	@RequestMapping("/getManagerNames")
 	public List<String> getManagerNames() {
-		return new GenerateEmployeeFronEndDataDAOImpl().getManagerNamesFromCache();
+		return new GenerateEmployeeFrontEndDataDAOImpl().getManagerNamesFromCache();
 	}
 
 	@RequestMapping(value = "/getEmployeeData", method = RequestMethod.POST)
 	public @ResponseBody List<Object> generateAndGetEmployeeCode(@RequestBody EmployeeData employeeData) {
-		return new GenerateEmployeeFronEndDataDAOImpl().processInput(employeeData);
+		return new GenerateEmployeeFrontEndDataDAOImpl().processInput(employeeData);
 	}
 }
