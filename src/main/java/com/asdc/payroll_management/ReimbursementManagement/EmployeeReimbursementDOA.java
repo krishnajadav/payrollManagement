@@ -1,7 +1,6 @@
 package com.asdc.payroll_management.ReimbursementManagement;
 
 import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
-import com.asdc.payroll_management.DataBaseCache.LeavesCache;
 import com.asdc.payroll_management.DataBaseCache.ReimbursementRequest;
 import com.asdc.payroll_management.DataBaseCache.ReimbursementRequestCache;
 import com.asdc.payroll_management.DataBaseCache.Employee;
@@ -35,21 +34,6 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 		}
 		return reimbursementRequests;
 	}
-
-	@Override
-	public Leaves getLeaveType(String leaveName) {
-		Leaves leaveType = null;
-		LeavesCache leavesCache = LeavesCache.getInstance();
-		HashMap<String, Leaves> leavesHashMap = leavesCache.getAllLeaveTypes();
-		for (Map.Entry<String, Leaves> mapElement : leavesHashMap.entrySet()) {
-			leaveType = (Leaves) mapElement.getValue();
-			if (leaveType.getLeaves_Name().equalsIgnoreCase(leaveName)) {
-				break;
-			}
-		}
-		return leaveType;
-	}
-
 	@Override
 	public boolean addReimbursementRequest(ReimbursementRequest reimbursementRequest) {
 		Boolean insertStatus = ReimbursementRequestCache.getInstance().insert(reimbursementRequest);

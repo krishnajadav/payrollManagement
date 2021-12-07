@@ -9,8 +9,6 @@ public interface IEmployeeReimbursement {
 
     List<ReimbursementRequest> getAllReimbursements();
 
-    public Leaves getLeaveType(String leaveName);
-
     public ReimbursementRequest validateReimbursementRequest(ReimbursementRequest reimbursementRequest);
 
 	public boolean addReimbursementRequest(ReimbursementRequest reimbursementRequest);
