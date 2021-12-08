@@ -14,13 +14,22 @@ function initialize() {
 				var cell2 = row.insertCell(2);
 				var cell3 = row.insertCell(3);
 				var cell4 = row.insertCell(4);
+
+				let isAcceptedvalue = "";
+				if (result[i]["isAccepted"]=="null") {
+					isAcceptedvalue = "pending";
+				}
+				else
+				{
+					isAcceptedvalue = result[i]["isAccepted"];
+				}
 				
 				
 				cell0.innerHTML = result[i]["rr_TypeID"];
 				cell1.innerHTML = result[i]["rr_Note"];
 				cell2.innerHTML = result[i]["rr_Amount"];
 				cell3.innerHTML = result[i]["rr_Date"];
-				cell4.innerHTML = result[i]["isAccepted"];
+				cell4.innerHTML = isAcceptedvalue;
 
 
 			}

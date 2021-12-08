@@ -22,7 +22,7 @@ public class ReimbursementRequestCache {
 	private void load() {
 
 		try {
-			ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allReimbursementRequestsQuery);
+			ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.ALL_REIMBURSEMENT_REQUESTS_QUERY);
 			while (rs.next()) {
 				String RR_ID = rs.getString("RR_ID");
 				String RR_EmployeeID = rs.getString("RR_EmployeeID");
@@ -33,7 +33,6 @@ public class ReimbursementRequestCache {
 				String isAccepted = rs.getString("isAccepted");
 				ReimbursementRequest tempRR = new ReimbursementRequest(RR_ID, RR_EmployeeID, RR_TypeID, RR_Note,
 						RR_Amount, RR_Date, isAccepted);
-				// tempLeaveRequest.setIsAccepted(isAccepted);
 				modelReimbursementRequests.put(RR_ID, tempRR);
 			}
 		} catch (Exception e) {
@@ -52,7 +51,7 @@ public class ReimbursementRequestCache {
 	}
 
 	public boolean insert(ReimbursementRequest reimbursementRequest) {
-		String query = DBQueriesConstant.insertReimbursementRequestsQuery + " values('"
+		String query = DBQueriesConstant.INSERT_REIMBURSEMENT_REQUESTS_QUERY + " values('"
 				+ reimbursementRequest.getRR_EmployeeID() + "','" + reimbursementRequest.getRR_TypeID() + "','"
 				+ reimbursementRequest.getRR_Note() + "','" + reimbursementRequest.getRR_Amount() + "','"
 				+ reimbursementRequest.getRR_Date() + "','" + reimbursementRequest.getIsAccepted() + "')";
@@ -73,7 +72,7 @@ public class ReimbursementRequestCache {
 
 	public boolean updateReimbursementRequestTrue(ReimbursementRequest e) {
 		Boolean updateStatus = DatabaseConnection.getInstance()
-				.updateData(DBQueriesConstant.updateReimbursementRequestsTrueQuery + "\"" + e.getRR_ID() + "\";");
+				.updateData(DBQueriesConstant.UPDATE_REIMBURSEMENT_REQUESTS_TRUE_QUERY + "\"" + e.getRR_ID() + "\";");
 		if (updateStatus) {
 			e.setIsAccepted("1");
 			modelReimbursementRequests.put(e.getRR_ID(), e);
@@ -83,7 +82,7 @@ public class ReimbursementRequestCache {
 
 	public boolean updateReimbursementRequestFalse(ReimbursementRequest e) {
 		Boolean updateStatus = DatabaseConnection.getInstance()
-				.updateData(DBQueriesConstant.updateReimbursementRequestsFalseQuery + "\"" + e.getRR_ID() + "\";");
+				.updateData(DBQueriesConstant.UPDATE_REIMBURSEMENT_REQUESTS_FALSE_QUERY + "\"" + e.getRR_ID() + "\";");
 		if (updateStatus) {
 			e.setIsAccepted("0");
 			modelReimbursementRequests.put(e.getRR_ID(), e);

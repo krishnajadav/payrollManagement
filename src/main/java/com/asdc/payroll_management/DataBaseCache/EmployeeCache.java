@@ -23,7 +23,7 @@ public class EmployeeCache {
 
     private void load() {
         try {
-            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.allEmployeesQuery);
+            ResultSet rs = DatabaseConnection.getInstance().getData(DBQueriesConstant.All_EMPLOYEE_QUERY);
             while (rs.next()) {
                 String Employee_ID = rs.getString("Employee_ID");
                 String Employee_Name = rs.getString("Employee_Name");
@@ -53,7 +53,7 @@ public class EmployeeCache {
     }
 
     public boolean insert(Employee e ){
-    String query=DBQueriesConstant.insertEmployeeQuery+" values('"+e.getEmployee_ID()+"','"
+    String query=DBQueriesConstant.INSERT_EMPLOYEE_QUERY+" values('"+e.getEmployee_ID()+"','"
             +e.getEmployee_Name()+"','"+e.getEmployee_emailID()+"','"+e.getEmployee_Password()+"','"+e.getEmployee_Address()+"','"+e.getEmployee_phoneNumb()+"','"
             +e.getEmployee_Salary()+"','"+e.getManagerID()+"','"+e.getDepartment_ID()+"','"+e.getDesignation()+"','"+e.getAccess_level()+"')";
     boolean insertStatus= DatabaseConnection.getInstance().insertData(query);
