@@ -61,18 +61,17 @@ public class EmployeeReimbursementDOATest {
 	@Test
 	public void checkReimbursementDateTest() {
 		try {
-			SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-			String dateString = format.format(new Date());
+			long reimbursementDate = new Date().getTime();
 			ReimbursementRequest reimbursementRequestTrue = new ReimbursementRequest(null, "1225", "1", "Note", "49",
-					dateString, "Pending");
+					Long.toString(reimbursementDate), "Pending");
 			testClass = new EmployeeReimbursementDOA("1225");
 			assertTrue(testClass.checkReimbursementDate(reimbursementRequestTrue));
 
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_MONTH, 1);
-			String futureDate = format.format(cal.getTime());
+			cal.add(Calendar.DAY_OF_MONTH, 2);
+			long futureDateLong = cal.getTime().getTime();
 			ReimbursementRequest reimbursementRequestFalse = new ReimbursementRequest(null, "1225", "1", "Note", "49",
-					futureDate.toString(), "Pending");
+					Long.toString(futureDateLong), "Pending");
 			testClass = new EmployeeReimbursementDOA("1225");
 			assertFalse(testClass.checkReimbursementDate(reimbursementRequestFalse));
 		} catch (Exception e) {

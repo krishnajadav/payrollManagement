@@ -86,6 +86,7 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 
 		Date reimbursementDate = reimbursementRequest.getRR_Date() == null ? null
 				: new Date(Long.parseLong(reimbursementRequest.getRR_Date()));
+		System.out.println(reimbursementRequest.getRR_Date());
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = dateFormat.format(reimbursementDate);
 
