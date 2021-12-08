@@ -107,7 +107,6 @@ class EmployeeAppraisalRatingConcreteFactoryTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
-			fail("Exception occures : " + e.getMessage());
 			e.printStackTrace();
 		}
 	}

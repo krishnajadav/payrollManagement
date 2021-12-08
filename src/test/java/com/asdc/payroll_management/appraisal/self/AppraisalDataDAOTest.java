@@ -64,7 +64,6 @@ class AppraisalDataDAOTest {
 			assertEquals("Self Review Comments should be atleast 100 characters.<br>", selfReviewData.getError());
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -110,7 +109,6 @@ class AppraisalDataDAOTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}

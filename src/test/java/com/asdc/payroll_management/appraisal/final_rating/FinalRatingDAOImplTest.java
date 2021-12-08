@@ -67,7 +67,6 @@ class FinalRatingDAOImplTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
