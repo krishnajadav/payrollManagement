@@ -19,6 +19,7 @@ test:
     - dalfcs_docker_kvm
     - dalfcs_gitlab_docker_ci
   script:
+    - chmod +x gradlew
     - ./gradlew test 
 
 build:
@@ -27,6 +28,7 @@ build:
     - dalfcs_docker_kvm
     - dalfcs_gitlab_docker_ci
   script:
+    - chmod +x gradlew
     - ./gradlew build 
 
 
