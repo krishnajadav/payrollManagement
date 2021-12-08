@@ -33,7 +33,6 @@ public class AppraisalCacheTest {
     @Test
     public void testLoaddata()  {
         try{
-
             DatabaseConnection databaseConnection = mock(DatabaseConnection.class);
             try (MockedStatic<DatabaseConnection> mocked = mockStatic(DatabaseConnection.class)) {
                 mocked.when(DatabaseConnection::getInstance).thenReturn(databaseConnection);
