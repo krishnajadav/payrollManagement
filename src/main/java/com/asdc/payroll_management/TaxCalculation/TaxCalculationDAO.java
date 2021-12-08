@@ -1,29 +1,29 @@
 package com.asdc.payroll_management.TaxCalculation;
 
-import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
-import com.asdc.payroll_management.DataBaseCache.SalaryHist;
-import com.asdc.payroll_management.DataBaseCache.SalaryHistCache;
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 public class TaxCalculationDAO implements ITaxCalculationDAO {
 
 	@Override
 	public String generateTaxCalculation(TaxCalculation tc) {
 		try {
-			SalaryHistCache salaryHistCache = SalaryHistCache.getInstance();
-			HashMap<String, SalaryHist> salaryHashMap = salaryHistCache.getAllSalaries();
+			EmployeeCache employeeCache = EmployeeCache.getInstance();
+			HashMap<String, Employee> employeeHashMap = employeeCache.getAllEmployees();
 			Double totalSalary = 0.0;
-			for (Map.Entry mapElement : salaryHashMap.entrySet()) {
-				SalaryHist salaryTemp = (SalaryHist) mapElement.getValue();
-				if (salaryTemp.getEmployeeID().equals(tc.getUserID())) {
-					LocalDate startDate = LocalDate.parse(salaryTemp.getStartDate());
-					LocalDate currentDate = LocalDate.now();
-					LocalDate yearAgoDate = currentDate.minusYears(1);
-					boolean isWithinYearAgo = ((startDate.isAfter(yearAgoDate)) & (startDate.isBefore(currentDate)));
-					if (isWithinYearAgo) {
-						totalSalary = totalSalary + Double.parseDouble(salaryTemp.getSalary());
+			for (Map.Entry mapElement : employeeHashMap.entrySet()) {
+				Employee employeeTemp = (Employee) mapElement.getValue();
+				if (employeeTemp.getEmployeeID().equals(tc.getUserID())) {
+					if(employeeTemp.getEmployeeSalary()==null || employeeTemp.getEmployeeSalary()=="")
+					{
+						totalSalary=0.0;
 					}
+					else
+					{
+						totalSalary=Double.parseDouble(employeeTemp.getEmployeeSalary());
+					}					 	
 				}
 			}
 			return totalSalary.toString();

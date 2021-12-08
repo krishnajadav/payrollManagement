@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
+import com.asdc.payroll_management.DataBaseCache.Employee;
+import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 import com.asdc.payroll_management.DataBaseCache.SalaryHist;
 import com.asdc.payroll_management.DataBaseCache.SalaryHistCache;
 
@@ -37,24 +39,26 @@ class TaxCalculationDAOTest {
 			TaxCalculation taxCalData = new TaxCalculation();
 			taxCalData.setUserID("1236");
 			
-			SalaryHistCache salaryHistCache = Mockito.mock(SalaryHistCache.class);
-			MockedStatic<SalaryHistCache> mocked = mockStatic(SalaryHistCache.class);
-			mocked.when(SalaryHistCache::getInstance).thenReturn(salaryHistCache);
+			EmployeeCache employeeCache = Mockito.mock(EmployeeCache.class);
+			MockedStatic<EmployeeCache> mocked = mockStatic(EmployeeCache.class);
+			mocked.when(EmployeeCache::getInstance).thenReturn(employeeCache);
 
-			HashMap<String,SalaryHist> salaryHistoryMap = new HashMap<String, SalaryHist>();
-			SalaryHist salaryHist1 = new SalaryHist("1","1000","2021-11-01","2021-11-30","1236");
-			SalaryHist salaryHist2 = new SalaryHist("2","1000","2021-11-01","2021-11-30","1236");
-			SalaryHist salaryHist3 = new SalaryHist("3","1000","2021-11-01","2021-11-30","1236");
+			HashMap<String, Employee> employeeMap = new HashMap<String, Employee>();
+			Employee employee1 = new Employee("1236", "Krishna", "team@gmail.com", "ròAÍ°a½„]¿6±‘LàÉ", null, null,"123234",
+					null, null, null, null);
+			Employee employee2 = new Employee("1232", "jaswanth", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null,"123234", null,
+					null, null, null);
+			Employee employee3 = new Employee("1231", "ali", "kr", "ròAÍ°a½„]¿6±‘LàÉ", null, null, "123", null, null,
+					null, null);
 
-			salaryHistoryMap.put(salaryHist1.getShId(), salaryHist1);
-			salaryHistoryMap.put(salaryHist2.getShId(), salaryHist2);
-			salaryHistoryMap.put(salaryHist3.getShId(), salaryHist3);
+			employeeMap.put(employee1.getEmployeeID(), employee1);
+			employeeMap.put(employee2.getEmployeeID(), employee2);
+			employeeMap.put(employee3.getEmployeeID(), employee3);
+
+			Mockito.when(employeeCache.getAllEmployees()).thenReturn(employeeMap);
 			
-			Mockito.when(salaryHistCache.getAllSalaries()).thenReturn(salaryHistoryMap);
-
-				
 			String actualResult = testObject.generateTaxCalculation(taxCalData);
-			assertEquals("3000.0", actualResult);
+			assertEquals("123234.0", actualResult);
 			assertNotEquals("00",actualResult);
 			assertNotNull(actualResult);
 		} catch (Exception e) {
