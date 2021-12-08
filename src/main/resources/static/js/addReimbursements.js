@@ -15,6 +15,7 @@ function initialize() {
 				var cell4 = row.insertCell(4);
 				
 				
+				
 				cell0.innerHTML = result[i]["rr_TypeID"];
 				cell1.innerHTML = result[i]["rr_Note"];
 				cell2.innerHTML = result[i]["rr_Amount"];
@@ -31,7 +32,7 @@ function postData() {
 	var type = document.getElementById("freimbursementTypeID").value;
 	var note = document.getElementById("freimbursementNote").value;
 	var ammount = document.getElementById("freimbursementAmount").value;
-	var date = String(new Date(document.getElementById("freimbursementDate").value));
+	var date = String((new Date(document.getElementById("freimbursementDate").value)).getTime());
 
 	var request = $.ajax({
 		url: "http://localhost:8080/getReimbursementRequest",

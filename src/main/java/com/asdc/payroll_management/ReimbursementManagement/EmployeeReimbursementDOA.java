@@ -49,7 +49,7 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 		String RR_Amount = reimbursementRequest.getRR_Amount();
 		String RR_Note = reimbursementRequest.getRR_Note();
 		String RR_Date = reimbursementRequest.getRR_Date();
-
+		System.out.println(RR_Date);
 		StringBuilder ErrorMessage = new StringBuilder();
 		Boolean validResponse = true;
 
@@ -111,6 +111,7 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 		Date reimbursementDate = new Date(Long.parseLong(reimbursementRequest.getRR_Date()));
 //		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 //		Date reimbursementDate = dateFormat.parse(reimbursementRequest.getRR_Date());
+//		Date reimbursementDate = new Date(reimbursementRequest.getRR_Date());
 		if (reimbursementDate.after(Calendar.getInstance().getTime())) {
 			return false;
 		} else {
