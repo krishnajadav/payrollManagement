@@ -1,0 +1,102 @@
+<HTML lang="en">
+<head>
+<title>Add Leaves Generation</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" th:src="@{/js/addLeaves.js}"></script>
+<meta name="viewport">
+<style>
+h1 {
+	text-align: center;
+}
+
+ul {
+	padding: 0;
+	overflow: hidden;
+	background-color: #6c388d;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+</style>
+<body onload="initialize()">
+	<div class="container">
+		<ul>
+			<li><a class="active" href="homepage">HomePage</a></li>
+			<li style="margin-left: 60%;"><a id="btnlossgout"
+				href="UserAuthentication/logout">Logout</a></li>
+		</ul>
+	</div>
+	<h1>Add Leaves Form</h1>
+
+	<!--<label for="femployeeID">Employee ID:</label>-->
+	<!--<input type="text" id="femployeeID" name="femployeeID"/><br>-->
+
+	<label for="fLeaveDuration">Leave Duration:</label>
+	<input type="number" id="fLeaveDuration" name="fLeaveDuration" />
+	<br>
+
+	<label for="fleaveTypeID">leave Type:</label>
+	<select id="fleaveTypeID">
+		<option value="Sick Leaves">Sick Leaves</option>
+		<option value="Casual Leaves">Casual Leaves</option>
+		<option value="Annual Leaves">Annual Leaves</option>
+		<option value="Maternity Leaves">Maternity Leaves</option>
+		<option value="Paternity Leaves">Paternity Leaves</option>
+	</select>
+	<br>
+
+	<label for="fLeaveStartdate">Leave Start date:</label>
+	<input type="date" id="fLeaveStartdate" name="fLeaveStartdate" />
+	<br>
+
+	<label for="fleaveEndDate">leave End Date:</label>
+	<input type="date" id="fleaveEndDate" name="fleaveEndDate" />
+	<br>
+
+	<input type="button" id="fsubmit" name="fsubmit" onClick="postData()"
+		value="Submit Leaves" />
+
+	<div id="div-error-info"></div>
+
+	<br>
+	<br>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>LR ID</th>
+				<th>LR_EmployeeID</th>
+				<th>LR_Duration</th>
+				<th>LR_Type</th>
+				<th>Leave_Request_Date</th>
+				<th>Leave_End_Date</th>
+				<th>isAccepted</th>
+			</tr>
+		</thead>
+		<tbody id="fviewLeaves">
+			<tr>
+				<td></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+</body>
+</HTML>

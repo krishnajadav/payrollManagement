@@ -1,9 +1,10 @@
 function initialize() {
+	var empID = document.getElementById("femployeeID").innerHTML;
 	var request = $.ajax({
 		url: window.location.protocol + "//" + window.location.host + "/employeeNamesWithID",
 		type: "POST",
 		contentType: 'application/json; charset=utf-8',
-		data: "1231",
+		data: empID,
 		success: function(result) {
 			var employees = document.getElementById("femployee");
 			for (var i = 0; i < result.length; i++) {
@@ -140,16 +141,15 @@ function postData() {
 			'employeeID': employeeID
 		}),
 		success: function(result) {
-
+			var errordiv = document.getElementById('div-error-info');
 			if (result[1] == null) {
 				if (result[0].error == null) {
+					errordiv.innerHTML = "<p style='color:green'>Successfully submitted the Manager Review</p>";
 					disableForm();
-					errordiv.innerHTML = "<p style='color:green'>Successfully submitted the Self Appraisal</p>";
 				} else {
 					errordiv.innerHTML = "<p style='color:red'>" + result[0].error + "</p>";
 				}
 			} else {
-				var errordiv = document.getElementById('div-error-info');
 				errordiv.innerHTML = "<p style='color:red'>" + result[1] + "</p>";
 			}
 		}

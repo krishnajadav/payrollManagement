@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<script>
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<link rel="stylesheet" th:href="@{/css/style.css}" type="text/css" media="all" />
+	<link href="//fonts.googleapis.com/css?family=Maven+Pro:400,500,700,900&amp;subset=latin-ext,vietnamese" rel="stylesheet">
+
+  
+    <style>
+        .signin-form {
+            padding: 0;
+        }
+
+
+        textarea {
+            width: 100%;
+            font-size: 14px;
+            margin-bottom: 1.5em;
+            padding: 14px;
+            outline: none;
+            letter-spacing: 1px;
+            color: #212121;
+            border: none;
+            border-bottom: 1px solid #d8d7d7;
+            box-sizing: border-box;
+            box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.31);
+        }
+
+        .pricing-chart {
+            margin-bottom: 20%;
+        }
+
+
+        body {
+            background-position: right;
+        }
+        
+        input[type="radio"] {
+    width: 9%;
+    height: 21px;
+       }
+          
+       .empcodehide{
+         display:none;
+       }
+          
+          
+          
+    </style>
+	
+
+
+
+
+
+</head>
+
+<body>
+	<h1>Payroll Management</h1>
+
+	<section class="pricing-columns pricing-section">
+		<div class="pricing-style-w3ls">
+			<label class="toggler toggler--is-active" id="filt-monthly">Login</label>
+			<div class="toggle">
+				<input type="checkbox" id="switcher" class="check">
+				<b class="switch"></b>
+			</div>
+			<label class="toggler" id="filt-hourly">Signup</label>
+			
+			
+            <div id="monthly" class="wrapper-full">
+                <div class="pricing-chart">
+                    <div class="plan popular">
+                        <h3 class="pop-plan">Login</h3>
+
+                        <div class="signin-form profile">
+
+                            <input type="text" id="txtloginemail" placeholder="Email"  style="margin-top: 17px;">
+
+                            <input type="password" id="txtloginpass" placeholder="Password" >
+
+                        </div>
+
+                        <a id="btnLogin" class="button sign-up popup-with-zoom-anim">Sign In</a>
+                   
+                     </div>
+                </div>
+            </div>
+            
+            
+             <div id="hourly" class="wrapper-full hide">
+                <div class="pricing-chart">
+                    <div class="plan popular">
+                        <h3 class="pop-plan">Sign Up</h3>
+
+                        <div class="signin-form profile">
+
+                            <input type="text" id="txtfullname" placeholder="Full Name" style="margin-top: 17px;">
+
+                            <input type="text" id="txtempcode" placeholder="Employee Code">
+
+                            <input type="text" id="txtemail" placeholder="Email">
+                            
+                             <input type="text" id="txtmno" placeholder="Mobile Number" maxlength="12">
+                             
+                             <textarea id="txtaddress" rows="5" cols="50" placeholder="Address"></textarea>
+
+                            <input type="password" id="txtpass" placeholder="Password">
+                            
+                            <input type="password" id="txtconpass" placeholder="Confirm Password">
+
+                        </div>
+
+                        <a id="btnSignup" class="button sign-up popup-with-zoom-anim">Sign Up</a>
+                   
+                     </div>
+                </div>
+            </div>
+           
+		</div>
+	</section>
+
+	<script th:src="@{/js/jquery-2.2.3.min.js}"></script>
+
+	<script th:src="@{/js/tabs.js}"></script>
+	
+	<script src="https://unpkg.com/sweetalert@2.1.0/dist/sweetalert.min.js"></script>
+	
+	    <script>
+    $( document ).ready(function() {
+    	    	
+    	 $("#btnLogin").click(function () {
+    		 	 
+    			var userEmail = $("#txtloginemail").val();
+    			var userPassword =$("#txtloginpass").val();
+    			
+     			var request = $.ajax({
+    				url: window.location.protocol + "//" + window.location.host + "/UserAuthentication/check",
+    				type: "POST",
+    				contentType: 'application/json; charset=utf-8',
+    				data: JSON.stringify({
+    					'userEmail': userEmail,
+    					'userPassword': userPassword
+    				}),
+    				success: function(result) {
+    					
+    					if(result=="Invalid User")
+    					{
+	   		                 swal(result, "", "error", {
+		                            button: "Close",
+		                        });
+    					}
+    					else if(result=="Empty")
+    					{ 
+    						 swal("Please enter empty fields", "", "error", {
+		                            button: "Close",
+		                        });
+    					}
+    					else
+    					{
+	        						
+	        				window.location.href = window.location.protocol + "//" + window.location.host + "/homepage";   							
+    						
+	   						/* swal("User Authenticate Successfully", "", "success", {
+		                            button: "Close",
+		                        });*/
+	   						clear();
+    					}  				
+    				}
+    			});		 
+    	 });
+    	 
+ 	    $("#btnSignup").click(function () {
+    		
+ 	    	if($("#txtpass").val()==$("#txtconpass").val())
+ 	    	{ 
+ 				var userEmail = $("#txtemail").val();
+ 				var userPassword =$("#txtconpass").val();
+ 				var usercode = $("#txtempcode").val();
+ 				var userFullName =$("#txtfullname").val();
+ 				var userMobileNumber = $("#txtmno").val();
+ 				var userAddress =$("#txtaddress").val();
+ 				
+ 				var URL="",Data="";
+ 				
+ 					URL=window.location.protocol + "//" + window.location.host + "/Employee/Save";
+ 					Data={
+    					'employee_ID': usercode,
+    					'employee_Name': userFullName,
+    					'employee_emailID': userEmail,
+    					'employee_Password':userPassword,
+    					'employee_phoneNumb': userMobileNumber,
+    					'employee_Address':userAddress
+    				} 						
+ 						
+     			var request = $.ajax({
+    				url: URL,
+    				type: "POST",
+    				contentType: 'application/json; charset=utf-8',
+    				data: JSON.stringify(Data),
+    				success: function(result) {
+    					
+    					if(result=="Success")
+    					{
+	   		                 swal("Employee insert successfully", "", "success", {
+		                            button: "Close",
+		                        });
+	   		              clear();
+    					}
+    					else if(result=="Empty")
+    					{ 
+    						 swal("Please enter empty fields", "", "error", {
+		                            button: "Close",
+		                        });
+    					}
+    					else
+    					{
+	   						 swal(result, "", "error", {
+		                            button: "Close",
+		                        });
+    					}
+    					
+    				}
+    			});				
+ 	    	}
+ 	    	else
+ 	    	{
+				 swal("Password and confirm password should be same", "", "error", {
+                     button: "Close",
+                 });
+ 	    	}
+    	 });
+ 	    
+ 	    
+        
+    	var clear=function(){
+				$("#txtemail").val("");
+ 				$("#txtpass").val("");
+ 				$("#txtempcode").val("");
+ 				$("#txtfullname").val("");
+ 				$("#txtconpass").val("");	
+ 				$("#txtaddress").val("");
+ 				$("#txtmno").val("");
+    			 $("#txtloginemail").val("");
+    			 $("#txtloginpass").val("");
+    	}
+    });
+    </script>
+	
+	
+</body>
+
+</html>

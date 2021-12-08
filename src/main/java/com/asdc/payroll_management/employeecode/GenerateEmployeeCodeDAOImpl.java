@@ -29,7 +29,7 @@ public class GenerateEmployeeCodeDAOImpl implements IGenerateEmployeeCodeDAO {
 		HashMap<String, Employee> employees = EmployeeCache.getInstance().getAllEmployees();
 		for (String key : employees.keySet()) {
 			Employee employee = employees.get(key);
-			String employeeNumber = employee.getEmployee_ID();
+			String employeeNumber = employee.getEmployeeID();
 			if (employeeCode < Integer.valueOf(employeeNumber)) {
 				employeeCode = Integer.valueOf(employeeNumber);
 			}

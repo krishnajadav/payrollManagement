@@ -60,13 +60,13 @@ public class ManagerReviewDataDAO implements IManagerReviewDataDAO {
 			error = "Employee should complete his self review before you can add your review.";
 		} else {
 			reviewData = new SelfReviewData();
-			reviewData.setComments(appraisalData.getEployee_comments());
-			reviewData.setEmployeeID(appraisalData.getEmployee_ID());
+			reviewData.setComments(appraisalData.getEployeeComments());
+			reviewData.setEmployeeID(appraisalData.getEmployeeID());
 			reviewData.setEmployeeName(
-					EmployeeCache.getInstance().getEmployee(appraisalData.getEmployee_ID()).getEmployee_Name());
-			reviewData.setProjectsParticipated(getAsList(appraisalData.getEmployee_projects()));
-			reviewData.setRating(appraisalData.getEmployee_rating());
-			reviewData.setTechnologiesLearnt(getAsList(appraisalData.getTechnologies_learnt()));
+					EmployeeCache.getInstance().getEmployee(appraisalData.getEmployeeID()).getEmployeeName());
+			reviewData.setProjectsParticipated(getAsList(appraisalData.getEmployeeProjects()));
+			reviewData.setRating(appraisalData.getEmployeeRating());
+			reviewData.setTechnologiesLearnt(getAsList(appraisalData.getTechnologiesLearnt()));
 		}
 		reviewInfo.add(reviewData);
 		reviewInfo.add(error);
@@ -92,7 +92,7 @@ public class ManagerReviewDataDAO implements IManagerReviewDataDAO {
 		for (String key : employees.keySet()) {
 			Employee employee = employees.get(key);
 			if (employee.getManagerID().equals(ManagerID)) {
-				employeeNamesWithID.add(employee.getEmployee_Name() + " (" + employee.getEmployee_ID() + ")");
+				employeeNamesWithID.add(employee.getEmployeeName() + " (" + employee.getEmployeeID() + ")");
 			}
 		}
 		return employeeNamesWithID;

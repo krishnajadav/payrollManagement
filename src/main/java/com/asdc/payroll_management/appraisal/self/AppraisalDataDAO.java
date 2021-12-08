@@ -43,9 +43,9 @@ public class AppraisalDataDAO implements IAppraisalDataDAO {
 		Employee employee = EmployeeCache.getInstance().getEmployee(employeeID);
 		for (String key : employeesMap.keySet()) {
 			Employee employeeInMap = employeesMap.get(key);
-			if (!employee.getEmployee_ID().equals(employeeInMap.getEmployee_ID())
-					&& employee.getDepartment_ID().equals(employeeInMap.getDepartment_ID())) {
-				peerInfo.add(employeeInMap.getEmployee_ID() + ", " + employeeInMap.getEmployee_Name());
+			if (!employee.getEmployeeID().equals(employeeInMap.getEmployeeID())
+					&& employee.getDepartmentID().equals(employeeInMap.getDepartmentID())) {
+				peerInfo.add(employeeInMap.getEmployeeID() + ", " + employeeInMap.getEmployeeName());
 			}
 		}
 		return peerInfo;

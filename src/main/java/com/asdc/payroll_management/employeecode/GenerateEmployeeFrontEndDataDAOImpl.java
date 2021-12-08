@@ -53,7 +53,7 @@ public class GenerateEmployeeFrontEndDataDAOImpl implements IGenerateEmployeeFro
 		List<JobDesignation> designations = JobDesignationCache.getInstance().getAllDesignations();
 		List<String> designationNames = new ArrayList<String>();
 		for (JobDesignation designation : designations) {
-			designationNames.add(designation.getDesignation_Name());
+			designationNames.add(designation.getDesignationName());
 		}
 		return designationNames;
 	}
@@ -64,8 +64,8 @@ public class GenerateEmployeeFrontEndDataDAOImpl implements IGenerateEmployeeFro
 		List<String> managerNamesWithID = new ArrayList<String>();
 		for (String key : employees.keySet()) {
 			Employee employee = employees.get(key);
-			if (!employee.getAccess_level().equals("user")) {
-				managerNamesWithID.add(employee.getEmployee_Name() + " (" + employee.getEmployee_ID() + ")");
+			if (!employee.getAccessLevel().equals("user")) {
+				managerNamesWithID.add(employee.getEmployeeName() + " (" + employee.getEmployeeID() + ")");
 			}
 		}
 		return managerNamesWithID;
@@ -77,7 +77,7 @@ public class GenerateEmployeeFrontEndDataDAOImpl implements IGenerateEmployeeFro
 		List<String> departmentNames = new ArrayList<String>();
 		for (String key : departments.keySet()) {
 			Department department = departments.get(key);
-			departmentNames.add(department.getDepartment_Name() + " (" + department.getDepartment_ID() + ")");
+			departmentNames.add(department.getDepartmentName() + " (" + department.getDepartmentID() + ")");
 		}
 		return departmentNames;
 	}

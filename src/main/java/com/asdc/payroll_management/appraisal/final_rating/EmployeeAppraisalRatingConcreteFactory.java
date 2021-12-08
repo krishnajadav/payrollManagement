@@ -176,34 +176,34 @@ public class EmployeeAppraisalRatingConcreteFactory extends RatingFactory {
 
 	private Double getFinalRating(String employeeCode, Appraisal appraisal, SelfReviewData selfReviewData,
 			ManagerReviewData managerReviewData) {
-		if (appraisal.getFinal_rating() == null || appraisal.getFinal_rating().isBlank()
-				|| appraisal.getFinal_rating().equals("null")) {
+		if (appraisal.getFinalRating() == null || appraisal.getFinalRating().isBlank()
+				|| appraisal.getFinalRating().equals("null")) {
 			return calculateFinalRating(managerReviewData, selfReviewData);
 		}
-		return Double.valueOf(appraisal.getFinal_rating());
+		return Double.valueOf(appraisal.getFinalRating());
 	}
 
 	private ManagerReviewData getManagerReviewFromAppraisal(Appraisal appraisalData) {
 		ManagerReviewData managerReviewData = new ManagerReviewData();
-		managerReviewData.setComments(appraisalData.getManager_comments());
-		managerReviewData.setCommunicationSkillsRating(appraisalData.getCommunication_rating());
-		managerReviewData.setEmployeeID(appraisalData.getEmployee_ID());
+		managerReviewData.setComments(appraisalData.getManagerComments());
+		managerReviewData.setCommunicationSkillsRating(appraisalData.getCommunicationRating());
+		managerReviewData.setEmployeeID(appraisalData.getEmployeeID());
 		managerReviewData.setEmployeeName(
-				EmployeeCache.getInstance().getEmployee(appraisalData.getEmployee_ID()).getEmployee_Name());
-		managerReviewData.setProjectsParticipated(getProjects(appraisalData.getProjects_rating()));
-		managerReviewData.setRating(appraisalData.getManager_rating());
+				EmployeeCache.getInstance().getEmployee(appraisalData.getEmployeeID()).getEmployeeName());
+		managerReviewData.setProjectsParticipated(getProjects(appraisalData.getProjectsRating()));
+		managerReviewData.setRating(appraisalData.getManagerRating());
 		return managerReviewData;
 	}
 
 	private SelfReviewData getSelfReviewFromAppraisal(Appraisal appraisalData) {
 		SelfReviewData selfReviewData = new SelfReviewData();
-		selfReviewData.setComments(appraisalData.getEployee_comments());
-		selfReviewData.setEmployeeID(appraisalData.getEmployee_ID());
+		selfReviewData.setComments(appraisalData.getEployeeComments());
+		selfReviewData.setEmployeeID(appraisalData.getEmployeeID());
 		selfReviewData.setEmployeeName(
-				EmployeeCache.getInstance().getEmployee(appraisalData.getEmployee_ID()).getEmployee_Name());
-		selfReviewData.setProjectsParticipated(getAsList(appraisalData.getEmployee_projects()));
-		selfReviewData.setRating(appraisalData.getEmployee_rating());
-		selfReviewData.setTechnologiesLearnt(getAsList(appraisalData.getTechnologies_learnt()));
+				EmployeeCache.getInstance().getEmployee(appraisalData.getEmployeeID()).getEmployeeName());
+		selfReviewData.setProjectsParticipated(getAsList(appraisalData.getEmployeeProjects()));
+		selfReviewData.setRating(appraisalData.getEmployeeRating());
+		selfReviewData.setTechnologiesLearnt(getAsList(appraisalData.getTechnologiesLearnt()));
 		return selfReviewData;
 	}
 

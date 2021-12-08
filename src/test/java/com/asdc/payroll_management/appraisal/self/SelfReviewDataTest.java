@@ -52,7 +52,8 @@ public class SelfReviewDataTest {
 			assertEquals(projects, selfReviewData.getProjectsParticipated());
 			assertEquals(techsLeaned, selfReviewData.getTechnologiesLearnt());
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getMessage());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 
@@ -103,7 +104,8 @@ public class SelfReviewDataTest {
 			assertEquals("Atleast one project you participated in should be added.<br>", selfReviewData.getError());
 
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getMessage());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 

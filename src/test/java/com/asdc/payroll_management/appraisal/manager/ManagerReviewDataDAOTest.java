@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -18,6 +20,7 @@ import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 import com.asdc.payroll_management.appraisal.final_rating.FinalRatingConstants;
 import com.asdc.payroll_management.appraisal.self.SelfReviewData;
 
+@TestInstance(Lifecycle.PER_CLASS)
 class ManagerReviewDataDAOTest {
 
 	ManagerReviewDataDAO underTest = new ManagerReviewDataDAO();
@@ -53,12 +56,12 @@ class ManagerReviewDataDAOTest {
 			Employee employee6 = new Employee("8", "EMP_NAME_5", null, null, null, null, null, "3", "DEPT_ID_3", null,
 					null);
 
-			employeeMap.put(employee1.getEmployee_ID(), employee1);
-			employeeMap.put(employee2.getEmployee_ID(), employee2);
-			employeeMap.put(employee3.getEmployee_ID(), employee3);
-			employeeMap.put(employee4.getEmployee_ID(), employee4);
-			employeeMap.put(employee5.getEmployee_ID(), employee5);
-			employeeMap.put(employee6.getEmployee_ID(), employee6);
+			employeeMap.put(employee1.getEmployeeID(), employee1);
+			employeeMap.put(employee2.getEmployeeID(), employee2);
+			employeeMap.put(employee3.getEmployeeID(), employee3);
+			employeeMap.put(employee4.getEmployeeID(), employee4);
+			employeeMap.put(employee5.getEmployeeID(), employee5);
+			employeeMap.put(employee6.getEmployeeID(), employee6);
 
 			EmployeeCache employeeCache = Mockito.mock(EmployeeCache.class);
 			MockedStatic<EmployeeCache> mocked = mockStatic(EmployeeCache.class);
@@ -71,6 +74,7 @@ class ManagerReviewDataDAOTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
+			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -105,6 +109,7 @@ class ManagerReviewDataDAOTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
+			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -161,6 +166,7 @@ class ManagerReviewDataDAOTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
+			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}

@@ -24,7 +24,8 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 	@Test
 	void classExistanceTest() {
 		try {
-			Class<?> classFinder = Class.forName("com.asdc.payroll_management.employeecode.GenerateEmployeeFrontEndDataDAOImpl");
+			Class<?> classFinder = Class
+					.forName("com.asdc.payroll_management.employeecode.GenerateEmployeeFrontEndDataDAOImpl");
 			assertNotNull(classFinder);
 		} catch (ClassNotFoundException e) {
 			fail("class not found");
@@ -54,7 +55,8 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getStackTrace());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 
@@ -84,7 +86,8 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getStackTrace());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 
@@ -111,7 +114,8 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getStackTrace());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 
@@ -151,10 +155,9 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			assertEquals("Error occured while inserting data into DB.", actualOutput.get(1));
 			mocked1.close();
 			mocked2.close();
-
 		} catch (Exception e) {
+			fail("Exception occured");
 			e.printStackTrace();
-			fail("Exception occured: " + e.getStackTrace());
 		}
 	}
 

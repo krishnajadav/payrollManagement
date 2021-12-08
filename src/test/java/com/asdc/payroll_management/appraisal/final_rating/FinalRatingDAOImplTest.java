@@ -6,6 +6,8 @@ import static org.mockito.Mockito.mockStatic;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -14,6 +16,7 @@ import com.asdc.payroll_management.DataBaseCache.AppraisalCache;
 import com.asdc.payroll_management.DataBaseCache.Employee;
 import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
+@TestInstance(Lifecycle.PER_CLASS)
 class FinalRatingDAOImplTest {
 
 	FinalRatingDAOImpl underTest = new FinalRatingDAOImpl();
@@ -56,15 +59,16 @@ class FinalRatingDAOImplTest {
 			List<Object> actualResult = underTest.getFinalRatingData("EMP_ID");
 			assertNull(actualResult.get(1));
 
-			appraisal.setManager_rating("abc");
-			appraisal.setFinal_rating("4.7");
+			appraisal.setManagerRating("abc");
+			appraisal.setFinalRating("4.7");
 			actualResult = underTest.getFinalRatingData("EMP_ID");
 			assertEquals("Error occured while trying to fetch appraisal data.", actualResult.get(1));
 
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
-			fail("class not found");
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 }

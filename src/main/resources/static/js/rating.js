@@ -1,13 +1,14 @@
 function initialize() {
+var empID = document.getElementById("femployeeID").innerHTML;
 	var request = $.ajax({
-		url: "http://localhost:8080/getRatingInfo",
+		url: window.location.protocol + "//" + window.location.host + "/getRatingInfo",
 		type: "POST",
 		contentType: 'application/json; charset=utf-8',
-		data: "26118",
+		data: empID,
 		success: function(result) {
 			if (result != null) {
 				if (result[1] == null) {
-					document.getElementById("ffinalrating").value = result[0].finalRating;
+					document.getElementById("ffinalrating").innerHTML = result[0].finalRating;
 
 					var table = document.getElementById("fmanagerreview");
 					var row = table.insertRow();
@@ -20,7 +21,7 @@ function initialize() {
 					cell3.innerHTML = result[0].managerRating;
 					cell4.innerHTML = result[0].managerComments;
 
-					table = document.getElementById("fmanagerreview");
+					table = document.getElementById("fselfreview");
 					row = table.insertRow();
 					cell1 = row.insertCell(0);
 					cell2 = row.insertCell(1);
@@ -28,13 +29,13 @@ function initialize() {
 					cell4 = row.insertCell(3);
 					cell1.innerHTML = result[0].employeeID;
 					cell2.innerHTML = result[0].employeeName;
-					cell3.innerHTML = result[0].rating;
-					cell4.innerHTML = result[0].comments;
+					cell3.innerHTML = result[0].employeeRating;
+					cell4.innerHTML = result[0].employeeComments;
 				}
-			}
-			else {
-				var errordiv = document.getElementById('div-error-info');
-				errordiv.innerHTML = "<p style='color:red'>" + result[1] + "</p>";
+				else {
+					var errordiv = document.getElementById('div-error-info');
+					errordiv.innerHTML = "<p style='color:red'>" + result[1] + "</p>";
+				}
 			}
 		}
 	});

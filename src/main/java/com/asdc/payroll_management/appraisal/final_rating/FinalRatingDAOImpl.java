@@ -12,25 +12,26 @@ public class FinalRatingDAOImpl implements IFinalRatingDAO {
 	@Override
 	public List<Object> getFinalRatingData(String employeeID) {
 		String error = null;
+		FinalRatingData finalRatingData = null;
 		try {
 			Appraisal appraisal = AppraisalCache.getInstance().getIndividualAppraisals(employeeID);
-			Double finalRating = getDoubleValue(appraisal.getFinal_rating());
-			FinalRatingData finalRatingData = new FinalRatingData(appraisal.getEployee_comments(),
-					Double.parseDouble(appraisal.getEmployee_rating()), appraisal.getManager_comments(),
-					Double.parseDouble(appraisal.getManager_rating()),
-					EmployeeCache.getInstance().getEmployee(appraisal.getManager_ID()).getEmployee_Name(),
-					appraisal.getManager_ID(),
-					EmployeeCache.getInstance().getEmployee(appraisal.getEmployee_ID()).getEmployee_Name(),
-					appraisal.getEmployee_ID(), finalRating);
+			Double finalRating = getDoubleValue(appraisal.getFinalRating());
+			finalRatingData = new FinalRatingData(appraisal.getEployeeComments(),
+					Double.parseDouble(appraisal.getEmployeeRating()), appraisal.getManagerComments(),
+					Double.parseDouble(appraisal.getManagerRating()),
+					EmployeeCache.getInstance().getEmployee(appraisal.getManagerID()).getEmployeeName(),
+					appraisal.getManagerID(),
+					EmployeeCache.getInstance().getEmployee(appraisal.getEmployeeID()).getEmployeeName(),
+					appraisal.getEmployeeID(), finalRating);
 			finalRatingData.validate();
 		} catch (Exception e) {
 			e.printStackTrace();
-			error = "Error occured while trying to fetch appraisal data.";
+			error = "Error occured while trying to fetch appraisal data. Final Rating is only given after your self appraisal and manager review are done.";
 		}
-		List<Object> finalRatingData = new ArrayList<Object>();
-		finalRatingData.add(finalRatingData);
-		finalRatingData.add(error);
-		return finalRatingData;
+		List<Object> finalRatingDataList = new ArrayList<Object>();
+		finalRatingDataList.add(finalRatingData);
+		finalRatingDataList.add(error);
+		return finalRatingDataList;
 	}
 
 	private Double getDoubleValue(String finalRating) {

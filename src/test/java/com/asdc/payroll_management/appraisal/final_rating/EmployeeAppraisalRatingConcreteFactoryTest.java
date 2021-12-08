@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
@@ -12,8 +14,9 @@ import com.asdc.payroll_management.DataBaseCache.AppraisalCache;
 import com.asdc.payroll_management.DataBaseCache.Employee;
 import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
+@TestInstance(Lifecycle.PER_CLASS)
 class EmployeeAppraisalRatingConcreteFactoryTest {
-	
+
 	EmployeeAppraisalRatingConcreteFactory underTest = new EmployeeAppraisalRatingConcreteFactory();
 
 	@Test
@@ -53,49 +56,54 @@ class EmployeeAppraisalRatingConcreteFactoryTest {
 
 			Double actualResult = underTest.getFinalRating("EMP_ID");
 			assertNull(actualResult);
-			
+
 			Mockito.when(appraisalCache.getIndividualAppraisals("EMP_ID")).thenReturn(appraisal);
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(3.7d, actualResult);
-			
-			appraisal.setProjects_rating("[projectName : Orbis || projectSize : Small scale || employeeContribution : 45 || error : null]");
+
+			appraisal.setProjectsRating(
+					"[projectName : Orbis || projectSize : Small scale || employeeContribution : 45 || error : null]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(2.62d, actualResult);
-			
-			appraisal.setManager_rating("2");
-			appraisal.setProjects_rating("[projectName : Orbis || projectSize : Small scale || employeeContribution : 10 || error : null]");
+
+			appraisal.setManagerRating("2");
+			appraisal.setProjectsRating(
+					"[projectName : Orbis || projectSize : Small scale || employeeContribution : 10 || error : null]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(1.68d, actualResult);
-			
-			appraisal.setManager_rating("4.9");
-			appraisal.setProjects_rating("[projectName : Orbis || projectSize : Large scale || employeeContribution : 100 || error : null]");
+
+			appraisal.setManagerRating("4.9");
+			appraisal.setProjectsRating(
+					"[projectName : Orbis || projectSize : Large scale || employeeContribution : 100 || error : null]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.93d, actualResult);
-			
-			appraisal.setProjects_rating("[projectName : Orbis || projectSize : Large scale || employeeContribution : 35 || error : null]");
+
+			appraisal.setProjectsRating(
+					"[projectName : Orbis || projectSize : Large scale || employeeContribution : 35 || error : null]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(3.9d, actualResult);
-			
-			appraisal.setProjects_rating("[projectName : Orbis || projectSize : Large scale || employeeContribution : 85 || error : null]");
+
+			appraisal.setProjectsRating(
+					"[projectName : Orbis || projectSize : Large scale || employeeContribution : 85 || error : null]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.75d, actualResult);
-			
-			appraisal.setTechnologies_learnt("[SE 1, AWS, JS, Swings, VueJs, REST, HTML, CSS]");
+
+			appraisal.setTechnologiesLearnt("[SE 1, AWS, JS, Swings, VueJs, REST, HTML, CSS]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.78d, actualResult);
-			
-			appraisal.setTechnologies_learnt("[SE 1]");
+
+			appraisal.setTechnologiesLearnt("[SE 1]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.68d, actualResult);
-			
-			appraisal.setTechnologies_learnt("[SE 1, AWS]");
+
+			appraisal.setTechnologiesLearnt("[SE 1, AWS]");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.68d, actualResult);
-			
-			appraisal.setTechnologies_learnt("");
+
+			appraisal.setTechnologiesLearnt("");
 			actualResult = underTest.getFinalRating("EMP_ID");
 			assertEquals(4.63d, actualResult);
-			
+
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {

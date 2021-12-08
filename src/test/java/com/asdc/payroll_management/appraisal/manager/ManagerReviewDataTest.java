@@ -8,10 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import com.asdc.payroll_management.appraisal.final_rating.FinalRatingConstants;
-import com.asdc.payroll_management.appraisal.self.SelfReviewData;
 
+@TestInstance(Lifecycle.PER_CLASS)
 class ManagerReviewDataTest {
 
 	@Test
@@ -67,7 +69,8 @@ class ManagerReviewDataTest {
 			assertEquals("4.9", managerReviewData.getCommunicationSkillsRating());
 			assertEquals(projectParticipationDataList, managerReviewData.getProjectsParticipated());
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getMessage());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 
@@ -148,7 +151,8 @@ class ManagerReviewDataTest {
 					"Project Name cannot be empty.<br>Employee contribution should be a valid number that is greater than 0 and less than 100.<br>Project size should be Small scale, Medium scale or Large scale.<br>",
 					managerReviewData.getError());
 		} catch (Exception e) {
-			fail("Exception occured: " + e.getMessage());
+			fail("Exception occured");
+			e.printStackTrace();
 		}
 	}
 

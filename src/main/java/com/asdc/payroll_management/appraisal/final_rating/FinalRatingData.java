@@ -2,8 +2,8 @@ package com.asdc.payroll_management.appraisal.final_rating;
 
 public class FinalRatingData {
 	
-	String comments;
-	double rating;
+	String employeeComments;
+	double employeeRating;
 	String managerComments;
 	double managerRating;
 	String managerName;
@@ -16,8 +16,8 @@ public class FinalRatingData {
 	public FinalRatingData(String comments, double rating, String managerComments, double managerRating,
 			String managerName, String managerID, String employeeName, String employeeID, Double finalRating) {
 		super();
-		this.comments = comments;
-		this.rating = rating;
+		this.employeeComments = comments;
+		this.employeeRating = rating;
 		this.managerComments = managerComments;
 		this.managerRating = managerRating;
 		this.managerName = managerName;
@@ -26,13 +26,22 @@ public class FinalRatingData {
 		this.employeeID = employeeID;
 		this.finalRating = finalRating;
 	}
-
-	public String getComments() {
-		return comments;
+	public double getEmployeeRating() {
+		return employeeRating;
 	}
 
-	public void setComments(String comments) {
-		this.comments = comments;
+
+	public void setEmployeeRating(double employeeRating) {
+		this.employeeRating = employeeRating;
+	}
+
+
+	public String getEmployeeComments() {
+		return employeeComments;
+	}
+
+	public void setEmployeeComments(String comments) {
+		this.employeeComments = comments;
 	}
 
 	public String getManagerComments() {
@@ -105,10 +114,10 @@ public class FinalRatingData {
 		if(!isValidName(this.employeeName)) {
 			sb.append("Employee Name should only have alphabets and it cannot be empty.");
 		}
-		if (this.comments.length() < 100) {
+		if (this.employeeComments.length() < 100) {
 			sb.append("Self Review Comments should be atleast 100 characters.");
 		}
-		if (!isValidNumber(rating)) {
+		if (!isValidNumber(employeeRating)) {
 			sb.append("Self Rating should be a valid number that is greater than 0 and less than 5.");
 		}
 		
