@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -26,7 +27,7 @@ public class ReimbursementController {
 	}
 
 	@RequestMapping(value = "/getReimbursementRequest", method = RequestMethod.POST)
-	public @ResponseBody ReimbursementRequest addEmployeeReimbursementRequest(@RequestBody String frontEndData) {
+	public @ResponseBody ReimbursementRequest addEmployeeReimbursementRequest(@RequestBody String frontEndData) throws ParseException {
 		String[] data = frontEndData.substring(1, frontEndData.length() - 1).split(",");
 		ReimbursementRequest reimbursementRequest = new ReimbursementRequest(
 				data[0].split(":")[1].substring(1, data[0].split(":")[1].length() - 1),
@@ -84,7 +85,6 @@ public class ReimbursementController {
 		ManagerReimbursementDOA managerReimbersementsDOA = new ManagerReimbursementDOA(null);
 
 		Boolean updateRequest = managerReimbersementsDOA.acceptReimbursement(reimbersementID);
-		System.out.println(updateRequest);
 		return updateRequest;
 	}
 
@@ -92,7 +92,6 @@ public class ReimbursementController {
 	public boolean denyEmployeeReimbursements(@RequestBody String reimbersementID) {
 		ManagerReimbursementDOA managerReimbersementsDOA = new ManagerReimbursementDOA(null);
 		Boolean updateRequest = managerReimbersementsDOA.rejectReimbursement(reimbersementID);
-		System.out.println(updateRequest);
 		return updateRequest;
 	}
 

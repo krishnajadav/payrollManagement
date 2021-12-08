@@ -5,7 +5,6 @@ function initialize() {
 		type: "POST",
 		contentType: 'application/json; charset=utf-8',
 		success: function(result) {
-			confirm(result[0]);
 			var table = document.getElementById("fviewReimbursements");
 			for (var i = 0; i < result.length; i++) {
 				var row = table.insertRow(i);
@@ -32,7 +31,7 @@ function postData() {
 	var type = document.getElementById("freimbursementTypeID").value;
 	var note = document.getElementById("freimbursementNote").value;
 	var ammount = document.getElementById("freimbursementAmount").value;
-	var date = String(new Date(document.getElementById("freimbursementDate").value).getTime());
+	var date = String(new Date(document.getElementById("freimbursementDate").value));
 
 	var request = $.ajax({
 		url: "http://localhost:8080/getReimbursementRequest",

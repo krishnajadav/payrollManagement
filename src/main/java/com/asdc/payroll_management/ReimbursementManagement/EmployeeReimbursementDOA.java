@@ -73,19 +73,21 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 			ErrorMessage.append(" Reimbursement Date is required\n");
 
 		}
-		if (this.checkReimbursementAmount(reimbursementRequest)) {
+		if (this.checkReimbursementAmount(reimbursementRequest) == false) {
 			validResponse = false;
 			ErrorMessage.append(" Reimbursement Amount is more than threshold\n");
 
 		}
-		if (this.checkReimbursementDate(reimbursementRequest)) {
+		if (this.checkReimbursementDate(reimbursementRequest) == false) {
 			validResponse = false;
 			ErrorMessage.append(" Reimbursement Date is future date\n");
 
 		}
 
+		Date reimbursementDate = reimbursementRequest.getRR_Date() == null ? null
+				: new Date(Long.parseLong(reimbursementRequest.getRR_Date()));
 		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		String strDate = dateFormat.format(RR_Date);
+		String strDate = dateFormat.format(reimbursementDate);
 
 		ReimbursementRequest newReimbursementRequest = null;
 		if (validResponse) {
@@ -105,8 +107,9 @@ public class EmployeeReimbursementDOA implements IEmployeeReimbursement {
 
 	@Override
 	public boolean checkReimbursementDate(ReimbursementRequest reimbursementRequest) throws ParseException {
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		Date reimbursementDate = dateFormat.parse(reimbursementRequest.getRR_Date());
+		Date reimbursementDate = new Date(Long.parseLong(reimbursementRequest.getRR_Date()));
+//		DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+//		Date reimbursementDate = dateFormat.parse(reimbursementRequest.getRR_Date());
 		if (reimbursementDate.after(Calendar.getInstance().getTime())) {
 			return false;
 		} else {
