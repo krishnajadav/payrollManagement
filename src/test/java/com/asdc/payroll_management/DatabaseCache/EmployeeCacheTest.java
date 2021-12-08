@@ -53,7 +53,7 @@ public class EmployeeCacheTest {
                 when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("Access_level")).thenReturn("Senior Manager").thenReturn("Manager");
                 EmployeeCache employeeFactory = EmployeeCache.getInstance();
-                assertEquals(3,employeeFactory.getAllEmployees().size());
+                assertEquals(2,employeeFactory.getAllEmployees().size());
                 mocked.close();
             }
         }catch(Exception e){
