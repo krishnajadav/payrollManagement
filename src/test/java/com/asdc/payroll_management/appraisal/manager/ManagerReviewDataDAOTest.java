@@ -74,7 +74,6 @@ class ManagerReviewDataDAOTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -109,7 +108,6 @@ class ManagerReviewDataDAOTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -166,7 +164,6 @@ class ManagerReviewDataDAOTest {
 			mocked.close();
 			mockedEmployeeCache.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}

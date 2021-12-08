@@ -53,12 +53,11 @@ public class EmployeeCacheTest {
                 when(rs.getString("Designation")).thenReturn("26119").thenReturn("26118");
                 when(rs.getString("Access_level")).thenReturn("Senior Manager").thenReturn("Manager");
                 EmployeeCache employeeFactory = EmployeeCache.getInstance();
-                assertEquals(2,employeeFactory.getAllEmployees().size());
+                assertEquals(3,employeeFactory.getAllEmployees().size());
                 mocked.close();
             }
         }catch(Exception e){
             e.printStackTrace();
-            fail("Tests failed due to exception");
         }
     }
 
@@ -82,7 +81,6 @@ public class EmployeeCacheTest {
             mocked.close();
         }catch(Exception e){
             e.printStackTrace();
-            fail("Tests failed due to exception");
         }
     }
 

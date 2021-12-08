@@ -81,7 +81,6 @@ class GenerateEmployeeCodeDAOImplTest {
 			assertEquals("9", employeeData.getEmployeeID());
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 

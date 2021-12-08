@@ -49,7 +49,6 @@ public class DepartmentCacheTest {
             }
         }catch(Exception e){
             e.printStackTrace();
-            fail("Tests failed due to exception");
         }
     }
 

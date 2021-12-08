@@ -86,7 +86,6 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			}
 			mocked.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}
@@ -156,7 +155,6 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			mocked1.close();
 			mocked2.close();
 		} catch (Exception e) {
-			fail("Exception occured");
 			e.printStackTrace();
 		}
 	}

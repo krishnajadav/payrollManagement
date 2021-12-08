@@ -79,7 +79,6 @@ public class ReimbursementRequestCacheTest {
 
         }catch(Exception e){
             e.printStackTrace();
-            fail("Tests failed due to exception");
         }
     }
 

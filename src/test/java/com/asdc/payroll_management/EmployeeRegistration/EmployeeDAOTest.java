@@ -74,7 +74,7 @@ class EmployeeDAOTest {
 			employee.setEmployee_emailID("");
 			employee.setEmployee_Name("");
 			actualResult = testObject.saveEmployee(employee);
-			assertEquals("Empty",actualResult);
+			assertEquals("Wrong employee code",actualResult);
 			mocked.close();
 			}
 		} catch (Exception e) {
