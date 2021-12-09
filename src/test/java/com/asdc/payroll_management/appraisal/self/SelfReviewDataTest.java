@@ -96,8 +96,9 @@ public class SelfReviewDataTest {
 			selfReviewData.setEmployeeName("Chandan Jha");
 			selfReviewData.setRating("abc");
 			selfReviewData.validate();
-			assertEquals("Self Rating should be a valid number that is greater than 0 and less than 5.<br>", selfReviewData.getError());
-			
+			assertEquals("Self Rating should be a valid number that is greater than 0 and less than 5.<br>",
+					selfReviewData.getError());
+
 			selfReviewData.setRating("4.5");
 			selfReviewData.setProjectsParticipated(null);
 			selfReviewData.validate();

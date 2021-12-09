@@ -78,7 +78,7 @@ public class ProjectParticipationData {
 
 	@Override
 	public String toString() {
-		return "projectName : " + projectName + " || projectSize : " + projectSize
-				+ " || employeeContribution : " + employeeContribution + " || error : " + error;
+		return "projectName : " + projectName + " || projectSize : " + projectSize + " || employeeContribution : "
+				+ employeeContribution + " || error : " + error;
 	}
 }

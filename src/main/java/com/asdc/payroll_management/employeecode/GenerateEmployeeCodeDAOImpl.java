@@ -6,14 +6,14 @@ import com.asdc.payroll_management.DataBaseCache.Employee;
 import com.asdc.payroll_management.DataBaseCache.EmployeeCache;
 
 public class GenerateEmployeeCodeDAOImpl implements IGenerateEmployeeCodeDAO {
-	
+
 	private static GenerateEmployeeCodeDAOImpl instance = null;
-	
+
 	private GenerateEmployeeCodeDAOImpl() {
 	}
-	
+
 	public static GenerateEmployeeCodeDAOImpl getInstance() {
-		if(instance == null) {
+		if (instance == null) {
 			instance = new GenerateEmployeeCodeDAOImpl();
 		}
 		return instance;
@@ -22,7 +22,7 @@ public class GenerateEmployeeCodeDAOImpl implements IGenerateEmployeeCodeDAO {
 	@Override
 	public void generateEmployeeCode(EmployeeData employeeData) {
 		employeeData.validate();
-		if(employeeData.getError() != null) {
+		if (employeeData.getError() != null) {
 			return;
 		}
 		int employeeCode = 0;

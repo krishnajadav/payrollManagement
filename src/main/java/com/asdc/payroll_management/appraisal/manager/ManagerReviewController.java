@@ -16,10 +16,10 @@ public class ManagerReviewController {
 
 	@RequestMapping("/managerAppraisal")
 	public ModelAndView createManagerModel(HttpServletRequest request) {
-		if(request.getSession().getAttribute("userInfo")==null) {
+		if (request.getSession().getAttribute("userInfo") == null) {
 			return new ModelAndView("redirect:/LoginSignup");
 		}
-		if(request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
+		if (request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
 			return null;
 		}
 		ModelAndView mv = new ModelAndView();
@@ -30,7 +30,7 @@ public class ManagerReviewController {
 
 	@RequestMapping("/employeeNamesWithID")
 	public List<String> getEmployeeNamesWithID(@RequestBody String managerID, HttpServletRequest request) {
-		if(request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
+		if (request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
 			return null;
 		}
 		return new ManagerReviewDataDAO().getEmployeeNamesWithID(managerID);
@@ -38,15 +38,16 @@ public class ManagerReviewController {
 
 	@RequestMapping("/getSelfAppraisalInfo")
 	public List<Object> getSelfAppraisal(@RequestBody String employeeID, HttpServletRequest request) {
-		if(request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
+		if (request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
 			return null;
 		}
 		return new ManagerReviewDataDAO().getSelfReviewInfo(employeeID);
 	}
 
 	@RequestMapping(value = "/submitReviewData", method = RequestMethod.POST)
-	public @ResponseBody List<Object> getAppraisalData(@RequestBody ManagerReviewData managerReviewData, HttpServletRequest request) {
-		if(request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
+	public @ResponseBody List<Object> getAppraisalData(@RequestBody ManagerReviewData managerReviewData,
+			HttpServletRequest request) {
+		if (request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("user")) {
 			return null;
 		}
 		return new ManagerReviewDataDAO().processInput(managerReviewData);

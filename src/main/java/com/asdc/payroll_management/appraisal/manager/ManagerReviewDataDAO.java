@@ -74,7 +74,7 @@ public class ManagerReviewDataDAO implements IManagerReviewDataDAO {
 	}
 
 	private List<String> getAsList(String listAsString) {
-		if(listAsString == null || listAsString.isBlank()) {
+		if (listAsString == null || listAsString.isBlank()) {
 			return new ArrayList<String>();
 		}
 		String[] listElements = listAsString.substring(1, listAsString.length() - 1).split(",");

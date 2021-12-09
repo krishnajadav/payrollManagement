@@ -2,7 +2,8 @@ package com.asdc.payroll_management.DataBaseCache;
 
 public class DBQueriesConstant {
     public final static String All_EMPLOYEE_QUERY = "Select * from Employee;";
-    public final static String INSERT_EMPLOYEE_QUERY = "Insert into Employee";
+    public final static String INSERT_GENARATE_EMPLOYEE_QUERY = "Insert into Employee (Employee_ID,Employee_Name,Employee_Salary,ManagerID,Department_ID,Designation,Access_level) values ";
+    public final static String INSERT_EMPLOYEE_QUERY = "Insert into Employee ";
     public final static String UPDATE_EMPLOYEE_QUERY = "update Employee";
 
     public final static String ALL_HR_QUERY = "Select * from HR;";

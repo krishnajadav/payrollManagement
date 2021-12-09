@@ -39,7 +39,7 @@ public class FinalRatingConstants {
 			return this.max;
 		}
 	}
-	
+
 	public enum TechnologiesToRating {
 		ONE(-1d, 0d), TWO(0d, 1d), THREE(1d, 2d), FOUR(3d, 6d), FIVE(6d, 100000d);
 

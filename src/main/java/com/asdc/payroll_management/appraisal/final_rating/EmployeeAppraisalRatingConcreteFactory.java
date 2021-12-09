@@ -121,11 +121,11 @@ public class EmployeeAppraisalRatingConcreteFactory extends RatingFactory {
 				projectContribution = projectContribution + (Double.valueOf(project.getEmployeeContribution()));
 			}
 		}
-		return projectContribution/100;
+		return projectContribution / 100;
 	}
 
 	private List<ProjectParticipationData> getProjects(String projectsRating) {
-		if(projectsRating == null || projectsRating.isBlank()) {
+		if (projectsRating == null || projectsRating.isBlank()) {
 			return new ArrayList<ProjectParticipationData>();
 		}
 		String[] projects = projectsRating.substring(1, projectsRating.length() - 1).split(",");
@@ -133,15 +133,15 @@ public class EmployeeAppraisalRatingConcreteFactory extends RatingFactory {
 		for (String project : projects) {
 			ProjectParticipationData projectParticipationData = new ProjectParticipationData();
 			String[] projectComponents = project.split("\\|\\|");
-			for(String projectComponent: projectComponents) {
+			for (String projectComponent : projectComponents) {
 				String[] keyValues = projectComponent.split(":");
-				if(keyValues[0].trim().equals("projectName")) {
+				if (keyValues[0].trim().equals("projectName")) {
 					projectParticipationData.setProjectName(keyValues[1].trim());
-				}else if(keyValues[0].trim().equals("projectSize")) {
+				} else if (keyValues[0].trim().equals("projectSize")) {
 					projectParticipationData.setProjectSize(keyValues[1].trim());
-				}else if(keyValues[0].trim().equals("employeeContribution")) {
+				} else if (keyValues[0].trim().equals("employeeContribution")) {
 					projectParticipationData.setEmployeeContribution(keyValues[1].trim());
-				}else if(keyValues[0].trim().equals("error")) {
+				} else if (keyValues[0].trim().equals("error")) {
 					projectParticipationData.validate();
 				}
 			}
@@ -151,7 +151,7 @@ public class EmployeeAppraisalRatingConcreteFactory extends RatingFactory {
 	}
 
 	private List<String> getAsList(String listAsString) {
-		if(listAsString == null || listAsString.isBlank()) {
+		if (listAsString == null || listAsString.isBlank()) {
 			return new ArrayList<String>();
 		}
 		String[] listElements = listAsString.substring(1, listAsString.length() - 1).split(",");

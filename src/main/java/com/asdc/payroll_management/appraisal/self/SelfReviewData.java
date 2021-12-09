@@ -66,8 +66,8 @@ public class SelfReviewData {
 
 	public void validate() {
 		StringBuffer sb = new StringBuffer();
-		
-		if(!isValidName(this.employeeName)) {
+
+		if (!isValidName(this.employeeName)) {
 			sb.append("Employee Name should only have alphabets and it cannot be empty.<br>");
 		}
 		if (this.comments.length() < 100) {
@@ -76,7 +76,7 @@ public class SelfReviewData {
 		if (!isValidNumber(rating)) {
 			sb.append("Self Rating should be a valid number that is greater than 0 and less than 5.<br>");
 		}
-		if (this.projectsParticipated == null ||  this.projectsParticipated.size() <= 0) {
+		if (this.projectsParticipated == null || this.projectsParticipated.size() <= 0) {
 			sb.append("Atleast one project you participated in should be added.<br>");
 		}
 

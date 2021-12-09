@@ -19,9 +19,10 @@ public class GenerateEmployeeFrontEndDataDAOImpl implements IGenerateEmployeeFro
 
 	private boolean pushEmployeeDataToDB(EmployeeData employeeData) {
 		boolean isDataInserted = EmployeeCache.getInstance()
-				.insert(new Employee(employeeData.getEmployeeID(), employeeData.getFullName(), null, null, null, null,
-						employeeData.getEmployeeSalary(), employeeData.getManagerID(), employeeData.getDepartmentID(),
-						employeeData.getEmployeeDesignation(), employeeData.getAccessLevel()));
+				.insertEmplpyeeGenerationDetails(new Employee(employeeData.getEmployeeID(), employeeData.getFullName(),
+						null, null, null, null, employeeData.getEmployeeSalary(), employeeData.getManagerID(),
+						employeeData.getDepartmentID(), employeeData.getEmployeeDesignation(),
+						employeeData.getAccessLevel()));
 		return isDataInserted;
 	}
 

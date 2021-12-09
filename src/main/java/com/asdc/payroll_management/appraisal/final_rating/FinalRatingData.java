@@ -1,7 +1,7 @@
 package com.asdc.payroll_management.appraisal.final_rating;
 
 public class FinalRatingData {
-	
+
 	String employeeComments;
 	double employeeRating;
 	String managerComments;
@@ -26,15 +26,14 @@ public class FinalRatingData {
 		this.employeeID = employeeID;
 		this.finalRating = finalRating;
 	}
+
 	public double getEmployeeRating() {
 		return employeeRating;
 	}
 
-
 	public void setEmployeeRating(double employeeRating) {
 		this.employeeRating = employeeRating;
 	}
-
 
 	public String getEmployeeComments() {
 		return employeeComments;
@@ -110,8 +109,8 @@ public class FinalRatingData {
 
 	public void validate() {
 		StringBuffer sb = new StringBuffer();
-		
-		if(!isValidName(this.employeeName)) {
+
+		if (!isValidName(this.employeeName)) {
 			sb.append("Employee Name should only have alphabets and it cannot be empty.");
 		}
 		if (this.employeeComments.length() < 100) {
@@ -120,8 +119,8 @@ public class FinalRatingData {
 		if (!isValidNumber(employeeRating)) {
 			sb.append("Self Rating should be a valid number that is greater than 0 and less than 5.");
 		}
-		
-		if(!isValidName(this.managerName)) {
+
+		if (!isValidName(this.managerName)) {
 			sb.append("Manager Name should only have alphabets and it cannot be empty.");
 		}
 		if (this.managerComments.length() < 100) {
@@ -130,7 +129,7 @@ public class FinalRatingData {
 		if (!isValidNumber(managerRating)) {
 			sb.append("Manager Rating should be a valid number that is greater than 0 and less than 5.");
 		}
-		
+
 		if (finalRating == null || !isValidNumber(finalRating)) {
 			sb.append("Final Rating should be a valid number that is greater than 0 and less than 5.");
 		}

@@ -62,7 +62,9 @@ class FinalRatingDAOImplTest {
 			appraisal.setManagerRating("abc");
 			appraisal.setFinalRating("4.7");
 			actualResult = underTest.getFinalRatingData("EMP_ID");
-			assertEquals("Error occured while trying to fetch appraisal data. Final Rating is only given after your self appraisal and manager review are done.", actualResult.get(1));
+			assertEquals(
+					"Error occured while trying to fetch appraisal data. Final Rating is only given after your self appraisal and manager review are done.",
+					actualResult.get(1));
 
 			mocked.close();
 			mockedEmployeeCache.close();

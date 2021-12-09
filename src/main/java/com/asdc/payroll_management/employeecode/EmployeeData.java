@@ -104,13 +104,13 @@ public class EmployeeData {
 	public void validate() {
 		StringBuffer sb = new StringBuffer();
 
-		if(!isValidName(fullName)) {
+		if (!isValidName(fullName)) {
 			sb.append("Full Name should only have alphabets and it cannot be empty.<br>");
 		}
-		if(managerName.isBlank()) {
+		if (managerName.isBlank()) {
 			sb.append("Manager Name cannot be empty.<br>");
 		}
-		if(!isValidNumber(employeeSalary)) {
+		if (!isValidNumber(employeeSalary)) {
 			sb.append("salary should be a valid number that is greater than 0.<br>");
 		}
 		if (departmentName.isBlank()) {
@@ -119,10 +119,10 @@ public class EmployeeData {
 		if (employeeDesignation.isBlank()) {
 			sb.append("Designation cannot be empty.<br>");
 		}
-		if(!isValidDateFormat(employeeJoiningDate)) {
+		if (!isValidDateFormat(employeeJoiningDate)) {
 			sb.append("joining date should be in the format dd/MM/yyyy.<br>");
 		}
-		
+
 		error = sb.toString().isEmpty() ? null : sb.toString();
 	}
 

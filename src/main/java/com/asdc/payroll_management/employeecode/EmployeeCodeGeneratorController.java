@@ -16,7 +16,7 @@ public class EmployeeCodeGeneratorController {
 
 	@RequestMapping("/EmployeeCodeGeneration")
 	public ModelAndView employeeCodeGenerationHomepage(HttpServletRequest request) {
-		if(request.getSession().getAttribute("userInfo")==null) {
+		if (request.getSession().getAttribute("userInfo") == null) {
 			return new ModelAndView("redirect:/LoginSignup");
 		}
 		if (!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
@@ -27,34 +27,35 @@ public class EmployeeCodeGeneratorController {
 		mv.setViewName("EmployeeCodeGeneration");
 		return mv;
 	}
-	
+
 	@RequestMapping("/getDesignations")
 	public List<String> getDesignations(HttpServletRequest request) {
-		if(!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
+		if (!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
 			return null;
 		}
 		return new GenerateEmployeeFrontEndDataDAOImpl().getDesignationsFromCache();
 	}
-	
+
 	@RequestMapping("/getDepartments")
 	public List<String> getDepartments(HttpServletRequest request) {
-		if(!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
+		if (!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
 			return null;
 		}
 		return new GenerateEmployeeFrontEndDataDAOImpl().getDepartmentsFromCache();
 	}
-	
+
 	@RequestMapping("/getManagerNames")
 	public List<String> getManagerNames(HttpServletRequest request) {
-		if(!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
+		if (!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
 			return null;
 		}
 		return new GenerateEmployeeFrontEndDataDAOImpl().getManagerNamesFromCache();
 	}
 
 	@RequestMapping(value = "/getEmployeeData", method = RequestMethod.POST)
-	public @ResponseBody List<Object> generateAndGetEmployeeCode(@RequestBody EmployeeData employeeData, HttpServletRequest request) {
-		if(!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
+	public @ResponseBody List<Object> generateAndGetEmployeeCode(@RequestBody EmployeeData employeeData,
+			HttpServletRequest request) {
+		if (!request.getSession().getAttribute("userInfo").toString().split("#")[2].equals("super admin")) {
 			return null;
 		}
 		return new GenerateEmployeeFrontEndDataDAOImpl().processInput(employeeData);

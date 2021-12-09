@@ -139,7 +139,7 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			EmployeeCache employeeCache = Mockito.mock(EmployeeCache.class);
 			MockedStatic<EmployeeCache> mocked2 = mockStatic(EmployeeCache.class);
 			mocked2.when(EmployeeCache::getInstance).thenReturn(employeeCache);
-			Mockito.when(employeeCache.insert(Mockito.any())).thenReturn(true);
+			Mockito.when(employeeCache.insertEmplpyeeGenerationDetails(Mockito.any())).thenReturn(true);
 
 			List<Object> actualOutput = underTest.processInput(employeeData);
 			assertNull(actualOutput.get(1));
@@ -149,7 +149,7 @@ class GenerateEmployeeFrontEndDataDAOImplTest {
 			assertEquals("Full Name should only have alphabets and it cannot be empty.<br>", actualOutput.get(1));
 
 			employeeData.setFullName("Jaswanth Mandava");
-			Mockito.when(employeeCache.insert(Mockito.any())).thenReturn(false);
+			Mockito.when(employeeCache.insertEmplpyeeGenerationDetails(Mockito.any())).thenReturn(false);
 			actualOutput = underTest.processInput(employeeData);
 			assertEquals("Error occured while inserting data into DB.", actualOutput.get(1));
 			mocked1.close();
