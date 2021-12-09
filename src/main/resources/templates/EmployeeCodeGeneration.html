@@ -1,0 +1,99 @@
+<HTML>
+<head>
+<title>Employee Code Generation</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/emplyeeCodeGenerator.js}"></script>
+<style>
+h1 {
+	text-align: center;
+}
+
+ul {
+	padding: 0;
+	overflow: hidden;
+	background-color: #6c388d;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+</style>
+<body onload="initialize()">
+	<div class="container">
+		<ul>
+			<li><a class="active" href="homepage">HomePage</a></li>
+			<li style="margin-left: 60%;"><a id="btnlossgout"
+				href="UserAuthentication/logout">Logout</a></li>
+		</ul>
+	</div>
+	<h1>Employee Code Generation</h1>
+
+	<label for="fname">First name:</label>
+	<input type="text" id="fname" name="name" />
+	<br>
+
+	<label for="fsalary">Salary:</label>
+	<input type="text" id="fsalary" name="salary" />
+	<br>
+
+	<label for="fdesignation">Designation:</label>
+	<select id="fdesignation" name="designation">
+		<option></option>
+	</select>
+	<br>
+
+	<label for="fjoiningdate">Joining Date(dd/mm/yyyy):</label>
+	<input type="text" id="fjoiningdate" name="joiningdate" />
+	<br>
+
+	<label for="fassignmanager">Assign Manager:</label>
+	<select id="fassignmanager" name="assignmanager">
+		<option></option>
+	</select>
+	<br>
+
+	<label for="fdepartment">Assign Department:</label>
+	<select id="fdepartment" name="department">
+		<option></option>
+	</select>
+	<br>
+
+	<label for="faccesslevel">Access Level:</label>
+	<select id="faccesslevel" name="accesslevel">
+		<option>user</option>
+		<option>admin</option>
+		<option>super admin</option>
+	</select>
+	<br>
+
+	<br>
+	<br>
+	<br>
+
+	<input type="button" id="fsubmit" name="submit" onClick="postData()"
+		value="Generate Employee Code and Add Employee" />
+	<br>
+	<br>
+	<br>
+	<br>
+	<label for="femployeecode">Employee Code:</label>
+	<input type="text" id="femployeecode" name="employeecode" disabled />
+	<br>
+
+	<div id="div-error-info"></div>
+</body>
+</HTML>

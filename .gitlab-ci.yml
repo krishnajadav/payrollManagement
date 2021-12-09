@@ -1,0 +1,43 @@
+image: maven:3-jdk-11-slim
+
+variables: 
+  GRADLE_OPTS: "-Dorg.gradle.daemon=false" 
+
+before_script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+
+stages:
+  - build
+  - test
+  - deploy
+
+test:
+  stage: test
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
+    - chmod +x gradlew
+    - ./gradlew test 
+
+build:
+  stage: build
+  tags: 
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  script:
+    - chmod +x gradlew
+    - ./gradlew build 
+
+
+deploy:
+  stage: deploy
+  tags:
+    - dalfcs_docker_kvm
+    - dalfcs_gitlab_docker_ci
+  image: ruby:latest
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_PRODUCTION --api-key=$HEROKU_API_KEY    
+

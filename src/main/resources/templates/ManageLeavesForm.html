@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" th:src="@{/js/manageLeaves.js}"></script>
+<meta name="viewport">
+<style>
+h1 {
+	text-align: center;
+}
+
+ul {
+	padding: 0;
+	overflow: hidden;
+	background-color: #6c388d;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+</style>
+<title>Manage Leaves</title>
+</head>
+<body onload="initialize()">
+	<div class="container">
+		<ul>
+			<li><a class="active" href="homepage">HomePage</a></li>
+			<li style="margin-left: 60%;"><a id="btnlossgout"
+				href="UserAuthentication/logout">Logout</a></li>
+		</ul>
+	</div>
+	<h1>Manage Leaves Form</h1>
+	<br>
+	<label for="fstaffID">Staff ID:</label>
+	<select id="fstaffID">
+		<option></option>
+	</select>
+
+	<input type="button" id="fsubmit" name="fsubmit" onClick="postData()"
+		value="Get Leaves" />
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>LR_ID</th>
+				<th>LR_EmployeeID</th>
+				<th>LR_Duration</th>
+				<th>LR_Type</th>
+				<th>Leave_Request_Date</th>
+				<th>Leave_End_Date</th>
+				<th>Is Accepted</th>
+			</tr>
+		</thead>
+		<tbody id="fviewLeaves">
+			<tr>
+				<td></td>
+			</tr>
+
+		</tbody>
+	</table>
+
+</body>
+</html>

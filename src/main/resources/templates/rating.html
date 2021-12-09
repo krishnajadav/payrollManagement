@@ -1,0 +1,84 @@
+<HTML>
+<head>
+<title>Rating</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" th:src="@{/js/rating.js}"></script>
+<style>
+h1 {
+	text-align: center;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table, th, td {
+	border: 1px solid black;
+	position: relative;
+}
+
+ul {
+	padding: 0;
+	overflow: hidden;
+	background-color: #6c388d;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+</style>
+<body onload="initialize()">
+	<div class="container">
+		<ul>
+			<li><a class="active" href="homepage">HomePage</a></li>
+			<li style="margin-left: 60%;"><a id="btnlossgout"
+				href="UserAuthentication/logout">Logout</a></li>
+		</ul>
+	</div>
+	<h1>Final Rating</h1>
+	<br>
+	<br>
+	<div id="div-error-info"></div>
+	<br>
+	<br>
+	<label>Final Rating: </label>
+	<label id="ffinalrating"></label>
+	<br>
+	<br>
+	<label>Manager Review</label>
+	<table id="fmanagerreview" style="width: 100%">
+		<tr>
+			<th>Manager ID</th>
+			<th>Manager Name</th>
+			<th>Rating</th>
+			<th>Manager Comments</th>
+		</tr>
+	</table>
+	<br>
+	<br>
+	<label>Self Review</label>
+	<table id="fselfreview" style="width: 100%">
+		<tr>
+			<th>Employee ID</th>
+			<th>Employee Name</th>
+			<th>Rating</th>
+			<th>Comments</th>
+		</tr>
+	</table>
+	<label id='femployeeID' th:text='${employeeID}' style="display: none"></label>
+</body>
+</HTML>

@@ -1,0 +1,100 @@
+<HTML lang="en">
+<head>
+<title>Add Reimbursements</title>
+</head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script type="text/javascript" src="script.js"></script>
+<script type="text/javascript" th:src="@{/js/addReimbursements.js}"></script>
+<meta name="viewport">
+<style>
+h1 {
+	text-align: center;
+}
+
+ul {
+	padding: 0;
+	overflow: hidden;
+	background-color: #6c388d;
+}
+
+li {
+	float: left;
+}
+
+li a {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #ffffff;
+	text-decoration: none;
+}
+</style>
+<body onload="initialize()">
+	<div class="container">
+		<ul>
+			<li><a class="active" href="homepage">HomePage</a></li>
+			<li style="margin-left: 60%;"><a id="btnlossgout"
+				href="UserAuthentication/logout">Logout</a></li>
+		</ul>
+	</div>
+	<h1>Add Reimbursements Form</h1>
+
+	<input type="hidden" id="femployeeID" name="femployeeID" value="1225" />
+	<br>
+
+	<label for="freimbursementTypeID">Reimbursement Type:</label>
+	<select id="freimbursementTypeID">
+		<option value="1">Food</option>
+		<option value="2">Travel</option>
+		<option value="3">Accomodation</option>
+		<option value="4">Other</option>
+	</select>
+	<br>
+
+	<label for="freimbursementNote">Reimbursement Note:</label>
+	<input type="text" id="freimbursementNote" name="freimbursementNote" />
+	<br>
+
+	<label for="freimbursementAmount">Reimbursement Amount:</label>
+	<input type="text" id="freimbursementAmount"
+		name="freimbursementAmount" />
+	<br>
+
+	<label for="freimbursementDate">Reimbursement Date:</label>
+	<input type="date" id="freimbursementDate" name="freimbursementDate" />
+	<br>
+
+	<input type="button" id="fsubmit" name="fsubmit" onClick="postData()"
+		value="Submit Reimbursement" />
+
+	<div id="div-error-info"></div>
+
+	<br>
+	<br>
+
+	<table border="1">
+		<thead>
+			<tr>
+				<th>RR_TypeID</th>
+				<th>RR_Note</th>
+				<th>RR_Amount</th>
+				<th>Rr_Date</th>
+				<th>isAccepted</th>
+			</tr>
+		</thead>
+		<tbody id="fviewReimbursements">
+			<tr>
+				<td></td>
+			</tr>
+
+		</tbody>
+
+	</table>
+
+</body>
+</HTML>
