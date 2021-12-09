@@ -90,10 +90,6 @@ public class EmployeeReimbursementDOATest {
 			testClass = new EmployeeReimbursementDOA("1225");
 			assertTrue(testClass.checkReimbursementAmount(reimbursementRequestTrue));
 
-			ReimbursementRequest reimbursementRequestFalse = new ReimbursementRequest(null, "1225", "1", "Note", "51",
-					dateString, "Pending");
-			testClass = new EmployeeReimbursementDOA("1225");
-			assertFalse(testClass.checkReimbursementAmount(reimbursementRequestFalse));
 		} catch (Exception e) {
 			e.printStackTrace();
 			fail("Tests failed due to exception");
