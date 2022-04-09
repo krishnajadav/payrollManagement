@@ -52,7 +52,7 @@ public class Notification {
 		try {
 			JavaMailSender emailObj = getJavaMailSender();
 			SimpleMailMessage msg = new SimpleMailMessage();
-			msg.setFrom("krishna.lane4@gmail.com");
+			msg.setFrom("youremail");
 			msg.setTo(userEmail);
 			msg.setSubject(subject);
 			msg.setText(message);
@@ -68,8 +68,8 @@ public class Notification {
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 
-		mailSender.setUsername("krishna.lane4@gmail.com");
-		mailSender.setPassword("dsumwquundgjuthu");
+		mailSender.setUsername("youremail");
+		mailSender.setPassword("yourpassword");
 
 		Properties props = mailSender.getJavaMailProperties();
 		props.put("mail.transport.protocol", "smtp");
